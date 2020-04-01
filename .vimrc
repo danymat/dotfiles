@@ -19,6 +19,7 @@ set visualbell noerrorbells " visual bell instead of sound when error
 set cursorline "show cursor below line
 set mouse=a "allow mouse 
 set number "set number of lines
+set rnu "set relative number of lines
 "set rnu "set relative line numbering
 
 "--------------------
