@@ -6,7 +6,9 @@ set nocompatible " not vi compatible so that VIM works
 "----------------
 syntax on " turn on syntax highlight
 set showmatch " show matching braces when selector is inside one of them
-colorscheme desert " nice theme 
+colorscheme codedark " nice theme 
+" colorscheme desert " nice theme if you don't have codedark installed
+
 set autoindent " auto indent lines if the previous line was indented 
 filetype plugin indent on " enable filetype and plugin detection
 
