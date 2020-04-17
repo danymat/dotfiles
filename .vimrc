@@ -22,7 +22,6 @@ set cursorline "show cursor below line
 set mouse=a "allow mouse 
 set number "set number of lines
 set rnu "set relative number of lines
-"set rnu "set relative line numbering
 set scrolloff=3 " The number of screen lines to keep above and below the cursor.
 set sidescrolloff=5 " The number of screen columns to keep to the left and right of the cursor.
 
@@ -44,5 +43,7 @@ set incsearch "show search as characters entered
 "----------------
 set undofile   " Maintain undo history between sessions
 set undodir=~/.vim/undodir " Undo directory (to create if not created)
+
+let g:netrw_banner = 0
 
 
