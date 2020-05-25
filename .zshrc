@@ -1,5 +1,12 @@
 # Zsh configuration file, by Daniel Mathiot
 # To reload this file, run: source ~/.zshrc
+
+# Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
+# Initialization code that may require console input (password prompts, [y/n]
+# confirmations, etc.) must go above this block; everything else may go below.
+if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
+  source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
+fi
  
 # If you come from bash you might have to change your $PATH.
 # export PATH=$HOME/bin:/usr/local/bin:$PATH
@@ -8,14 +15,14 @@ export PATH="/usr/local/bin:$PATH"
 export PATH="/usr/local/sbin:$PATH"
 
 # Path to your oh-my-zsh installation.
-export ZSH="/Users/danielmathiot/.oh-my-zsh"
+export ZSH="$HOME/.oh-my-zsh"
 # Replace [/Users/danielmathiot/] with your home path (pwd ~)
 
 # Set name of the theme to load --- if set to "random", it will
 # load a random theme each time oh-my-zsh is loaded, in which case,
 # to know which specific one was loaded, run: echo $RANDOM_THEME
 # See https://github.com/ohmyzsh/ohmyzsh/wiki/Themes
-ZSH_THEME=theunraveler
+ZSH_THEME="powerlevel10k/powerlevel10k"
 
 # Uncomment the following line to disable colors in ls.
 # DISABLE_LS_COLORS="true"
@@ -28,7 +35,7 @@ ZSH_THEME=theunraveler
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(colored-man-pages brew git colorize pip osx themes)
+plugins=(zsh-completions autojump zsh-syntax-highlighting zsh-autosuggestions colored-man-pages brew git colorize pip osx themes)
 
 source $ZSH/oh-my-zsh.sh
 # Bindkeys for Mac Os X (current version: Catalina) 
@@ -45,8 +52,9 @@ bindkey "^[e" end-of-line
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 
-# Sourcing different plugins and integrations
-source /usr/local/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
-source /usr/local/share/zsh-autosuggestions/zsh-autosuggestions.zsh
+# Sourcing iterm2 shell integration
 test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell_integration.zsh"
-
+# Sourcing autojump
+[ -f /usr/local/etc/profile.d/autojump.sh ] && . /usr/local/etc/profile.d/autojump.sh
+# Sourcing p10k
+[[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh

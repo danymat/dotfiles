@@ -8,7 +8,7 @@ set nocompatible " not vi compatible so that VIM works
 syntax on " turn on syntax highlight
 set showmatch " show matching braces when selector is inside one of them
 colorscheme codedark " nice theme 
-" colorscheme desert " nice theme if you don't have codedark installed
+"colorscheme desert " nice theme if you don't have codedark installed
 
 set smartindent " auto indent lines if the previous line was indented 
 set cindent " auto indent lines for c program if recognized
@@ -24,7 +24,7 @@ set number "set number of lines
 set rnu "set relative number of lines
 set scrolloff=3 " The number of screen lines to keep above and below the cursor.
 set sidescrolloff=5 " The number of screen columns to keep to the left and right of the cursor.
-
+set t_Co=256 " Visual config of 256 colors
 "--------------------
 " Tabulation
 "----------------
