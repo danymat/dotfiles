@@ -29,8 +29,8 @@ sh -c "$(curl -fsSL https://raw.github.com/ohmyzsh/ohmyzsh/master/tools/install.
 ```bash
 git clone --depth=1 https://github.com/romkatv/powerlevel10k.git ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/themes/powerlevel10k
 
-mkdir -p ~/.vim/colors/
 git clone https://github.com/tomasiser/vim-code-dark.git ~/.vim/
+mkdir ~/.vim/colors/
 cp ~/.vim/vim-code-dark/colors/codedark.vim ~/.vim/colors/
 ```
 3. Install zsh plugins
@@ -44,7 +44,7 @@ git clone https://github.com/zsh-users/zsh-autosuggestions ${ZSH_CUSTOM:-~/.oh-m
 4. Copy dotfiles to home directory
 
 ```bash
-cp .tmux.conf .vimrc. zshrc .p10k.zsh ~/
+cp .tmux.conf .vimrc .zshrc .p10k.zsh ~/
 ```
 ### Mac Os
 
