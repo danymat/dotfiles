@@ -1,0 +1,61 @@
+S#!/usr/bin/env zsh
+# the scripting-addition must be loaded manually if
+# you are running yabai on macOS Big Sur. Uncomment
+# the following line to have the injection performed
+# when the config is executed during startup.
+#
+# for this to work you must configure sudo such that
+# it will be able to run the command without password
+
+sudo yabai --load-sa
+yabai -m signal --add event=dock_did_restart action="sudo yabai --load-sa"
+
+# bsp or float (default: bsp)
+yabai -m config layout bsp
+
+
+# Set all padding and gaps to 20pt (default: 0)
+yabai -m config top_padding    10
+yabai -m config bottom_padding 10
+yabai -m config left_padding   10
+yabai -m config right_padding  10
+yabai -m config window_gap     20
+
+
+# set mouse interaction modifier key (default: fn)
+yabai -m config mouse_modifier fn
+
+# set modifier + left-click drag to resize window (default: move)
+yabai -m config mouse_action1 move
+
+# set modifier + right-click drag to resize window (default: resize)
+yabai -m config mouse_action2 resize
+
+# set focus follows mouse mode (default: off, options: off, autoraise, autofocus)
+yabai -m config focus_follows_mouse autofocus
+
+# floating windows are always on top (default: off)
+#yabai -m config window_topmost off
+
+# window opacity (default: off)
+# example: render all unfocused windows with 90% opacity
+yabai -m config window_opacity on
+yabai -m config active_window_opacity 1.0
+yabai -m config normal_window_opacity 0.95
+
+# add 20 padding to the top and 0 padding to the bottom of every space located on the main display
+# add 20 padding to the top and bottom of all spaces regardless of the display it belongs to
+yabai -m config external_bar all:0:70
+
+# float system preferences
+yabai -m rule --add app="^Préférences Système$" manage=off
+yabai -m rule --add app="^Spotify$" manage=off
+yabai -m rule --add app="^Finder$" manage=off
+yabai -m rule --add app="^Mail" manage=off
+
+yabai -m config window_border on
+yabai -m config mouse_follows_focus on
+yabai -m config normal_window_border_color 0x00FFFFFF
+yabai -m config active_window_border_color 0x50ff8a65
+echo "yabai configuration loaded.."
+
