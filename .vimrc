@@ -81,6 +81,8 @@ set undodir=~/.vim/undodir " Undo directory (to create if not created)
 " Note: I use REMAP <Key>: ... in order to parse the content
 "----------------
 " __REMAP ds <surround>: delete the surround parenthesis/brackets..
+" __REMAP <C-o>: jumps backwards
+" __REMAP <C-i>: jumps forwards
 "
 " __REMAP cs <surround><surround>: change the surround parenthesis/brackets..
 nnoremap <SPACE> <Nop>
@@ -107,6 +109,10 @@ noremap <Right> <NOP>
 " REMAP LEADER-sv: source vimrc
 nnoremap <leader>ev :edit ~/.vimrc<CR>
 nnoremap <leader>sv :source ~/.vimrc<CR>
+
+" YCM
+" REMAP LEADER-gd: Go to definition
+nnoremap <silent> <leader>gd : YcmCompleter GoTo<CR>
 
 
 
