@@ -35,7 +35,23 @@ ZSH_THEME="powerlevel10k/powerlevel10k"
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(zsh-completions autojump zsh-syntax-highlighting zsh-autosuggestions colored-man-pages brew git colorize pip osx themes)
+plugins=(
+    git-auto-fetch
+    autoswitch_virtualenv 
+    zsh-completions 
+    autojump 
+    zsh-syntax-highlighting 
+    zsh-autosuggestions 
+    colored-man-pages 
+    brew 
+    git 
+    colorize 
+    pip 
+    osx 
+    themes
+    zsh-interactive-cd
+    poetry
+)
 
 source $ZSH/oh-my-zsh.sh
 # Bindkeys for Mac Os X (current version: Catalina) 
@@ -51,6 +67,23 @@ bindkey "^[e" end-of-line
 # Example aliases
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
+export GPG_TTY=$(tty)
+gpgconf --launch gpg-agent
+
+# Adding autocompletion
+if type brew &>/dev/null; then
+  FPATH=$(brew --prefix)/share/zsh/site-functions:$FPATH
+
+  autoload -Uz compinit
+  compinit
+fi
+
+# Adding ripgrep to fzf
+if type rg &> /dev/null; then
+  export FZF_DEFAULT_COMMAND='rg --files'
+  export FZF_DEFAULT_OPTS='-m'
+fi
+
 
 # Sourcing iterm2 shell integration
 test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell_integration.zsh"
@@ -58,3 +91,5 @@ test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell
 [ -f /usr/local/etc/profile.d/autojump.sh ] && . /usr/local/etc/profile.d/autojump.sh
 # Sourcing p10k
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
+
+export PATH="$HOME/.poetry/bin:$PATH"
