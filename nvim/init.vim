@@ -22,7 +22,6 @@ Plugin 'tpope/vim-fugitive'
 Plugin 'preservim/nerdcommenter'
 Plugin 'vim-syntastic/syntastic'
 Plugin 'wsdjeg/vim-todo'
-"Plugin 'stsewd/fzf-checkout.vim'
 Plugin 'ryanoasis/vim-devicons'
 Plugin 'mhinz/vim-startify'
 Plugin 'morhetz/gruvbox'
@@ -32,11 +31,9 @@ Plugin 'wakatime/vim-wakatime'
 Plugin 'nvim-lua/popup.nvim'
 Plugin 'nvim-lua/plenary.nvim'
 Plugin 'nvim-telescope/telescope.nvim'
-"Plugin 'nvim-telescope/telescope-fzf-native.nvim', { 'do': 'make' }
 Plugin 'ayu-theme/ayu-vim'
 Plugin 'junegunn/goyo.vim'
 
-let g:airline_theme='deus'
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
 
@@ -62,7 +59,7 @@ set showmatch " show matching braces when selector is inside one of them
 "colorscheme onedark " nice theme
 colorscheme ayu
 let ayucolor="mirage"
-"colorscheme gruvbox
+let g:airline_theme='deus'
 set background=dark
 "colorscheme desert " nice theme if you don't have codedark installed
 set encoding=UTF-8
@@ -77,11 +74,16 @@ set cursorline "show cursor below line
 "set mouse=a "allow mouse
 set number "set number of lines
 set rnu "set relative number of lines
-set cc=80
+set cc=80 "create a vertical line at 80 character
 set scrolloff=3 " The number of screen lines to keep above and below the cursor.
 set sidescrolloff=5 " The number of screen columns to keep to the left and right of the cursor.
 set t_Co=256 " Visual config of 256 colors
-set termguicolors
+set termguicolors " Add true colors support
+" Deleted arrow buttons for practice
+noremap <Up> <NOP>
+noremap <Down> <NOP>
+noremap <Left> <NOP>
+noremap <Right> <NOP>
 
 "--------------------
 " Tabulation
@@ -95,44 +97,59 @@ set softtabstop=4 "number of spaces in tab when editing
 " Searching
 "----------------
 set incsearch "show search as characters entered
-:runtime! ftplugin/man.vim
+:runtime! ftplugin/man.vim " add vim to man pages
 set grepprg=rg\ --vimgrep\ --smart-case\ --follow "change grep with rg
 set nohlsearch "disable automatic highlight
 
-"--------------------
+"----------
 " Undo/Redo
-"----------------
+"----------
 set undofile   " Maintain undo history between sessions
 set undodir=~/.vim/undodir " Undo directory (to create if not created)
 
-"--------------------
-" Personal key bindings
+"######################################################################
+"######################## Personal key bindings #######################
+"######################################################################
+
 " Note: I use REMAP <Key>: ... in order to parse the content
 " I use __REMAP for useful existing keys
 " I use __REMAP_NT for nerdtree keys
-"----------------
-" __REMAP ds <surround>: delete the surround parenthesis/brackets..
-" __REMAP vS <surround>: add surround in selection
-" __REMAP <C-o>: jumps backwards
-" __REMAP <C-i>: jumps forwards
-" __REMAP cs <surround><surround>: change the surround parenthesis/brackets..
+" I use __REMAP_... for ... keys
 
 nnoremap <SPACE> <Nop>
 let mapleader = " "
 
-" Telescope 
-" REMAP CTRL-f: FZF files
+"######################################################################
+"######################################################################
+"######################################################################
+
+"--------------------
+" Surround Plugin
+"----------------
+" __REMAP ds <surround>: delete the surround parenthesis/brackets..
+" __REMAP S <surround>: add surround in selection
+" __REMAP <C-o>: jumps backwards
+" __REMAP <C-i>: jumps forwards
+" __REMAP cs <surround><surround>: change the surround parenthesis/brackets..
+
+"-----------
+" Telescope (TLC) 
+"-----------
+" __REMAP_TLC CTRL-f: FZF files
 "nnoremap <silent> <C-f> :Telescope find_files<CR>
 nnoremap <silent> <C-f> :lua require'telescope.builtin'.find_files()<cr>
-" REMAP LEADER-f: FZF inside files
+" __REMAP_TLC LEADER-f: FZF inside files
 nnoremap <silent> <leader>f :Telescope live_grep<CR>
-" REMAP LEADER-b: open buffers
+" __REMAP_TLC LEADER-b: open buffers
 nnoremap <silent> <leader>b :lua require('telescope.builtin').buffers({ show_all_buffers = true })<CR>
-" REMAP LEADER-o: recently opened files
+" __REMAP_TLC LEADER-o: recently opened files
 nnoremap <leader>o :lua require("telescope.builtin").oldfiles()<CR>
-" REMAP LEADER-gls: view commit tree
+" __REMAP_TLC LEADER-gls: view commit tree
 nnoremap <leader>gls :lua require("telescope.builtin").git_branches()<CR>
 
+" -----------------------
+" Zettelkasten stuff (ZK)
+" -----------------------
 let g:zettelkasten = "/Users/danielmathiot/Documents/000 Meta/00.01 NewBrain/"
 command! -nargs=1 NewZettel :execute ":e" zettelkasten . strftime("%Y%m%d%H%M") . " <args>.md"
 " __REMAP_ZK LEADER-zn: create a new zettel
@@ -150,24 +167,19 @@ nnoremap <leader>§§ :lua require("configs.telescope").open_starting_files()<CR
 " __REMAP_ZK LEADER-z&: Go to next pair of [[
 nnoremap <leader>z& /[[<CR>w
 
-" Deleted arrow buttons for practice
-noremap <Up> <NOP>
-noremap <Down> <NOP>
-noremap <Left> <NOP>
-noremap <Right> <NOP>
-
-" Quick access to vimrc
+" -----
+" Vimrc
+" -----
 " REMAP LEADER-ev: open vimrc
 " REMAP LEADER-sv: source vimrc
 nnoremap <leader>ev :lua require("configs.telescope").search_dotfiles()<CR>
 nnoremap <leader>sv :source ~/.config/nvim/init.vim<CR>
 
-
 "--------------------
 " Window management
 "----------------
-set splitright
-set splitbelow
+set splitright " new window comes right
+set splitbelow " new window comes below
 nnoremap <leader>j :wincmd j<CR>
 nnoremap <leader>k :wincmd k<CR>
 nnoremap <leader>l :wincmd l<CR>
@@ -175,25 +187,14 @@ nnoremap <leader>h :wincmd h<CR>
 " REMAP LEADER-r: rotate windows
 nnoremap <leader>r <C-w>r<CR>
 
-
-" NERDTree
+" -------------
+" NERDTree (NT)
+" -------------
 " __REMAP_NT C: Move current directory to the one specified
 " __REMAP_NT CD: Move current directory to the CWD
 " __REMAP_NT cd: Change working directory to the one specified
-
 " __REMAP_NT LEADER-n: Open NERDTree
 nnoremap <leader>n :NERDTreeFocus<CR>
-
-" Fugitive 
-" __REMAP_FG gs: git status
-" __REMAP_FG gq: accept left change
-" __REMAP_FG gm: accept right change
-nnoremap <leader>gs :G<CR>
-nnoremap <leader>gq :diffget //2<CR>
-nnoremap <leader>gm :diffget //3<CR>
-nnoremap <leader>gc :GBranches<CR>
-nnoremap <leader>d :Gvdiffsplit HEAD<CR>
-
 " Exit Vim if NERDTree is the only window left.
 "autocmd BufEnter * if tabpagenr('$') == 1 && winnr('$') == 1 && exists('b:NERDTree') && b:NERDTree.isTabTree() |
 "    \ quit | endif
@@ -202,6 +203,21 @@ nnoremap <leader>d :Gvdiffsplit HEAD<CR>
 autocmd BufEnter * if bufname('#') =~ 'NERD_tree_\d\+' && bufname('%') !~ 'NERD_tree_\d\+' && winnr('$') > 1 |
             \ let buf=bufnr() | buffer# | execute "normal! \<C-W>w" | execute 'buffer'.buf | endif
 
+" -------------
+" Fugitive (FG)
+" -------------
+" __REMAP_FG gs: git status
+nnoremap <leader>gs :G<CR>
+" __REMAP_FG gq: accept left change
+nnoremap <leader>gq :diffget //2<CR>
+" __REMAP_FG gm: accept right change
+nnoremap <leader>gm :diffget //3<CR>
+" __REMAP_FG d: diff split
+nnoremap <leader>d :Gvdiffsplit HEAD<CR>
+
+" ---------
+" Syntastic
+" ---------
 " Recommended settings for syntastic
 set statusline+=%#warningmsg#
 set statusline+=%{SyntasticStatuslineFlag()}
@@ -212,9 +228,12 @@ let g:syntastic_auto_loc_list = 1
 let g:syntastic_check_on_open = 1
 let g:syntastic_check_on_wq = 0
 
+" ---
+" COC
+" ---
+" install these extensions automatically
+let g:coc_global_extensions = ['coc-git',  'coc-tsserver',  'coc-prettier', 'coc-pairs', 'coc-html', 'coc-git', 'coc-marketplace', 'coc-pyright', 'coc-json']
 " Recommended settings for Coc
-let g:coc_global_extensions = ['coc-json', 'coc-git', 'coc-tsserver']
-
 " Give more space for displaying messages.
 set cmdheight=2
 " Having longer updatetime (default is 4000 ms = 4 s) leads to noticeable
@@ -238,7 +257,6 @@ inoremap <silent><expr> <TAB>
             \ <SID>check_back_space() ? "\<TAB>" :
             \ coc#refresh()
 inoremap <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<C-h>"
-
 function! s:check_back_space() abort
     let col = col('.') - 1
     return !col || getline('.')[col - 1]  =~# '\s'
@@ -276,7 +294,7 @@ autocmd CursorHold * silent call CocActionAsync('highlight')
 
 " Symbol renaming.
 nmap <leader>rn <Plug>(coc-rename)
-" Prettier
+" Prettier (typing :Prettier for formatting)
 command! -nargs=0 Prettier :CocCommand prettier.formatFile
 
 
