@@ -15,11 +15,11 @@ yabai -m config layout bsp
 
 
 # Set all padding and gaps to 20pt (default: 0)
-yabai -m config top_padding    10
-yabai -m config bottom_padding 10
-yabai -m config left_padding   10
-yabai -m config right_padding  10
-yabai -m config window_gap     20
+yabai -m config top_padding    5
+yabai -m config bottom_padding 5
+yabai -m config left_padding   5
+yabai -m config right_padding  5
+yabai -m config window_gap     5
 
 
 # set mouse interaction modifier key (default: fn)
@@ -43,9 +43,6 @@ yabai -m config window_opacity on
 yabai -m config active_window_opacity 1.0
 yabai -m config normal_window_opacity 0.95
 
-# add 20 padding to the top and 0 padding to the bottom of every space located on the main display
-# add 20 padding to the top and bottom of all spaces regardless of the display it belongs to
-yabai -m config external_bar all:0:70
 
 # float system preferences
 yabai -m rule --add app="^Préférences Système$" manage=off

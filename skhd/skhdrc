@@ -1,0 +1,34 @@
+# HYPER A: Focus left or right windows
+hyper - a : yabai -m window --focus next || yabai -m window --focus first
+
+# HYPER TAB: Focus between monitors
+hyper - tab : yabai -m display --focus next || yabai -m display --focus prev
+
+# HYPER Y: Restart yabai
+hyper - y : launchctl kickstart -k "gui/${UID}/homebrew.mxcl.yabai" && skhd --reload
+
+# HYPER Z: Zoom window
+hyper - z : yabai -m window --toggle zoom-fullscreen
+
+# HYPER R: Rotate windows
+hyper - r : yabai -m window --toggle split
+
+# HYPER UP: Move window to second monitor
+hyper - up : yabai -m window --display 2 && yabai -m display --focus 2
+
+# HYPER DOWN: Move window to Mac
+hyper - down : yabai -m window --display 1 && yabai -m display --focus 1
+
+# HYPER S: Create a stack (the double float toggle allow to unstack)
+hyper - s : window=$(yabai -m query --windows --window | jq -r '.id') && yabai -m window east --stack $window || (yabai -m window $window --toggle float && yabai -m window $window --toggle float)
+
+# HYPER L: Focus to next/previous window in stack
+hyper - l :  yabai -m window --focus stack.next || yabai -m window --focus stack.first
+
+# HYPER RIGHT: Swap the current window with the largest one
+hyper - right : window=$(yabai -m query --windows --window | jq -r '.id') \
+    && (yabai -m window --swap largest || yabai -m window --swap next || yabai -m window --swap prev ) \
+    && yabai -m window --focus $window \
+    && yabai -m window --focus prev \
+    && yabai -m window --focus $window
+#hyper - right : yabai -m window --swap largest || yabai -m window --swap next || yabai -m window --swap prev
