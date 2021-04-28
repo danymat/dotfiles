@@ -25,46 +25,40 @@ local function link_zettel(prompt_bufnr, map)
     end
 end
 
+-- Dropdown list theme using a builtin theme definitions :
+local center_list = require'telescope.themes'.get_dropdown({
+        winblend = 10,
+        width = 0.5,
+        prompt = " ",
+        results_height = 15
+    })
+local opts = vim.deepcopy(center_list)
+opts.cwd = "/Users/danielmathiot/Documents/000 Meta/00.01 NewBrain"
+opts.attach_mappings = function(prompt_bufnr, map)
+    map('i','<C-p>', link_zettel)
+    return true
+end
+
+
 M.search_zettelkasten = function()
-    require("telescope.builtin").find_files({
-            prompt_title = "< Zettels: files >",
-            cwd = "/Users/danielmathiot/Documents/000 Meta/00.01 NewBrain",
-            attach_mappings = function(prompt_bufnr, map)
-                map('i','<C-p>', link_zettel)
-                map('n', 'dd', remove_file)
-                return true
-            end
-        })
+    opts.prompt_title = "< Zettels: files >"
+    require("telescope.builtin").find_files(opts)
 end
 
 M.open_starting_files = function()
-    require("telescope.builtin").live_grep({
-            prompt_title = "< Zettels: §§ >",
-            cwd = "/Users/danielmathiot/Documents/000 Meta/00.01 NewBrain",
-            default_text = "§§",
-            attach_mappings = function(prompt_bufnr, map)
-                map('i','<C-p>', link_zettel)
-                return true
-            end
-        })
+    opts.prompt_title =  "< Zettels: §§ >"
+    --opts.default_text = "§§"
+    require("telescope.builtin").live_grep(opts)
 end
 
 M.search_zettelkasten_in_files = function()
-    require("telescope.builtin").live_grep({
-            prompt_title = "< Zettels: in files >",
-            cwd = "/Users/danielmathiot/Documents/000 Meta/00.01 NewBrain",
-            attach_mappings = function(prompt_bufnr, map)
-                map('i','<C-p>', link_zettel)
-                return true
-            end
-        })
+    opts.prompt_title =  "< Zettels: in files >"
+    require("telescope.builtin").live_grep(opts)
 end
 
 M.find_link = function()
-    require("telescope.builtin").grep_string({
-            prompt_title = "< Zettels: links >",
-            cwd = "/Users/danielmathiot/Documents/000 Meta/00.01 NewBrain"
-        })
+    opts.prompt_title =  "< Zettels: links >"
+    require("telescope.builtin").grep_string(opts)
 end
 
 

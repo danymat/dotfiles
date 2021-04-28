@@ -11,7 +11,7 @@ call vundle#begin()
 
 " let Vundle manage Vundle, required
 Plugin 'VundleVim/Vundle.vim'
-Plugin 'neoclide/coc.nvim'
+"Plugin 'neoclide/coc.nvim'
 Plugin 'preservim/nerdtree'
 Plugin 'tpope/vim-surround'
 Plugin 'rakr/vim-one'
@@ -20,7 +20,7 @@ Plugin 'vim-airline/vim-airline'
 Plugin 'vim-airline/vim-airline-themes'
 Plugin 'tpope/vim-fugitive'
 Plugin 'preservim/nerdcommenter'
-Plugin 'vim-syntastic/syntastic'
+"Plugin 'vim-syntastic/syntastic'
 Plugin 'wsdjeg/vim-todo'
 Plugin 'ryanoasis/vim-devicons'
 Plugin 'mhinz/vim-startify'
@@ -33,6 +33,12 @@ Plugin 'nvim-lua/plenary.nvim'
 Plugin 'nvim-telescope/telescope.nvim'
 Plugin 'ayu-theme/ayu-vim'
 Plugin 'junegunn/goyo.vim'
+"Plugin 'nvim-treesitter/nvim-treesitter', { 'do': 'TSUpdate'}
+"Plugin 'nvim-treesitter/playground'
+Plugin 'neovim/nvim-lspconfig'
+"Plugin 'nvim-lua/completion-nvim'
+Plugin 'hrsh7th/nvim-compe'
+
 
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
@@ -216,86 +222,58 @@ nnoremap <leader>gm :diffget //3<CR>
 nnoremap <leader>d :Gvdiffsplit HEAD<CR>
 
 " ---------
-" Syntastic
+" LSP Stuff (completion.nvim and lspconfig) (LSP)
 " ---------
-" Recommended settings for syntastic
-set statusline+=%#warningmsg#
-set statusline+=%{SyntasticStatuslineFlag()}
-set statusline+=%*
+lua << EOF
+-- See https://github.com/neovim/nvim-lspconfig/blob/master/CONFIG.md for more lsp servers
+require'lspconfig'.pyright.setup{}
+require'lspconfig'.vimls.setup{}
+require'lspconfig'.bashls.setup{}
+EOF
+" Use <Tab> and <S-Tab> to navigate through popup menu
+inoremap <expr> <Tab>   pumvisible() ? "\<C-n>" : "\<Tab>"
+inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
 
-let g:syntastic_always_populate_loc_list = 1
-let g:syntastic_auto_loc_list = 1
-let g:syntastic_check_on_open = 1
-let g:syntastic_check_on_wq = 0
+" Set completeopt to have a better completion experience
+set completeopt=menuone,noselect
+lua << EOF
+require'compe'.setup {
+  enabled = true;
+  autocomplete = true;
+  debug = false;
+  min_length = 1;
+  preselect = 'enable';
+  throttle_time = 80;
+  source_timeout = 200;
+  incomplete_delay = 400;
+  max_abbr_width = 100;
+  max_kind_width = 100;
+  max_menu_width = 100;
+  documentation = true;
 
-" ---
-" COC
-" ---
-" install these extensions automatically
-let g:coc_global_extensions = ['coc-git',  'coc-tsserver',  'coc-prettier', 'coc-pairs', 'coc-html', 'coc-git', 'coc-marketplace', 'coc-pyright', 'coc-json']
-" Recommended settings for Coc
-" Give more space for displaying messages.
-set cmdheight=2
-" Having longer updatetime (default is 4000 ms = 4 s) leads to noticeable
-" delays and poor user experience.
-set updatetime=300
-" Don't pass messages to |ins-completion-menu|.
-set shortmess+=c
-" Always show the signcolumn, otherwise it would shift the text each time
-" diagnostics appear/become resolved.
-if has("patch-8.1.1564")
-    " Recently vim can merge signcolumn and number column into one
-    set signcolumn=number
-else
-    set signcolumn=yes
-endif
-" Use tab for trigger completion with characters ahead and navigate.
-" NOTE: Use command ':verbose imap <tab>' to make sure tab is not mapped by
-" other plugin before putting this into your config.
-inoremap <silent><expr> <TAB>
-            \ pumvisible() ? "\<C-n>" :
-            \ <SID>check_back_space() ? "\<TAB>" :
-            \ coc#refresh()
-inoremap <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<C-h>"
-function! s:check_back_space() abort
-    let col = col('.') - 1
-    return !col || getline('.')[col - 1]  =~# '\s'
-endfunction
-" Use <c-space> to trigger completion.
-if has('nvim')
-  inoremap <silent><expr> <c-space> coc#refresh()
-else
-  inoremap <silent><expr> <c-@> coc#refresh()
-endif
-" Make <CR> auto-select the first completion item and notify coc.nvim to
-" format on enter, <cr> could be remapped by other vim plugin
-inoremap <silent><expr> <cr> pumvisible() ? coc#_select_confirm()
-                              \: "\<C-g>u\<CR>\<c-r>=coc#on_enter()\<CR>"
-" GoTo code navigation.
-nmap <silent> <leader>gd <Plug>(coc-definition)
-nmap <silent> <leader>gy <Plug>(coc-type-definition)
-nmap <silent> <leader>gi <Plug>(coc-implementation)
-nmap <silent> <leader>gr <Plug>(coc-references)
-
-" Use K to show documentation in preview window.
-nnoremap <silent> K :call <SID>show_documentation()<CR>
-function! s:show_documentation()
-  if (index(['vim','help'], &filetype) >= 0)
-    execute 'h '.expand('<cword>')
-  elseif (coc#rpc#ready())
-    call CocActionAsync('doHover')
-  else
-    execute '!' . &keywordprg . " " . expand('<cword>')
-  endif
-endfunction
-
-" Highlight the symbol and its references when holding the cursor.
-autocmd CursorHold * silent call CocActionAsync('highlight')
-
-" Symbol renaming.
-nmap <leader>rn <Plug>(coc-rename)
-" Prettier (typing :Prettier for formatting)
-command! -nargs=0 Prettier :CocCommand prettier.formatFile
-
-
-let g:netrw_banner = 0
+  source = {
+    path = true;
+    buffer = true;
+    calc = true;
+    nvim_lsp = true;
+    nvim_lua = true;
+    vsnip = true;
+  };
+}
+EOF
+inoremap <silent><expr> <CR>      compe#confirm('<CR>')
+inoremap <silent><expr> <C-Space> compe#complete()
+" __REMAP_LSP LEADER-gd: Go to definition
+" __REMAP_LSP LEADER-gi: Go to implementation
+" __REMAP_LSP LEADER-gr: Find all references
+" __REMAP_LSP LEADER-r: Rename symbol
+" __REMAP_LSP <C-b> or C-n>: Go to prev or next diagnostic
+" __REMAP_LSP K: Find documentation (double K to enter)
+nnoremap <silent> <leader>gd <cmd>lua vim.lsp.buf.definition()<CR>
+nnoremap <silent> <leader>gi <cmd>lua vim.lsp.buf.implementation()<CR>
+nnoremap <silent> <leader>gr <cmd>lua vim.lsp.buf.references()<CR>
+nnoremap <silent> <leader>r <cmd>lua vim.lsp.buf.rename()<CR>
+nnoremap <silent> <C-n> <cmd>lua vim.lsp.diagnostic.goto_next()<CR>
+nnoremap <silent> <C-b> <cmd>lua vim.lsp.diagnostic.goto_prev()<CR>
+nnoremap <silent>K <cmd>lua vim.lsp.buf.hover()<CR>
+"nnoremap <silent> <C-k> <cmd>lua vim.lsp.buf.signature_help()<CR>
