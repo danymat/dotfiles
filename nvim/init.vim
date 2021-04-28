@@ -38,7 +38,7 @@ Plugin 'junegunn/goyo.vim'
 Plugin 'neovim/nvim-lspconfig'
 "Plugin 'nvim-lua/completion-nvim'
 Plugin 'hrsh7th/nvim-compe'
-
+Plugin 'junegunn/limelight.vim'
 
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
@@ -172,7 +172,10 @@ nnoremap <leader>yf :let @+=expand("%:t:r")<CR>      " Mnemonic: yank File Name
 nnoremap <leader>§§ :lua require("configs.telescope").open_starting_files()<CR>
 " __REMAP_ZK LEADER-z&: Go to next pair of [[
 nnoremap <leader>z& /[[<CR>w
-
+" __REMAP_ZK LEADER-go: Toggle Goyo
+nnoremap <Leader>go :Goyo<CR>
+autocmd! User GoyoEnter Limelight
+autocmd! User GoyoLeave Limelight!
 " -----
 " Vimrc
 " -----
