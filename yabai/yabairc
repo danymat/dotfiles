@@ -42,7 +42,8 @@ yabai -m config focus_follows_mouse autofocus
 yabai -m config window_opacity on
 yabai -m config active_window_opacity 1.0
 yabai -m config normal_window_opacity 0.95
-
+# Keep iTerm2 opcaity at 0.95 for better coding experience with nvim
+yabai -m rule --add app="^iTerm2" manage=on opacity=0.95
 
 # float system preferences
 yabai -m rule --add app="^Préférences Système$" manage=off
