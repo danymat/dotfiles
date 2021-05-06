@@ -21,10 +21,8 @@ Plugin 'vim-airline/vim-airline-themes'
 Plugin 'tpope/vim-fugitive'
 Plugin 'preservim/nerdcommenter'
 "Plugin 'vim-syntastic/syntastic'
-Plugin 'wsdjeg/vim-todo'
 Plugin 'ryanoasis/vim-devicons'
 Plugin 'mhinz/vim-startify'
-Plugin 'morhetz/gruvbox'
 Plugin 'sheerun/vim-polyglot'
 Plugin 'airblade/vim-gitgutter'
 Plugin 'wakatime/vim-wakatime'
@@ -33,12 +31,12 @@ Plugin 'nvim-lua/plenary.nvim'
 Plugin 'nvim-telescope/telescope.nvim'
 Plugin 'ayu-theme/ayu-vim'
 Plugin 'junegunn/goyo.vim'
-"Plugin 'nvim-treesitter/nvim-treesitter', { 'do': 'TSUpdate'}
-"Plugin 'nvim-treesitter/playground'
+Plugin 'nvim-treesitter/nvim-treesitter', { 'do': 'TSUpdate'}
 Plugin 'neovim/nvim-lspconfig'
-"Plugin 'nvim-lua/completion-nvim'
 Plugin 'hrsh7th/nvim-compe'
 Plugin 'junegunn/limelight.vim'
+Plugin 'szw/vim-maximizer'
+Plugin 'ThePrimeagen/harpoon'
 
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
@@ -169,13 +167,18 @@ nnoremap <leader>zl :lua require("configs.telescope").find_link()<CR>
 " __REMAP_ZK LEADER-yf: Copy file name
 nnoremap <leader>yf :let @+=expand("%:t:r")<CR>      " Mnemonic: yank File Name
 " __REMAP_ZK LEADER-§§: Open search for starting files
-nnoremap <leader>§§ :lua require("configs.telescope").open_starting_files()<CR>
+"nnoremap <leader>§§ :lua require("telescope.builtin").live_grep({ default_text = "§§" })<CR>
+"nnoremap <leader>§§ :lua require("configs.telescope").open_starting_files()<CR>
 " __REMAP_ZK LEADER-z&: Go to next pair of [[
 nnoremap <leader>z& /[[<CR>w
 " __REMAP_ZK LEADER-go: Toggle Goyo
+let g:goyo_width = 75
 nnoremap <Leader>go :Goyo<CR>
 autocmd! User GoyoEnter Limelight
 autocmd! User GoyoLeave Limelight!
+
+
+
 " -----
 " Vimrc
 " -----
@@ -232,7 +235,30 @@ lua << EOF
 require'lspconfig'.pyright.setup{}
 require'lspconfig'.vimls.setup{}
 require'lspconfig'.bashls.setup{}
+require'lspconfig'.intelephense.setup{}
+require'lspconfig'.html.setup{}
+require'lspconfig'.flow.setup{}
+require'lspconfig'.tsserver.setup{}
+
+-- local lspconfig = require'lspconfig'
+-- local configs = require'lspconfig/configs'
+-- -- Check if it's already defined for when reloading this file.
+-- if not lspconfig.zettelkastenlsp then
+--   configs.zettelkastenlsp = {
+--     default_config = {
+--       cmd = {'node',  '/Users/danielmathiot/Developer/lsp-zettelkasten/server/out/server.js', '--stdio'};
+--       filetypes = {'markdown'};
+--       root_dir = function(fname)
+--         return lspconfig.util.find_git_ancestor(fname) or vim.loop.os_homedir()
+--       end;
+--       settings = {};
+--     };
+--   }
+-- end
+-- lspconfig.zettelkastenlsp.setup{}
+
 EOF
+
 " Use <Tab> and <S-Tab> to navigate through popup menu
 inoremap <expr> <Tab>   pumvisible() ? "\<C-n>" : "\<Tab>"
 inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
@@ -279,4 +305,35 @@ nnoremap <silent> <leader>r <cmd>lua vim.lsp.buf.rename()<CR>
 nnoremap <silent> <C-n> <cmd>lua vim.lsp.diagnostic.goto_next()<CR>
 nnoremap <silent> <C-b> <cmd>lua vim.lsp.diagnostic.goto_prev()<CR>
 nnoremap <silent>K <cmd>lua vim.lsp.buf.hover()<CR>
-"nnoremap <silent> <C-k> <cmd>lua vim.lsp.buf.signature_help()<CR>
+nnoremap <silent> <C-k> <cmd>lua vim.lsp.buf.signature_help()<CR>
+
+" ---------
+" Maximizer
+" ---------
+" __REMAP LEADER-zz: Toggle Zoom
+nnoremap <silent> <leader>zz <cmd>MaximizerToggle<CR>
+
+lua <<EOF
+require'nvim-treesitter.configs'.setup {
+  ensure_installed = "maintained", -- one of "all", "maintained" (parsers with maintainers), or a list of languages
+  ignore_install = { }, -- List of parsers to ignore installing
+  highlight = {
+    enable = true,              -- false will disable the whole extension
+  },
+}
+EOF
+
+" ---------
+" GitGutter
+" Disable all concurrent mappings of <leader>h...
+" ---------
+let g:gitgutter_map_keys = 0
+
+" -------
+" Harpoon
+" -------
+nnoremap <silent> <leader>xa <cmd>:lua require("harpoon.mark").add_file()<CR>
+nnoremap <silent> <leader>xo <cmd>:lua require("harpoon.ui").toggle_quick_menu()<CR>
+nnoremap <silent> <leader>& <cmd>:lua require("harpoon.ui").nav_file(1)<CR>
+nnoremap <silent> <leader>é <cmd>:lua require("harpoon.ui").nav_file(2)<CR>
+nnoremap <silent> <leader>" <cmd>:lua require("harpoon.ui").nav_file(3)<CR>
