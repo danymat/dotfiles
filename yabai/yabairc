@@ -1,4 +1,4 @@
-S#!/usr/bin/env zsh
+#!/usr/bin/env zsh
 # the scripting-addition must be loaded manually if
 # you are running yabai on macOS Big Sur. Uncomment
 # the following line to have the injection performed
@@ -42,14 +42,24 @@ yabai -m config focus_follows_mouse autofocus
 yabai -m config window_opacity on
 yabai -m config active_window_opacity 1.0
 yabai -m config normal_window_opacity 0.95
-# Keep iTerm2 opcaity at 0.95 for better coding experience with nvim
-yabai -m rule --add app="^iTerm2" manage=on opacity=0.95
 
-# float system preferences
+# Desktop labels
+yabai -m space 1 --label web
+yabai -m space 2 --label code
+yabai -m space 3 --label music
+
+yabai -m space web --display 1
+yabai -m space code --display 2
+yabai -m space music --display 1
+
+# Window rules 
+yabai -m rule --add app="^iTerm2" manage=on opacity=0.95 space=code
 yabai -m rule --add app="^Préférences Système$" manage=off
 yabai -m rule --add app="^Spotify$" manage=off
 yabai -m rule --add app="^Finder$" manage=off
 yabai -m rule --add app="^Mail" manage=off
+yabai -m rule --add app="^Musique" manage=off space=music
+yabai -m rule --add app=Safari space=web
 
 yabai -m config window_border on
 yabai -m config mouse_follows_focus on

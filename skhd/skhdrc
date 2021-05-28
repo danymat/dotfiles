@@ -13,11 +13,11 @@ hyper - z : yabai -m window --toggle zoom-fullscreen
 # HYPER R: Rotate windows
 hyper - r : yabai -m window --toggle split
 
-# HYPER UP: Move window to second monitor
-hyper - up : yabai -m window --display 2 && yabai -m display --focus 2
+# HYPER k: Move window to second monitor
+hyper - k : yabai -m window --display 2 && yabai -m display --focus 2
 
-# HYPER DOWN: Move window to Mac
-hyper - down : yabai -m window --display 1 && yabai -m display --focus 1
+# HYPER j: Move window to Mac
+hyper - j : yabai -m window --display 1 && yabai -m display --focus 1
 
 # HYPER S: Create a stack (the double float toggle allow to unstack)
 hyper - s : window=$(yabai -m query --windows --window | jq -r '.id') && yabai -m window east --stack $window || (yabai -m window $window --toggle float && yabai -m window $window --toggle float)
@@ -25,10 +25,16 @@ hyper - s : window=$(yabai -m query --windows --window | jq -r '.id') && yabai -
 # HYPER L: Focus to next/previous window in stack
 hyper - l :  yabai -m window --focus stack.next || yabai -m window --focus stack.first
 
-# HYPER RIGHT: Swap the current window with the largest one
-hyper - right : window=$(yabai -m query --windows --window | jq -r '.id') \
-    && (yabai -m window --swap largest || yabai -m window --swap next || yabai -m window --swap prev ) \
-    && yabai -m window --focus $window \
-    && yabai -m window --focus prev \
-    && yabai -m window --focus $window
-#hyper - right : yabai -m window --swap largest || yabai -m window --swap next || yabai -m window --swap prev
+## HYPER ù: Swap the current window with the largest one
+#hyper -   : window=$(yabai -m query --windows --window | jq -r '.id') \
+    #&& (yabai -m window --swap largest || yabai -m window --swap next || yabai -m window --swap prev ) \
+    #&& yabai -m window --focus $window \
+    #&& yabai -m window --focus prev \
+    #&& yabai -m window --focus $window
+
+# HYPER &/é/"/': Focus space 1/2/3/4 if it exists
+hyper - 0x12: yabai -m space --focus code
+hyper - 0x13 : yabai -m space --focus web
+
+hyper - 0x14 : yabai -m space --focus music
+hyper - 0x15 : yabai -m space --focus 4
