@@ -1,4 +1,4 @@
-" Vim configuration file by Daniel Mathiot
+ "Vim configuration file by Daniel Mathiot
 
 set nocompatible " not vi compatible so that VIM works
 filetype off     " required for vundle
@@ -11,7 +11,6 @@ call vundle#begin()
 
 " let Vundle manage Vundle, required
 Plugin 'VundleVim/Vundle.vim'
-"Plugin 'neoclide/coc.nvim'
 Plugin 'preservim/nerdtree'
 Plugin 'tpope/vim-surround'
 Plugin 'rakr/vim-one'
@@ -20,7 +19,6 @@ Plugin 'vim-airline/vim-airline'
 Plugin 'vim-airline/vim-airline-themes'
 Plugin 'tpope/vim-fugitive'
 Plugin 'preservim/nerdcommenter'
-"Plugin 'vim-syntastic/syntastic'
 Plugin 'ryanoasis/vim-devicons'
 Plugin 'mhinz/vim-startify'
 Plugin 'sheerun/vim-polyglot'
@@ -34,10 +32,12 @@ Plugin 'junegunn/goyo.vim'
 Plugin 'nvim-treesitter/nvim-treesitter', { 'do': 'TSUpdate'}
 Plugin 'neovim/nvim-lspconfig'
 Plugin 'hrsh7th/nvim-compe'
-Plugin 'junegunn/limelight.vim'
 Plugin 'szw/vim-maximizer'
 Plugin 'ThePrimeagen/harpoon'
+Plugin 'kabouzeid/nvim-lspinstall'
+Plugin 'Yggdroot/indentLine'
 
+"
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
 
@@ -132,9 +132,9 @@ let mapleader = " "
 "----------------
 " __REMAP ds <surround>: delete the surround parenthesis/brackets..
 " __REMAP S <surround>: add surround in selection
-" __REMAP <C-o>: jumps backwards
-" __REMAP <C-i>: jumps forwards
+" __REMAP yss <surround>: surround inline
 " __REMAP cs <surround><surround>: change the surround parenthesis/brackets..
+autocmd FileType vue let b:surround_123 = "{{ \r }}"
 
 "-----------
 " Telescope (TLC) 
@@ -171,11 +171,12 @@ nnoremap <leader>yf :let @+=expand("%:t:r")<CR>      " Mnemonic: yank File Name
 "nnoremap <leader>§§ :lua require("configs.telescope").open_starting_files()<CR>
 " __REMAP_ZK LEADER-z&: Go to next pair of [[
 nnoremap <leader>z& /[[<CR>w
+
 " __REMAP_ZK LEADER-go: Toggle Goyo
 let g:goyo_width = 75
 nnoremap <Leader>go :Goyo<CR>
-autocmd! User GoyoEnter Limelight
-autocmd! User GoyoLeave Limelight!
+autocmd! User GoyoEnter set linebreak
+autocmd! User GoyoLeave set linebreak!
 
 
 
@@ -226,6 +227,7 @@ nnoremap <leader>gq :diffget //2<CR>
 nnoremap <leader>gm :diffget //3<CR>
 " __REMAP_FG d: diff split
 nnoremap <leader>d :Gvdiffsplit HEAD<CR>
+nnoremap <leader>gl :lua require("telescope.builtin").git_commits()<CR>
 
 " ---------
 " LSP Stuff (completion.nvim and lspconfig) (LSP)
@@ -239,23 +241,13 @@ require'lspconfig'.intelephense.setup{}
 require'lspconfig'.html.setup{}
 require'lspconfig'.flow.setup{}
 require'lspconfig'.tsserver.setup{}
+require'lspconfig'.vuels.setup{}
+require'lspinstall'.setup() -- important
 
--- local lspconfig = require'lspconfig'
--- local configs = require'lspconfig/configs'
--- -- Check if it's already defined for when reloading this file.
--- if not lspconfig.zettelkastenlsp then
---   configs.zettelkastenlsp = {
---     default_config = {
---       cmd = {'node',  '/Users/danielmathiot/Developer/lsp-zettelkasten/server/out/server.js', '--stdio'};
---       filetypes = {'markdown'};
---       root_dir = function(fname)
---         return lspconfig.util.find_git_ancestor(fname) or vim.loop.os_homedir()
---       end;
---       settings = {};
---     };
---   }
--- end
--- lspconfig.zettelkastenlsp.setup{}
+local servers = require'lspinstall'.installed_servers()
+for _, server in pairs(servers) do
+  require'lspconfig'[server].setup{}
+end
 
 EOF
 
@@ -332,6 +324,11 @@ let g:gitgutter_map_keys = 0
 " -------
 " Harpoon
 " -------
+" __REMAP_HRP xa: Add current file to harpoon
+" __REMAP_HRP xo: Add current file to harpoon
+" __REMAP_HRP &: Jump to file 1
+" __REMAP_HRP é: Jump to file 2
+" __REMAP_HRP \": Jump to file 3
 nnoremap <silent> <leader>xa <cmd>:lua require("harpoon.mark").add_file()<CR>
 nnoremap <silent> <leader>xo <cmd>:lua require("harpoon.ui").toggle_quick_menu()<CR>
 nnoremap <silent> <leader>& <cmd>:lua require("harpoon.ui").nav_file(1)<CR>
