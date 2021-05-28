@@ -200,6 +200,13 @@ nnoremap <leader>h :wincmd h<CR>
 " REMAP LEADER-r: rotate windows
 nnoremap <leader>r <C-w>r<CR>
 
+" ------------
+" Moving speed
+" ------------
+" remap prev/next paragraph to ctrl-: and ctrl-= because it's easier
+nnoremap ÷ {
+nnoremap ≠ }
+
 " -------------
 " NERDTree (NT)
 " -------------
