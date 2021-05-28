@@ -47,10 +47,13 @@ yabai -m config normal_window_opacity 0.95
 yabai -m space 1 --label web
 yabai -m space 2 --label code
 yabai -m space 3 --label music
+yabai -m space 4 --label misc
 
+# Move spaces to correct displays
 yabai -m space web --display 1
 yabai -m space code --display 2
 yabai -m space music --display 1
+yabai -m space misc --display 2
 
 # Window rules 
 yabai -m rule --add app="^iTerm2" manage=on opacity=0.95 space=code
