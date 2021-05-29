@@ -47,12 +47,14 @@ yabai -m config normal_window_opacity 0.95
 yabai -m space 1 --label web
 yabai -m space 2 --label code
 yabai -m space 3 --label music
-yabai -m space 4 --label misc
+yabai -m space 4 --label slack
+yabai -m space 5 --label misc
 
 # Move spaces to correct displays
 yabai -m space web --display 1
 yabai -m space code --display 2
 yabai -m space music --display 1
+yabai -m space slack --display 1
 yabai -m space misc --display 2
 
 # Window rules 
@@ -63,10 +65,24 @@ yabai -m rule --add app="^Finder$" manage=off
 yabai -m rule --add app="^Mail" manage=off
 yabai -m rule --add app="^Musique" manage=off space=music
 yabai -m rule --add app=Safari space=web
+yabai -m rule --add app="^Slack" space=slack
 
 yabai -m config window_border on
 yabai -m config mouse_follows_focus on
 yabai -m config normal_window_border_color 0x00FFFFFF
 yabai -m config active_window_border_color 0x50ff8a65
+
+# Create two Safari instances and move the last one to misc space
+if ! ps aux | grep "[/]Applications/Safari.app/Contents/MacOS/Safari" > /dev/null
+then
+open -a Safari 
+sleep 4
+fi
+open -a iTerm
+index="$(yabai -m query --windows | jq 'map(select(."app" == "Safari"))[1].id')"
+yabai -m window $index --space misc
+yabai -m space --focus web
+yabai -m space --focus code
+
 echo "yabai configuration loaded.."
 
