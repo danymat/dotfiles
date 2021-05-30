@@ -48,17 +48,19 @@ yabai -m space 1 --label web
 yabai -m space 2 --label code
 yabai -m space 3 --label music
 yabai -m space 4 --label slack
-yabai -m space 5 --label misc
+yabai -m space 5 --label personal_web
+yabai -m space 6 --label misc
 
 # Move spaces to correct displays
 yabai -m space web --display 1
 yabai -m space code --display 2
 yabai -m space music --display 1
 yabai -m space slack --display 1
+yabai -m space personal_web --display 2
 yabai -m space misc --display 2
 
 # Window rules 
-yabai -m rule --add app="^iTerm2" manage=on opacity=0.95 space=code
+yabai -m rule --add app="^iTerm" manage=on opacity=0.95 space=code
 yabai -m rule --add app="^Préférences Système$" manage=off
 yabai -m rule --add app="^Spotify$" manage=off
 yabai -m rule --add app="^Finder$" manage=off
@@ -66,6 +68,7 @@ yabai -m rule --add app="^Mail" manage=off
 yabai -m rule --add app="^Musique" manage=off space=music
 yabai -m rule --add app=Safari space=web
 yabai -m rule --add app="^Slack" space=slack
+yabai -m rule --add app="Obsidian" space=misc
 
 yabai -m config window_border on
 yabai -m config mouse_follows_focus on
@@ -76,11 +79,13 @@ yabai -m config active_window_border_color 0x50ff8a65
 if ! ps aux | grep "[/]Applications/Safari.app/Contents/MacOS/Safari" > /dev/null
 then
 open -a Safari 
-sleep 4
 fi
 open -a iTerm
+sleep 4
 index="$(yabai -m query --windows | jq 'map(select(."app" == "Safari"))[1].id')"
-yabai -m window $index --space misc
+yabai -m window $index --space personal_web
+index="$(yabai -m query --windows | jq 'map(select(."app" == "iTerm2"))[0].id')"
+yabai -m window $index --space code
 yabai -m space --focus web
 yabai -m space --focus code
 
