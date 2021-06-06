@@ -1,4 +1,4 @@
- "Vim configuration file by Daniel Mathiot
+"Vim configuration file by Daniel Mathiot
 
 set nocompatible " not vi compatible so that VIM works
 filetype off     " required for vundle
@@ -30,14 +30,16 @@ Plugin 'nvim-telescope/telescope.nvim'
 Plugin 'ayu-theme/ayu-vim'
 Plugin 'junegunn/goyo.vim'
 Plugin 'nvim-treesitter/nvim-treesitter', { 'do': 'TSUpdate'}
+Plugin 'nvim-treesitter/playground'
 Plugin 'neovim/nvim-lspconfig'
 Plugin 'hrsh7th/nvim-compe'
 Plugin 'szw/vim-maximizer'
 Plugin 'ThePrimeagen/harpoon'
 Plugin 'kabouzeid/nvim-lspinstall'
 Plugin 'Yggdroot/indentLine'
+Plugin 'jiangmiao/auto-pairs'
+Plugin 'sbdchd/neoformat'
 
-"
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
 
@@ -60,9 +62,16 @@ filetype plugin indent on    " required
 "----------------
 syntax on " turn on syntax highlight
 set showmatch " show matching braces when selector is inside one of them
-"colorscheme onedark " nice theme
 colorscheme ayu
+"let g:sonokai_style = 'andromeda'
+"let g:sonokai_diagnostic_text_highlight = 1
+"let g:sonokai_enable_italic = 1
+"let g:sonokai_transparent_background = 1
+"let g:sonokai_disable_italic_comment = 0
+"let g:sonokai_better_performance = 1
+
 let ayucolor="mirage"
+"let g:airline_theme='deus'
 let g:airline_theme='deus'
 set background=dark
 "colorscheme desert " nice theme if you don't have codedark installed
@@ -203,57 +212,78 @@ nnoremap <leader>r <C-w>r<CR>
 " ------------
 " Moving speed
 " ------------
-" remap prev/next paragraph to ctrl-: and ctrl-= because it's easier
 nnoremap ÷ {
 nnoremap ≠ }
+"imap Ô {
+"imap \ }
+"imap ô (
+"imap € )
 
-" -------------
-" NERDTree (NT)
-" -------------
-" __REMAP_NT C: Move current directory to the one specified
-" __REMAP_NT CD: Move current directory to the CWD
-" __REMAP_NT cd: Change working directory to the one specified
-" __REMAP_NT LEADER-n: Open NERDTree
-nnoremap <leader>n :NERDTreeFocus<CR>
-" Exit Vim if NERDTree is the only window left.
-"autocmd BufEnter * if tabpagenr('$') == 1 && winnr('$') == 1 && exists('b:NERDTree') && b:NERDTree.isTabTree() |
-"    \ quit | endif
 
-" If another buffer tries to replace NERDTree, put it in the other window, and bring back NERDTree.
-autocmd BufEnter * if bufname('#') =~ 'NERD_tree_\d\+' && bufname('%') !~ 'NERD_tree_\d\+' && winnr('$') > 1 |
-            \ let buf=bufnr() | buffer# | execute "normal! \<C-W>w" | execute 'buffer'.buf | endif
+    " -------------
+    " NERDTree (NT)
+    " -------------
+    " __REMAP_NT C: Move current directory to the one specified
+    " __REMAP_NT CD: Move current directory to the CWD
+    " __REMAP_NT cd: Change working directory to the one specified
+    " __REMAP_NT LEADER-n: Open NERDTree
+    nnoremap <leader>n :NERDTreeFocus<CR>
+    " Exit Vim if NERDTree is the only window left.
+    "autocmd BufEnter * if tabpagenr('$') == 1 && winnr('$') == 1 && exists('b:NERDTree') && b:NERDTree.isTabTree() |
+    "    \ quit | endif
 
-" -------------
-" Fugitive (FG)
-" -------------
-" __REMAP_FG gs: git status
-nnoremap <leader>gs :G<CR>
-" __REMAP_FG gq: accept left change
-nnoremap <leader>gq :diffget //2<CR>
-" __REMAP_FG gm: accept right change
-nnoremap <leader>gm :diffget //3<CR>
-" __REMAP_FG d: diff split
-nnoremap <leader>d :Gvdiffsplit HEAD<CR>
-nnoremap <leader>gl :lua require("telescope.builtin").git_commits()<CR>
+    " If another buffer tries to replace NERDTree, put it in the other window, and bring back NERDTree.
+    autocmd BufEnter * if bufname('#') =~ 'NERD_tree_\d\+' && bufname('%') !~ 'NERD_tree_\d\+' && winnr('$') > 1 |
+                \ let buf=bufnr() | buffer# | execute "normal! \<C-W>w" | execute 'buffer'.buf | endif
 
-" ---------
-" LSP Stuff (completion.nvim and lspconfig) (LSP)
-" ---------
-lua << EOF
--- See https://github.com/neovim/nvim-lspconfig/blob/master/CONFIG.md for more lsp servers
-require'lspconfig'.pyright.setup{}
-require'lspconfig'.vimls.setup{}
-require'lspconfig'.bashls.setup{}
-require'lspconfig'.intelephense.setup{}
-require'lspconfig'.html.setup{}
-require'lspconfig'.flow.setup{}
-require'lspconfig'.tsserver.setup{}
-require'lspconfig'.vuels.setup{}
+    " -------------
+    " Fugitive (FG)
+    " -------------
+    " __REMAP_FG gs: git status
+    nnoremap <leader>gs :G<CR>
+    " __REMAP_FG gq: accept left change
+    nnoremap <leader>gq :diffget //2<CR>
+    " __REMAP_FG gm: accept right change
+    nnoremap <leader>gm :diffget //3<CR>
+    " __REMAP_FG d: diff split
+    nnoremap <leader>d :Gvdiffsplit HEAD<CR>
+    nnoremap <leader>gl :lua require("telescope.builtin").git_commits()<CR>
+
+    " ---------
+    " LSP Stuff (completion.nvim and lspconfig) (LSP)
+    " ---------
+    lua << EOF
+    vim.lsp.set_log_level("debug")
+    -- See https://github.com/neovim/nvim-lspconfig/blob/master/CONFIG.md for more lsp servers
+    require'lspconfig'.pyright.setup{}
+    require'lspconfig'.vimls.setup{}
+    require'lspconfig'.bashls.setup{}
+    require'lspconfig'.intelephense.setup{}
+    require'lspconfig'.html.setup{}
+    require'lspconfig'.flow.setup{}
+    require'lspconfig'.tsserver.setup{}
+    require'lspconfig'.vuels.setup{}
+    local lspconfig = require'lspconfig'
+    local configs = require'lspconfig/configs'
+    -- Check if it's already defined for when reloading this file.
+    if not lspconfig.zettelkastenlsp then
+        configs.zettelkastenlsp = {
+            default_config = {
+                cmd = {'node',  '/Users/danielmathiot/Developer/lsp-zettelkasten/server/out/server.js', '--stdio'};
+                filetypes = {'markdown'};
+                root_dir = function(fname)
+                return lspconfig.util.find_git_ancestor(fname) or vim.loop.os_homedir()
+            end;
+            settings = {};
+            };
+        }
+end
+lspconfig.zettelkastenlsp.setup{}
 require'lspinstall'.setup() -- important
 
 local servers = require'lspinstall'.installed_servers()
 for _, server in pairs(servers) do
-  require'lspconfig'[server].setup{}
+    require'lspconfig'[server].setup{}
 end
 
 EOF
@@ -266,27 +296,27 @@ inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
 set completeopt=menuone,noselect
 lua << EOF
 require'compe'.setup {
-  enabled = true;
-  autocomplete = true;
-  debug = false;
-  min_length = 1;
-  preselect = 'enable';
-  throttle_time = 80;
-  source_timeout = 200;
-  incomplete_delay = 400;
-  max_abbr_width = 100;
-  max_kind_width = 100;
-  max_menu_width = 100;
-  documentation = true;
+enabled = true;
+autocomplete = true;
+debug = false;
+min_length = 1;
+preselect = 'enable';
+throttle_time = 80;
+source_timeout = 200;
+incomplete_delay = 400;
+max_abbr_width = 100;
+max_kind_width = 100;
+max_menu_width = 100;
+documentation = true;
 
-  source = {
+source = {
     path = true;
     buffer = true;
     calc = true;
     nvim_lsp = true;
     nvim_lua = true;
     vsnip = true;
-  };
+    };
 }
 EOF
 inoremap <silent><expr> <CR>      compe#confirm('<CR>')
@@ -314,11 +344,18 @@ nnoremap <silent> <leader>zz <cmd>MaximizerToggle<CR>
 
 lua <<EOF
 require'nvim-treesitter.configs'.setup {
-  ensure_installed = "maintained", -- one of "all", "maintained" (parsers with maintainers), or a list of languages
-  ignore_install = { }, -- List of parsers to ignore installing
-  highlight = {
-    enable = true,              -- false will disable the whole extension
-  },
+ensure_installd = "maintained", -- one of "all", "maintained" (parsers with maintainers), or a list of languages
+highlight = { enable = true },
+indent = { enable = true, },
+incremental_selection = { 
+enable = true,
+keymaps = {
+    init_selection = "<CR>",
+    scope_incremental = "<CR>",
+    node_incremental = "<TAB>",
+    node_decremental = "<S-TAB>",
+    },
+},
 }
 EOF
 
@@ -341,3 +378,19 @@ nnoremap <silent> <leader>xo <cmd>:lua require("harpoon.ui").toggle_quick_menu()
 nnoremap <silent> <leader>& <cmd>:lua require("harpoon.ui").nav_file(1)<CR>
 nnoremap <silent> <leader>é <cmd>:lua require("harpoon.ui").nav_file(2)<CR>
 nnoremap <silent> <leader>" <cmd>:lua require("harpoon.ui").nav_file(3)<CR>
+
+" Disabled markdown for polyglot because issues with ```
+"let g:polyglot_disabled = ['markdown']
+let g:vim_markdown_conceal_code_blocks = 0
+let g:vim_markdown_no_extensions_in_markdown = 1
+let g:vim_markdown_conceal = 0
+
+lua <<EOF
+local parser_config = require "nvim-treesitter.parsers".get_parser_configs()
+parser_config.zk = {
+    install_info = {
+        url = "/Users/danielmathiot/Developer/tree-sitter-zettelkasten", -- local path or git repo
+        files = {"src/parser.c"}
+        },
+    filetype = "md", -- if filetype does not agrees with parser name
+    }
