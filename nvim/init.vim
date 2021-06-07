@@ -220,63 +220,62 @@ nnoremap ≠ }
 "imap € )
 
 
-    " -------------
-    " NERDTree (NT)
-    " -------------
-    " __REMAP_NT C: Move current directory to the one specified
-    " __REMAP_NT CD: Move current directory to the CWD
-    " __REMAP_NT cd: Change working directory to the one specified
-    " __REMAP_NT LEADER-n: Open NERDTree
-    nnoremap <leader>n :NERDTreeFocus<CR>
-    " Exit Vim if NERDTree is the only window left.
-    "autocmd BufEnter * if tabpagenr('$') == 1 && winnr('$') == 1 && exists('b:NERDTree') && b:NERDTree.isTabTree() |
-    "    \ quit | endif
+" -------------
+" NERDTree (NT)
+" -------------
+" __REMAP_NT C: Move current directory to the one specified
+" __REMAP_NT CD: Move current directory to the CWD
+" __REMAP_NT cd: Change working directory to the one specified
+" __REMAP_NT LEADER-n: Open NERDTree
+nnoremap <leader>n :NERDTreeFocus<CR>
+" Exit Vim if NERDTree is the only window left.
+"autocmd BufEnter * if tabpagenr('$') == 1 && winnr('$') == 1 && exists('b:NERDTree') && b:NERDTree.isTabTree() |
+"    \ quit | endif
 
-    " If another buffer tries to replace NERDTree, put it in the other window, and bring back NERDTree.
-    autocmd BufEnter * if bufname('#') =~ 'NERD_tree_\d\+' && bufname('%') !~ 'NERD_tree_\d\+' && winnr('$') > 1 |
-                \ let buf=bufnr() | buffer# | execute "normal! \<C-W>w" | execute 'buffer'.buf | endif
+" If another buffer tries to replace NERDTree, put it in the other window, and bring back NERDTree.
+autocmd BufEnter * if bufname('#') =~ 'NERD_tree_\d\+' && bufname('%') !~ 'NERD_tree_\d\+' && winnr('$') > 1 |
+            \ let buf=bufnr() | buffer# | execute "normal! \<C-W>w" | execute 'buffer'.buf | endif
 
-    " -------------
-    " Fugitive (FG)
-    " -------------
-    " __REMAP_FG gs: git status
-    nnoremap <leader>gs :G<CR>
-    " __REMAP_FG gq: accept left change
-    nnoremap <leader>gq :diffget //2<CR>
-    " __REMAP_FG gm: accept right change
-    nnoremap <leader>gm :diffget //3<CR>
-    " __REMAP_FG d: diff split
-    nnoremap <leader>d :Gvdiffsplit HEAD<CR>
-    nnoremap <leader>gl :lua require("telescope.builtin").git_commits()<CR>
+" -------------
+" Fugitive (FG)
+" -------------
+" __REMAP_FG gs: git status
+nnoremap <leader>gs :G<CR>
+" __REMAP_FG gq: accept left change
+nnoremap <leader>gq :diffget //2<CR>
+" __REMAP_FG gm: accept right change
+nnoremap <leader>gm :diffget //3<CR>
+" __REMAP_FG d: diff split
+nnoremap <leader>d :Gvdiffsplit HEAD<CR>
+nnoremap <leader>gl :lua require("telescope.builtin").git_commits()<CR>
 
-    " ---------
-    " LSP Stuff (completion.nvim and lspconfig) (LSP)
-    " ---------
-    lua << EOF
-    vim.lsp.set_log_level("debug")
-    -- See https://github.com/neovim/nvim-lspconfig/blob/master/CONFIG.md for more lsp servers
-    require'lspconfig'.pyright.setup{}
-    require'lspconfig'.vimls.setup{}
-    require'lspconfig'.bashls.setup{}
-    require'lspconfig'.intelephense.setup{}
-    require'lspconfig'.html.setup{}
-    require'lspconfig'.flow.setup{}
-    require'lspconfig'.tsserver.setup{}
-    require'lspconfig'.vuels.setup{}
-    local lspconfig = require'lspconfig'
-    local configs = require'lspconfig/configs'
-    -- Check if it's already defined for when reloading this file.
-    if not lspconfig.zettelkastenlsp then
-        configs.zettelkastenlsp = {
-            default_config = {
-                cmd = {'node',  '/Users/danielmathiot/Developer/lsp-zettelkasten/server/out/server.js', '--stdio'};
-                filetypes = {'markdown'};
-                root_dir = function(fname)
-                return lspconfig.util.find_git_ancestor(fname) or vim.loop.os_homedir()
-            end;
-            settings = {};
-            };
-        }
+" ---------
+" LSP Stuff (completion.nvim and lspconfig) (LSP)
+" ---------
+lua << EOF
+-- See https://github.com/neovim/nvim-lspconfig/blob/master/CONFIG.md for more lsp servers
+require'lspconfig'.pyright.setup{}
+require'lspconfig'.vimls.setup{}
+require'lspconfig'.bashls.setup{}
+require'lspconfig'.intelephense.setup{}
+require'lspconfig'.html.setup{}
+require'lspconfig'.flow.setup{}
+require'lspconfig'.tsserver.setup{}
+require'lspconfig'.vuels.setup{}
+local lspconfig = require'lspconfig'
+local configs = require'lspconfig/configs'
+-- Check if it's already defined for when reloading this file.
+if not lspconfig.zettelkastenlsp then
+    configs.zettelkastenlsp = {
+        default_config = {
+            cmd = {'node',  '/Users/danielmathiot/Developer/lsp-zettelkasten/server/out/server.js', '--stdio'};
+            filetypes = {'markdown'};
+            root_dir = function(fname)
+            return lspconfig.util.find_git_ancestor(fname) or vim.loop.os_homedir()
+        end;
+        settings = {};
+        };
+    }
 end
 lspconfig.zettelkastenlsp.setup{}
 require'lspinstall'.setup() -- important
@@ -384,13 +383,3 @@ nnoremap <silent> <leader>" <cmd>:lua require("harpoon.ui").nav_file(3)<CR>
 let g:vim_markdown_conceal_code_blocks = 0
 let g:vim_markdown_no_extensions_in_markdown = 1
 let g:vim_markdown_conceal = 0
-
-lua <<EOF
-local parser_config = require "nvim-treesitter.parsers".get_parser_configs()
-parser_config.zk = {
-    install_info = {
-        url = "/Users/danielmathiot/Developer/tree-sitter-zettelkasten", -- local path or git repo
-        files = {"src/parser.c"}
-        },
-    filetype = "md", -- if filetype does not agrees with parser name
-    }
