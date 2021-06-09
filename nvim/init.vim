@@ -1,5 +1,4 @@
 "Vim configuration file by Daniel Mathiot
-
 set nocompatible " not vi compatible so that VIM works
 filetype off     " required for vundle
 
@@ -39,6 +38,7 @@ Plugin 'kabouzeid/nvim-lspinstall'
 Plugin 'Yggdroot/indentLine'
 Plugin 'jiangmiao/auto-pairs'
 Plugin 'sbdchd/neoformat'
+Plugin 'hrsh7th/vim-vsnip'
 
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
@@ -253,15 +253,41 @@ nnoremap <leader>gl :lua require("telescope.builtin").git_commits()<CR>
 " LSP Stuff (completion.nvim and lspconfig) (LSP)
 " ---------
 lua << EOF
+local capabilities = vim.lsp.protocol.make_client_capabilities()
+capabilities.textDocument.completion.completionItem.snippetSupport = true
+capabilities.textDocument.completion.completionItem.resolveSupport = {
+  properties = {
+    'documentation',
+    'detail',
+    'additionalTextEdits',
+  }
+}
 -- See https://github.com/neovim/nvim-lspconfig/blob/master/CONFIG.md for more lsp servers
-require'lspconfig'.pyright.setup{}
-require'lspconfig'.vimls.setup{}
-require'lspconfig'.bashls.setup{}
-require'lspconfig'.intelephense.setup{}
-require'lspconfig'.html.setup{}
-require'lspconfig'.flow.setup{}
-require'lspconfig'.tsserver.setup{}
-require'lspconfig'.vuels.setup{}
+require'lspconfig'.pyright.setup{
+    capabilities = capabilities
+}
+require'lspconfig'.vimls.setup{
+    capabilities = capabilities
+}
+require'lspconfig'.bashls.setup{
+    capabilities = capabilities
+}
+require'lspconfig'.intelephense.setup{
+    capabilities = capabilities
+}
+require'lspconfig'.html.setup{
+    capabilities = capabilities
+}
+require'lspconfig'.flow.setup{
+    capabilities = capabilities
+}
+require'lspconfig'.tsserver.setup{
+    capabilities = capabilities
+}
+require'lspconfig'.vuels.setup{
+    capabilities = capabilities
+}
+
 local lspconfig = require'lspconfig'
 local configs = require'lspconfig/configs'
 -- Check if it's already defined for when reloading this file.
@@ -383,3 +409,52 @@ nnoremap <silent> <leader>" <cmd>:lua require("harpoon.ui").nav_file(3)<CR>
 let g:vim_markdown_conceal_code_blocks = 0
 let g:vim_markdown_no_extensions_in_markdown = 1
 let g:vim_markdown_conceal = 0
+
+" ---------------
+" Snippet Support
+" ---------------
+
+lua << EOF
+local t = function(str)
+  return vim.api.nvim_replace_termcodes(str, true, true, true)
+end
+
+local check_back_space = function()
+    local col = vim.fn.col('.') - 1
+    if col == 0 or vim.fn.getline('.'):sub(col, col):match('%s') then
+        return true
+    else
+        return false
+    end
+end
+
+-- Use (s-)tab to:
+--- move to prev/next item in completion menuone
+--- jump to prev/next snippet's placeholder
+_G.tab_complete = function()
+  if vim.fn.pumvisible() == 1 then
+    return t "<C-n>"
+  elseif vim.fn.call("vsnip#available", {1}) == 1 then
+    return t "<Plug>(vsnip-expand-or-jump)"
+  elseif check_back_space() then
+    return t "<Tab>"
+  else
+    return vim.fn['compe#complete']()
+  end
+end
+_G.s_tab_complete = function()
+  if vim.fn.pumvisible() == 1 then
+    return t "<C-p>"
+  elseif vim.fn.call("vsnip#jumpable", {-1}) == 1 then
+    return t "<Plug>(vsnip-jump-prev)"
+  else
+    -- If <S-Tab> is not working in your terminal, change it to <C-h>
+    return t "<S-Tab>"
+  end
+end
+
+vim.api.nvim_set_keymap("i", "<Tab>", "v:lua.tab_complete()", {expr = true})
+vim.api.nvim_set_keymap("s", "<Tab>", "v:lua.tab_complete()", {expr = true})
+vim.api.nvim_set_keymap("i", "<S-Tab>", "v:lua.s_tab_complete()", {expr = true})
+vim.api.nvim_set_keymap("s", "<S-Tab>", "v:lua.s_tab_complete()", {expr = true})
+EOF
