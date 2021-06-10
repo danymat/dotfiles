@@ -76,16 +76,16 @@ yabai -m config normal_window_border_color 0x00FFFFFF
 yabai -m config active_window_border_color 0x50ff8a65
 
 # Create two Safari instances and move the last one to misc space
-if ! ps aux | grep "[/]Applications/Safari.app/Contents/MacOS/Safari" > /dev/null
-then
-open -a Safari 
-fi
-open -a iTerm
-sleep 4
-index="$(yabai -m query --windows | jq 'map(select(."app" == "Safari"))[1].id')"
-yabai -m window $index --space personal_web
-index="$(yabai -m query --windows | jq 'map(select(."app" == "iTerm2"))[0].id')"
-yabai -m window $index --space code
+#if ! ps aux | grep "[/]Applications/Safari.app/Contents/MacOS/Safari" > /dev/null
+#then
+#open -a Safari 
+#fi
+#open -a iTerm
+#sleep 4
+#index="$(yabai -m query --windows | jq 'map(select(."app" == "Safari"))[1].id')"
+#yabai -m window $index --space personal_web
+#index="$(yabai -m query --windows | jq 'map(select(."app" == "iTerm2"))[0].id')"
+#yabai -m window $index --space code
 yabai -m space --focus web
 yabai -m space --focus code
 
