@@ -18,7 +18,7 @@ Plugin 'vim-airline/vim-airline'
 Plugin 'vim-airline/vim-airline-themes'
 Plugin 'tpope/vim-fugitive'
 Plugin 'preservim/nerdcommenter'
-Plugin 'ryanoasis/vim-devicons'
+Plugin 'kyazdani42/nvim-web-devicons'
 Plugin 'mhinz/vim-startify'
 Plugin 'sheerun/vim-polyglot'
 Plugin 'airblade/vim-gitgutter'
@@ -40,6 +40,7 @@ Plugin 'jiangmiao/auto-pairs'
 Plugin 'sbdchd/neoformat'
 Plugin 'hrsh7th/vim-vsnip'
 Plugin 'dracula/vim', { 'as': 'dracula' }
+Plugin 'nvim-telescope/telescope-project.nvim'
 
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
@@ -63,19 +64,12 @@ filetype plugin indent on    " required
 "----------------
 syntax on " turn on syntax highlight
 set showmatch " show matching braces when selector is inside one of them
-colorscheme ayu
-"let g:sonokai_style = 'andromeda'
-"let g:sonokai_diagnostic_text_highlight = 1
-"let g:sonokai_enable_italic = 1
-"let g:sonokai_transparent_background = 1
-"let g:sonokai_disable_italic_comment = 0
-"let g:sonokai_better_performance = 1
-
+colorscheme ayu " other good themes are dracula and monokai
 let ayucolor="mirage"
 "let g:airline_theme='deus'
 let g:airline_theme='deus'
 set background=dark
-"colorscheme desert " nice theme if you don't have codedark installed
+"colorscheme desert " nice theme if you don't have custom theme installed
 set encoding=UTF-8
 set smartindent " auto indent lines if the previous line was indented
 set cindent " auto indent lines for c program if recognized
@@ -152,15 +146,23 @@ autocmd FileType vue let b:surround_123 = "{{ \r }}"
 " __REMAP_TLC CTRL-f: FZF files
 "nnoremap <silent> <C-f> :Telescope find_files<CR>
 nnoremap <silent> <C-f> :lua require'telescope.builtin'.find_files()<cr>
-" __REMAP_TLC LEADER-f: FZF inside files
-nnoremap <silent> <leader>f :Telescope live_grep<CR>
+" __REMAP_TLC LEADER-ff: FZF inside file
+nnoremap <silent> <leader>ff :Telescope live_grep winblend=10<CR>
+" __REMAP_TLC LEADER-ff: FZF inside files in workspace
+nnoremap <silent> <leader>fz :Telescope current_buffer_fuzzy_find winblend=10<CR>
 " __REMAP_TLC LEADER-b: open buffers
 nnoremap <silent> <leader>b :lua require('telescope.builtin').buffers({ show_all_buffers = true })<CR>
 " __REMAP_TLC LEADER-o: recently opened files
 nnoremap <leader>o :lua require("telescope.builtin").oldfiles()<CR>
 " __REMAP_TLC LEADER-gls: view commit tree
 nnoremap <leader>gls :lua require("telescope.builtin").git_branches()<CR>
+" __REMAP_TLC LEADER-n: open file browser
+nnoremap <leader>n :lua require("telescope.builtin").file_browser({ winblend=10 })<CR>
 
+lua << EOF
+require'telescope'.load_extension('project')
+EOF
+nnoremap <leader>p :lua require'telescope'.extensions.project.project{ display_type = 'full' }<CR>
 
 " -----------------------
 " Zettelkasten stuff (ZK)
@@ -229,7 +231,7 @@ nnoremap ≠ }
 " __REMAP_NT CD: Move current directory to the CWD
 " __REMAP_NT cd: Change working directory to the one specified
 " __REMAP_NT LEADER-n: Open NERDTree
-nnoremap <leader>n :NERDTreeFocus<CR>
+"nnoremap <leader>n :NERDTreeFocus<CR>
 " Exit Vim if NERDTree is the only window left.
 "autocmd BufEnter * if tabpagenr('$') == 1 && winnr('$') == 1 && exists('b:NERDTree') && b:NERDTree.isTabTree() |
 "    \ quit | endif
