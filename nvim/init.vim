@@ -39,6 +39,7 @@ Plugin 'Yggdroot/indentLine'
 Plugin 'jiangmiao/auto-pairs'
 Plugin 'sbdchd/neoformat'
 Plugin 'hrsh7th/vim-vsnip'
+Plugin 'dracula/vim', { 'as': 'dracula' }
 
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
@@ -159,6 +160,7 @@ nnoremap <silent> <leader>b :lua require('telescope.builtin').buffers({ show_all
 nnoremap <leader>o :lua require("telescope.builtin").oldfiles()<CR>
 " __REMAP_TLC LEADER-gls: view commit tree
 nnoremap <leader>gls :lua require("telescope.builtin").git_branches()<CR>
+
 
 " -----------------------
 " Zettelkasten stuff (ZK)
