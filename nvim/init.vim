@@ -143,13 +143,17 @@ autocmd FileType vue let b:surround_123 = "{{ \r }}"
 "-----------
 " Telescope (TLC) 
 "-----------
+lua << EOF
+require'telescope'.setup { defaults = { winblend = 10 } }
+EOF
+
 " __REMAP_TLC CTRL-f: FZF files
 "nnoremap <silent> <C-f> :Telescope find_files<CR>
 nnoremap <silent> <C-f> :lua require'telescope.builtin'.find_files()<cr>
 " __REMAP_TLC LEADER-ff: FZF inside file
-nnoremap <silent> <leader>ff :Telescope live_grep winblend=10<CR>
+nnoremap <silent> <leader>ff :Telescope live_grep<CR>
 " __REMAP_TLC LEADER-ff: FZF inside files in workspace
-nnoremap <silent> <leader>fz :Telescope current_buffer_fuzzy_find winblend=10<CR>
+nnoremap <silent> <leader>fz :Telescope current_buffer_fuzzy_find<CR>
 " __REMAP_TLC LEADER-b: open buffers
 nnoremap <silent> <leader>b :lua require('telescope.builtin').buffers({ show_all_buffers = true })<CR>
 " __REMAP_TLC LEADER-o: recently opened files
@@ -157,7 +161,7 @@ nnoremap <leader>o :lua require("telescope.builtin").oldfiles()<CR>
 " __REMAP_TLC LEADER-gls: view commit tree
 nnoremap <leader>gls :lua require("telescope.builtin").git_branches()<CR>
 " __REMAP_TLC LEADER-n: open file browser
-nnoremap <leader>n :lua require("telescope.builtin").file_browser({ winblend=10 })<CR>
+nnoremap <leader>n :lua require("telescope.builtin").file_browser()<CR>
 
 lua << EOF
 require'telescope'.load_extension('project')
@@ -217,79 +221,79 @@ nnoremap <leader>r <C-w>r<CR>
 " Moving speed
 " ------------
 nnoremap ÷ {
-nnoremap ≠ }
-"imap Ô {
-"imap \ }
-"imap ô (
-"imap € )
+    nnoremap ≠ }
+    "imap Ô {
+    "imap \ }
+    "imap ô (
+    "imap € )
 
 
-" -------------
-" NERDTree (NT)
-" -------------
-" __REMAP_NT C: Move current directory to the one specified
-" __REMAP_NT CD: Move current directory to the CWD
-" __REMAP_NT cd: Change working directory to the one specified
-" __REMAP_NT LEADER-n: Open NERDTree
-"nnoremap <leader>n :NERDTreeFocus<CR>
-" Exit Vim if NERDTree is the only window left.
-"autocmd BufEnter * if tabpagenr('$') == 1 && winnr('$') == 1 && exists('b:NERDTree') && b:NERDTree.isTabTree() |
-"    \ quit | endif
+    " -------------
+    " NERDTree (NT)
+    " -------------
+    " __REMAP_NT C: Move current directory to the one specified
+    " __REMAP_NT CD: Move current directory to the CWD
+    " __REMAP_NT cd: Change working directory to the one specified
+    " __REMAP_NT LEADER-n: Open NERDTree
+    "nnoremap <leader>n :NERDTreeFocus<CR>
+    " Exit Vim if NERDTree is the only window left.
+    "autocmd BufEnter * if tabpagenr('$') == 1 && winnr('$') == 1 && exists('b:NERDTree') && b:NERDTree.isTabTree() |
+    "    \ quit | endif
 
-" If another buffer tries to replace NERDTree, put it in the other window, and bring back NERDTree.
-autocmd BufEnter * if bufname('#') =~ 'NERD_tree_\d\+' && bufname('%') !~ 'NERD_tree_\d\+' && winnr('$') > 1 |
-            \ let buf=bufnr() | buffer# | execute "normal! \<C-W>w" | execute 'buffer'.buf | endif
+    " If another buffer tries to replace NERDTree, put it in the other window, and bring back NERDTree.
+    autocmd BufEnter * if bufname('#') =~ 'NERD_tree_\d\+' && bufname('%') !~ 'NERD_tree_\d\+' && winnr('$') > 1 |
+                \ let buf=bufnr() | buffer# | execute "normal! \<C-W>w" | execute 'buffer'.buf | endif
 
-" -------------
-" Fugitive (FG)
-" -------------
-" __REMAP_FG gs: git status
-nnoremap <leader>gs :G<CR>
-" __REMAP_FG gq: accept left change
-nnoremap <leader>gq :diffget //2<CR>
-" __REMAP_FG gm: accept right change
-nnoremap <leader>gm :diffget //3<CR>
-" __REMAP_FG d: diff split
-nnoremap <leader>d :Gvdiffsplit HEAD<CR>
-nnoremap <leader>gl :lua require("telescope.builtin").git_commits()<CR>
+    " -------------
+    " Fugitive (FG)
+    " -------------
+    " __REMAP_FG gs: git status
+    nnoremap <leader>gs :G<CR>
+    " __REMAP_FG gq: accept left change
+    nnoremap <leader>gq :diffget //2<CR>
+    " __REMAP_FG gm: accept right change
+    nnoremap <leader>gm :diffget //3<CR>
+    " __REMAP_FG d: diff split
+    nnoremap <leader>d :Gvdiffsplit HEAD<CR>
+    nnoremap <leader>gl :lua require("telescope.builtin").git_commits()<CR>
 
-" ---------
-" LSP Stuff (completion.nvim and lspconfig) (LSP)
-" ---------
-lua << EOF
-local capabilities = vim.lsp.protocol.make_client_capabilities()
-capabilities.textDocument.completion.completionItem.snippetSupport = true
-capabilities.textDocument.completion.completionItem.resolveSupport = {
-  properties = {
-    'documentation',
-    'detail',
-    'additionalTextEdits',
-  }
-}
--- See https://github.com/neovim/nvim-lspconfig/blob/master/CONFIG.md for more lsp servers
-require'lspconfig'.pyright.setup{
+    " ---------
+    " LSP Stuff (completion.nvim and lspconfig) (LSP)
+    " ---------
+    lua << EOF
+    local capabilities = vim.lsp.protocol.make_client_capabilities()
+    capabilities.textDocument.completion.completionItem.snippetSupport = true
+    capabilities.textDocument.completion.completionItem.resolveSupport = {
+        properties = {
+            'documentation',
+            'detail',
+            'additionalTextEdits',
+            }
+        }
+    -- See https://github.com/neovim/nvim-lspconfig/blob/master/CONFIG.md for more lsp servers
+    require'lspconfig'.pyright.setup{
     capabilities = capabilities
-}
+    }
 require'lspconfig'.vimls.setup{
-    capabilities = capabilities
+capabilities = capabilities
 }
 require'lspconfig'.bashls.setup{
-    capabilities = capabilities
+capabilities = capabilities
 }
 require'lspconfig'.intelephense.setup{
-    capabilities = capabilities
+capabilities = capabilities
 }
 require'lspconfig'.html.setup{
-    capabilities = capabilities
+capabilities = capabilities
 }
 require'lspconfig'.flow.setup{
-    capabilities = capabilities
+capabilities = capabilities
 }
 require'lspconfig'.tsserver.setup{
-    capabilities = capabilities
+capabilities = capabilities
 }
 require'lspconfig'.vuels.setup{
-    capabilities = capabilities
+capabilities = capabilities
 }
 
 local lspconfig = require'lspconfig'
@@ -420,41 +424,41 @@ let g:vim_markdown_conceal = 0
 
 lua << EOF
 local t = function(str)
-  return vim.api.nvim_replace_termcodes(str, true, true, true)
+return vim.api.nvim_replace_termcodes(str, true, true, true)
 end
 
 local check_back_space = function()
-    local col = vim.fn.col('.') - 1
-    if col == 0 or vim.fn.getline('.'):sub(col, col):match('%s') then
-        return true
-    else
-        return false
-    end
+local col = vim.fn.col('.') - 1
+if col == 0 or vim.fn.getline('.'):sub(col, col):match('%s') then
+    return true
+else
+    return false
+end
 end
 
 -- Use (s-)tab to:
 --- move to prev/next item in completion menuone
 --- jump to prev/next snippet's placeholder
 _G.tab_complete = function()
-  if vim.fn.pumvisible() == 1 then
+if vim.fn.pumvisible() == 1 then
     return t "<C-n>"
-  elseif vim.fn.call("vsnip#available", {1}) == 1 then
+elseif vim.fn.call("vsnip#available", {1}) == 1 then
     return t "<Plug>(vsnip-expand-or-jump)"
-  elseif check_back_space() then
+elseif check_back_space() then
     return t "<Tab>"
-  else
+else
     return vim.fn['compe#complete']()
-  end
+end
 end
 _G.s_tab_complete = function()
-  if vim.fn.pumvisible() == 1 then
+if vim.fn.pumvisible() == 1 then
     return t "<C-p>"
-  elseif vim.fn.call("vsnip#jumpable", {-1}) == 1 then
+elseif vim.fn.call("vsnip#jumpable", {-1}) == 1 then
     return t "<Plug>(vsnip-jump-prev)"
-  else
+else
     -- If <S-Tab> is not working in your terminal, change it to <C-h>
     return t "<S-Tab>"
-  end
+end
 end
 
 vim.api.nvim_set_keymap("i", "<Tab>", "v:lua.tab_complete()", {expr = true})
