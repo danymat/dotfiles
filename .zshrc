@@ -93,3 +93,5 @@ test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell
 
 export PATH="$HOME/.poetry/bin:$PATH"
 alias dotfiles="/usr/bin/git --git-dir=$HOME/.config/.dotfiles.git/ --work-tree=$HOME/.config"
+
+alias luamake=/Users/danielmathiot/Developer/lua-language-server/3rd/luamake/luamake
