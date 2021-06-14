@@ -264,7 +264,6 @@ nnoremap <leader>gl :lua require("telescope.builtin").git_commits()<CR>
 " __REMAP_LSP LEADER-r: Rename symbol
 " __REMAP_LSP <C-b> or C-n>: Go to prev or next diagnostic
 " __REMAP_LSP K: Find documentation (double K to enter)
-lua require'lsp_signature'.on_attach()
 
 lua require('configs.lsp')
 

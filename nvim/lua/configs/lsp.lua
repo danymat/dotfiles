@@ -1,5 +1,9 @@
 local nvim_lsp = require('lspconfig')
 local on_attach = function(_, bufnr)
+    require'lsp_signature'.on_attach({
+        bind = true,
+        hint_prefix = "🧸 "
+    })
     local function buf_set_keymap(...) vim.api.nvim_buf_set_keymap(bufnr, ...) end
     local opts = { noremap=true, silent=true }
     -- See `:help vim.lsp.*` for documentation on any of the below functions
