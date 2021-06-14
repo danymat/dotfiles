@@ -40,6 +40,7 @@ if not nvim_lsp.zettelkastenlsp then
 end
 local servers = { 'pyright', 'vimls', 'bashls', 'html', 'flow', 'tsserver', 'vuels', 'zettelkastenlsp', 'intelephense' }
 local config = { on_attach = on_attach, capabilities = capabilities}
+
 for _, lsp in ipairs(servers) do
     nvim_lsp[lsp].setup(config)
 end
@@ -71,7 +72,6 @@ local lua_settings = {
 }
 
 for _, server in pairs(servers) do
-    local config = { on_attach = on_attach, capabilities = capabilities }
     if server == "lua" then
       config.settings = lua_settings
     end

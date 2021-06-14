@@ -41,7 +41,8 @@ Plugin 'sbdchd/neoformat'
 Plugin 'hrsh7th/vim-vsnip'
 Plugin 'dracula/vim', { 'as': 'dracula' }
 Plugin 'nvim-telescope/telescope-project.nvim'
-
+Plugin 'ray-x/lsp_signature.nvim'
+"
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
 
@@ -263,6 +264,8 @@ nnoremap <leader>gl :lua require("telescope.builtin").git_commits()<CR>
 " __REMAP_LSP LEADER-r: Rename symbol
 " __REMAP_LSP <C-b> or C-n>: Go to prev or next diagnostic
 " __REMAP_LSP K: Find documentation (double K to enter)
+lua require'lsp_signature'.on_attach()
+
 lua require('configs.lsp')
 
 " Use <Tab> and <S-Tab> to navigate through popup menu
@@ -352,3 +355,4 @@ let g:vim_markdown_conceal = 0
 " Snippet Support
 " ---------------
 lua require('configs.vsnip')
+
