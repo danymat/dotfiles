@@ -42,6 +42,7 @@ Plugin 'hrsh7th/vim-vsnip'
 Plugin 'dracula/vim', { 'as': 'dracula' }
 Plugin 'nvim-telescope/telescope-project.nvim'
 Plugin 'ray-x/lsp_signature.nvim'
+Plugin 'danymat/zettellua'
 "
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
@@ -219,6 +220,8 @@ nnoremap <leader>r <C-w>r<CR>
 " ------------
 nnoremap ÷ {
 nnoremap ≠ }
+vnoremap ÷ {
+vnoremap ≠ }
 "imap Ô {
 "imap \ }
 "imap ô (
@@ -343,6 +346,10 @@ nnoremap <silent> <leader>xo <cmd>:lua require("harpoon.ui").toggle_quick_menu()
 nnoremap <silent> <leader>& <cmd>:lua require("harpoon.ui").nav_file(1)<CR>
 nnoremap <silent> <leader>é <cmd>:lua require("harpoon.ui").nav_file(2)<CR>
 nnoremap <silent> <leader>" <cmd>:lua require("harpoon.ui").nav_file(3)<CR>
+nnoremap <silent> <leader>xt <cmd>:lua require("harpoon.term").gotoTerminal(1)<CR>
+
+tnoremap <Esc><Esc> <C-\><C-n>
+
 
 " Disabled markdown for polyglot because issues with ```
 "let g:polyglot_disabled = ['markdown']
