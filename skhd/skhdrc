@@ -40,9 +40,9 @@ hyper - 0x15 : yabai -m space --focus slack
 hyper - 0x17 : yabai -m space --focus personal_web
 hyper - 0x16 : yabai -m space --focus misc
 
-hyper + lcmd - 0x12 : yabai -m window --space code
-hyper + lcmd - 0x13 : yabai -m window --space web
-hyper + lcmd - 0x14 : yabai -m window --space music
-hyper + lcmd - 0x15 : yabai -m window --space slack
-hyper + lcmd - 0x17 : yabai -m window --space personal_web
-hyper + lcmd - 0x16 : yabai -m window --space misc
+hyper + fn - 0x12 : yabai -m window --space code
+hyper + fn - 0x13 : yabai -m window --space web
+hyper + fn - 0x14 : yabai -m window --space music
+hyper + fn - 0x15 : yabai -m window --space slack
+hyper + fn - 0x17 : yabai -m window --space personal_web
+hyper + fn - 0x16 : yabai -m window --space misc
