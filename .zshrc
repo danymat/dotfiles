@@ -96,3 +96,5 @@ alias dotfiles="/usr/bin/git --git-dir=$HOME/.config/.dotfiles.git/ --work-tree=
 
 alias luamake=/Users/danielmathiot/Developer/lua-language-server/3rd/luamake/luamake
 if [ -e /Users/danielmathiot/.nix-profile/etc/profile.d/nix.sh ]; then . /Users/danielmathiot/.nix-profile/etc/profile.d/nix.sh; fi # added by Nix installer
+
+alias vim=nvim

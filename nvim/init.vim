@@ -42,7 +42,7 @@ Plugin 'hrsh7th/vim-vsnip'
 Plugin 'dracula/vim', { 'as': 'dracula' }
 Plugin 'nvim-telescope/telescope-project.nvim'
 Plugin 'ray-x/lsp_signature.nvim'
-Plugin 'danymat/zettellua'
+
 "
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
