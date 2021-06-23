@@ -1,51 +1,52 @@
 "Vim configuration file by Daniel Mathiot
 set nocompatible " not vi compatible so that VIM works
-filetype off     " required for vundle
 
-" set the runtime path to include Vundle and initialize
-set rtp+=~/.vim/bundle/Vundle.vim
-call vundle#begin()
-" alternatively, pass a path where Vundle should install plugins
-"call vundle#begin('~/some/path/here')
+let data_dir = has('nvim') ? stdpath('data') . '/site' : '~/.vim'
+if empty(glob(data_dir . '/autoload/plug.vim'))
+  silent execute '!curl -fLo '.data_dir.'/autoload/plug.vim --create-dirs  https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim'
+  autocmd VimEnter * PlugInstall --sync | source $MYVIMRC
+endif
+
+call plug#begin('~/.vim/bundle')
 
 " let Vundle manage Vundle, required
-Plugin 'VundleVim/Vundle.vim'
-Plugin 'preservim/nerdtree'
-Plugin 'tpope/vim-surround'
-Plugin 'rakr/vim-one'
-Plugin 'joshdick/onedark.vim'
-Plugin 'vim-airline/vim-airline'
-Plugin 'vim-airline/vim-airline-themes'
-Plugin 'tpope/vim-fugitive'
-Plugin 'preservim/nerdcommenter'
-Plugin 'kyazdani42/nvim-web-devicons'
-Plugin 'mhinz/vim-startify'
-Plugin 'sheerun/vim-polyglot'
-Plugin 'airblade/vim-gitgutter'
-Plugin 'wakatime/vim-wakatime'
-Plugin 'nvim-lua/popup.nvim'
-Plugin 'nvim-lua/plenary.nvim'
-Plugin 'nvim-telescope/telescope.nvim'
-Plugin 'ayu-theme/ayu-vim'
-Plugin 'junegunn/goyo.vim'
-Plugin 'nvim-treesitter/nvim-treesitter', { 'do': 'TSUpdate'}
-Plugin 'nvim-treesitter/playground'
-Plugin 'neovim/nvim-lspconfig'
-Plugin 'hrsh7th/nvim-compe'
-Plugin 'szw/vim-maximizer'
-Plugin 'ThePrimeagen/harpoon'
-Plugin 'kabouzeid/nvim-lspinstall'
-Plugin 'Yggdroot/indentLine'
-Plugin 'jiangmiao/auto-pairs'
-Plugin 'sbdchd/neoformat'
-Plugin 'hrsh7th/vim-vsnip'
-Plugin 'dracula/vim', { 'as': 'dracula' }
-Plugin 'nvim-telescope/telescope-project.nvim'
-Plugin 'ray-x/lsp_signature.nvim'
+Plug 'VundleVim/Vundle.vim'
+Plug 'preservim/nerdtree'
+Plug 'tpope/vim-surround'
+Plug 'rakr/vim-one'
+Plug 'joshdick/onedark.vim'
+Plug 'vim-airline/vim-airline'
+Plug 'vim-airline/vim-airline-themes'
+Plug 'tpope/vim-fugitive'
+Plug 'preservim/nerdcommenter'
+Plug 'kyazdani42/nvim-web-devicons'
+Plug 'mhinz/vim-startify'
+Plug 'sheerun/vim-polyglot'
+Plug 'airblade/vim-gitgutter'
+Plug 'wakatime/vim-wakatime'
+Plug 'nvim-lua/popup.nvim'
+Plug 'nvim-lua/plenary.nvim'
+Plug 'nvim-telescope/telescope.nvim'
+Plug 'ayu-theme/ayu-vim'
+Plug 'junegunn/goyo.vim'
+Plug 'nvim-treesitter/nvim-treesitter', { 'do': 'TSUpdate'}
+Plug 'nvim-treesitter/playground'
+Plug 'neovim/nvim-lspconfig'
+Plug 'hrsh7th/nvim-compe'
+Plug 'szw/vim-maximizer'
+Plug 'ThePrimeagen/harpoon'
+Plug 'kabouzeid/nvim-lspinstall'
+Plug 'Yggdroot/indentLine'
+Plug 'jiangmiao/auto-pairs'
+Plug 'sbdchd/neoformat'
+Plug 'hrsh7th/vim-vsnip'
+Plug 'dracula/vim', { 'as': 'dracula' }
+Plug 'nvim-telescope/telescope-project.nvim'
+Plug 'ray-x/lsp_signature.nvim'
 
 "
 " All of your Plugins must be added before the following line
-call vundle#end()            " required
+call plug#end()            " required
 
 lua require("configs")
 
