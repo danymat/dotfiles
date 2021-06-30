@@ -69,6 +69,7 @@ yabai -m rule --add app="^Musique" manage=off space=music
 yabai -m rule --add app=Safari space=web
 yabai -m rule --add app="^Slack" space=slack
 yabai -m rule --add app="Obsidian" space=misc
+yabai -m rule --add app="VMware Fusion" space=code manage=off
 
 yabai -m config window_border on
 yabai -m config mouse_follows_focus on
