@@ -362,4 +362,3 @@ let g:vim_markdown_conceal = 0
 " Snippet Support
 " ---------------
 lua require('configs.vsnip')
-

@@ -1,4 +1,5 @@
 local nvim_lsp = require('lspconfig')
+
 local on_attach = function(_, bufnr)
     require'lsp_signature'.on_attach({
         bind = true,
@@ -42,7 +43,7 @@ if not nvim_lsp.zettelkastenlsp then
         };
     }
 end
-local servers = { 'pyright', 'vimls', 'bashls', 'html', 'flow', 'tsserver', 'vuels', 'zettelkastenlsp', 'intelephense' }
+local servers = { 'pyright', 'vimls', 'bashls', 'html', 'flow', 'tsserver', 'vuels', 'intelephense', 'zettelkastenlsp' }
 local config = { on_attach = on_attach, capabilities = capabilities}
 
 for _, lsp in ipairs(servers) do
