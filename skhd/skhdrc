@@ -33,12 +33,12 @@ hyper - l :  yabai -m window --focus stack.next || yabai -m window --focus stack
     #&& yabai -m window --focus $window
 
 # HYPER &/é/"/': Focus space 1/2/3/4 if it exists
-hyper - 0x12: yabai -m space --focus code
-hyper - 0x13 : yabai -m space --focus web
-hyper - 0x14 : yabai -m space --focus music
-hyper - 0x15 : yabai -m space --focus slack
-hyper - 0x17 : yabai -m space --focus personal_web
-hyper - 0x16 : yabai -m space --focus misc
+hyper - 0x12: yabai -m space --focus 1_code
+hyper - 0x13 : yabai -m space --focus 2_web
+hyper - 0x14 : yabai -m space --focus 3_misc
+hyper - 0x15 : yabai -m space --focus 4_work
+hyper - 0x17 : yabai -m space --focus 5_personal_web
+hyper - 0x16 : yabai -m space --focus 6_music
 
 hyper + fn - 0x12 : yabai -m window --space code
 hyper + fn - 0x13 : yabai -m window --space web
