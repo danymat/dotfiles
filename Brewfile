@@ -1,0 +1,23 @@
+tap "homebrew/bundle"
+tap "homebrew/cask"
+tap "homebrew/core"
+tap "homebrew/services"
+tap "koekeishiya/formulae"
+brew "autojump"
+brew "fzf"
+brew "gh"
+brew "git-delta"
+brew "git-flow-avh"
+brew "git-quick-stats"
+brew "go"
+brew "htop"
+brew "icu4c"
+brew "lua"
+brew "luajit", args: ["HEAD"]
+brew "neovim", args: ["HEAD"]
+brew "pandoc"
+brew "ripgrep"
+brew "tree"
+brew "koekeishiya/formulae/skhd"
+brew "koekeishiya/formulae/yabai", args: ["HEAD"]
+cask "mactex"
