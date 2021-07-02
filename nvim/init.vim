@@ -164,7 +164,7 @@ nnoremap <leader>gls :lua require("telescope.builtin").git_branches()<CR>
 " __REMAP_TLC LEADER-n: open file browser
 nnoremap <leader>n :lua require("telescope.builtin").file_browser()<CR>
 
-lua require'telescope'.load_extension('project')
+lua require'telescope'.load_extension'project'
 nnoremap <leader>p :lua require'telescope'.extensions.project.project{ display_type = 'full' }<CR>
 
 " -----------------------
