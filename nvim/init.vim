@@ -43,7 +43,7 @@ Plug 'hrsh7th/vim-vsnip'
 Plug 'dracula/vim', { 'as': 'dracula' }
 Plug 'nvim-telescope/telescope-project.nvim'
 Plug 'ray-x/lsp_signature.nvim'
-
+Plug 'nvim-treesitter/nvim-tree-docs'
 "
 " All of your Plugins must be added before the following line
 call plug#end()            " required
