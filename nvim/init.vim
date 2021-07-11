@@ -44,6 +44,9 @@ Plug 'dracula/vim', { 'as': 'dracula' }
 Plug 'nvim-telescope/telescope-project.nvim'
 Plug 'ray-x/lsp_signature.nvim'
 Plug 'nvim-treesitter/nvim-tree-docs'
+Plug 'nacro90/numb.nvim'
+
+
 "
 " All of your Plugins must be added before the following line
 call plug#end()            " required
@@ -183,8 +186,7 @@ nnoremap <leader>zl :lua require("configs.telescope").find_link()<CR>
 " __REMAP_ZK LEADER-yf: Copy file name
 nnoremap <leader>yf :let @+=expand("%:t:r")<CR>      " Mnemonic: yank File Name
 " __REMAP_ZK LEADER-§§: Open search for starting files
-"nnoremap <leader>§§ :lua require("telescope.builtin").live_grep({ default_text = "§§" })<CR>
-"nnoremap <leader>§§ :lua require("configs.telescope").open_starting_files()<CR>
+nnoremap <leader>§§ :lua require("configs.telescope").open_starting_files()<CR>
 " __REMAP_ZK LEADER-z&: Go to next pair of [[
 nnoremap <leader>z& /[[<CR>w
 
@@ -362,3 +364,6 @@ let g:vim_markdown_conceal = 0
 " Snippet Support
 " ---------------
 lua require('configs.vsnip')
+
+lua require('numb').setup()
+

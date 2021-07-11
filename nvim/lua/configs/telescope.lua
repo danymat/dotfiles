@@ -47,7 +47,7 @@ end
 
 M.open_starting_files = function()
     opts.prompt_title =  "< Zettels: §§ >"
-    --opts.default_text = "§§"
+    opts.default_text = "§§"
     require("telescope.builtin").live_grep(opts)
 end
 
