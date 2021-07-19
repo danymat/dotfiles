@@ -45,8 +45,9 @@ Plug 'nvim-telescope/telescope-project.nvim'
 Plug 'ray-x/lsp_signature.nvim'
 Plug 'nvim-treesitter/nvim-tree-docs'
 Plug 'nacro90/numb.nvim'
-
-
+Plug 'vhyrro/neorg'
+Plug 'tami5/sql.nvim'
+Plug 'nvim-telescope/telescope-frecency.nvim'
 "
 " All of your Plugins must be added before the following line
 call plug#end()            " required
@@ -149,7 +150,19 @@ autocmd FileType vue let b:surround_123 = "{{ \r }}"
 "-----------
 " Telescope (TLC) 
 "-----------
-lua require'telescope'.setup { defaults = { winblend = 10 } }
+lua << EOF
+require'telescope'.setup { 
+    defaults = { winblend = 10 } ,
+    extensions = {
+        frecency = {
+            show_scores = true,
+            ignore_patterns = {"*.git/*", "*/tmp/*"},
+            }
+        }
+}
+require'telescope'.load_extension'frecency'
+require'telescope'.load_extension'project'
+EOF
 
 " __REMAP_TLC CTRL-f: FZF files
 "nnoremap <silent> <C-f> :Telescope find_files<CR>
@@ -160,14 +173,13 @@ nnoremap <silent> <leader>ff :Telescope live_grep<CR>
 nnoremap <silent> <leader>fz :Telescope current_buffer_fuzzy_find<CR>
 " __REMAP_TLC LEADER-b: open buffers
 nnoremap <silent> <leader>b :lua require('telescope.builtin').buffers({ show_all_buffers = true })<CR>
-" __REMAP_TLC LEADER-o: recently opened files
-nnoremap <leader>o :lua require("telescope.builtin").oldfiles()<CR>
+" __REMAP_TLC LEADER-o: recently opened files (with frecency algorithm)
+nnoremap <leader>o :lua require('telescope').extensions.frecency.frecency()<CR>
 " __REMAP_TLC LEADER-gls: view commit tree
 nnoremap <leader>gls :lua require("telescope.builtin").git_branches()<CR>
 " __REMAP_TLC LEADER-n: open file browser
 nnoremap <leader>n :lua require("telescope.builtin").file_browser()<CR>
 
-lua require'telescope'.load_extension'project'
 nnoremap <leader>p :lua require'telescope'.extensions.project.project{ display_type = 'full' }<CR>
 
 " -----------------------
@@ -301,6 +313,7 @@ source = {
     nvim_lsp = true;
     nvim_lua = true;
     vsnip = true;
+    neorg = true;
     };
 }
 EOF
@@ -314,6 +327,16 @@ inoremap <silent><expr> <C-Space> compe#complete()
 nnoremap <silent> <leader>zz <cmd>MaximizerToggle<CR>
 
 lua <<EOF
+local parser_configs = require('nvim-treesitter.parsers').get_parser_configs()
+
+parser_configs.norg = {
+    install_info = {
+        url = "https://github.com/vhyrro/tree-sitter-norg",
+        files = { "src/parser.c" },
+        branch = "main"
+    },
+}
+
 require'nvim-treesitter.configs'.setup {
 ensure_installd = "maintained", -- one of "all", "maintained" (parsers with maintainers), or a list of languages
 highlight = { enable = true },
@@ -360,10 +383,7 @@ let g:vim_markdown_conceal_code_blocks = 0
 let g:vim_markdown_no_extensions_in_markdown = 1
 let g:vim_markdown_conceal = 0
 
-" ---------------
-" Snippet Support
-" ---------------
 lua require('configs.vsnip')
-
+lua require('configs.neorg')
 lua require('numb').setup()
 
