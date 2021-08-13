@@ -10,19 +10,20 @@ vim.api.nvim_set_keymap("n", "<Leader>p", ":lua require'telescope'.extensions.pr
 
 vim.api.nvim_set_keymap("t", "<Esc><Esc>", "<C-\\><C-n>", {})
 -- Goyo
-vim.api.nvim_set_keymap("n", "<Leader>go", ":Goyo<CR>", {})
+vim.api.nvim_set_keymap("n", "<Leader>go", ":Goyo<CR>", { silent = true })
 
 -- Dotfiles
-vim.api.nvim_set_keymap("n", "<Leader>ev", ":lua require('configs.telescope').search_dotfiles()<CR>", {})
-vim.api.nvim_set_keymap("n", "<Leader>sv", ":source ~/.config/nvim/init.vim<CR>", {})
+vim.api.nvim_set_keymap("n", "<Leader>ev", ":lua require('configs.telescope').search_dotfiles()<CR>", { silent = true })
+vim.api.nvim_set_keymap("n", "<Leader>sv", ":source ~/.config/nvim/init.lua<CR>", {})
+vim.api.nvim_set_keymap("n", "<Leader>so", ":source %<CR>", {})
 
 -- Window management
-vim.api.nvim_set_keymap("n", "<Leader>j", ":wincmd j<CR>", {})
-vim.api.nvim_set_keymap("n", "<Leader>k", ":wincmd k<CR>", {})
-vim.api.nvim_set_keymap("n", "<Leader>l", ":wincmd l<CR>", {})
-vim.api.nvim_set_keymap("n", "<Leader>h", ":wincmd h<CR>", {})
-vim.api.nvim_set_keymap("n", "<Leader>r", "<C-w>r<CR>", {})
-vim.api.nvim_set_keymap("n", "<Leader>zz", "<cmd>MaximizerToggle<CR>", {})
+vim.api.nvim_set_keymap("n", "<Leader>j", ":wincmd j<CR>", { silent = true })
+vim.api.nvim_set_keymap("n", "<Leader>k", ":wincmd k<CR>", { silent = true })
+vim.api.nvim_set_keymap("n", "<Leader>l", ":wincmd l<CR>", { silent = true })
+vim.api.nvim_set_keymap("n", "<Leader>h", ":wincmd h<CR>", { silent = true })
+vim.api.nvim_set_keymap("n", "<Leader>r", "<C-w>r<CR>", { silent = true })
+vim.api.nvim_set_keymap("n", "<Leader>zz", "<cmd>MaximizerToggle<CR>", { silent = true })
 
 -- Moving speed
 vim.api.nvim_set_keymap("n", "÷", "{", {})
@@ -33,7 +34,7 @@ vim.api.nvim_set_keymap("v", "≠", "}", {})
 -- thanks to theprimeagen for this
 vim.api.nvim_set_keymap("n", "n", "nzzzv", {})
 vim.api.nvim_set_keymap("n", "N", "Nzzzv", {})
-vim.api.nvim_set_keymap("n", "J", "mzJ`z", {})
+vim.api.nvim_set_keymap("n", "J", "mzJ`z", { noremap = true })
 vim.api.nvim_set_keymap("i", ",", ",<c-g>u", {})
 vim.api.nvim_set_keymap("i", "!", "!<c-g>u", {})
 vim.api.nvim_set_keymap("i", ".", ".<c-g>u", {})
@@ -52,3 +53,6 @@ vim.api.nvim_set_keymap("n", "<Leader>gl", ":lua require('telescope.builtin').gi
 
 vim.api.nvim_set_keymap("n", "<Leader>?", ":Cheatsheet<CR>", {})
 vim.api.nvim_set_keymap("n", "<Leader>cj", "<cmd>:ProDoc<CR>", {})
+
+vim.api.nvim_set_keymap('i', "<CR>", "compe#confirm('<CR>')", { silent = true, expr = true })
+
