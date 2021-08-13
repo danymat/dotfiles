@@ -1,19 +1,20 @@
 local packer = require('packer')
 
 packer.startup(function(use)
-	use 'wbthomason/packer.nvim'
+    use 'wbthomason/packer.nvim'
 
     use { 'preservim/nerdtree' }
 
     use { 'tpope/vim-surround' }
 
-    use {
-        'vim-airline/vim-airline',
-        config = function()
-            vim.g.airline_theme = 'deus'
-        end,
-        requires = "vim-airline/vim-airline-themes"
-    }
+    --use {
+        --'vim-airline/vim-airline',
+        --enabled = false,
+        --config = function()
+            --vim.g.airline_theme = 'deus'
+        --end,
+        --requires = "vim-airline/vim-airline-themes"
+    --}
 
     use { 'tpope/vim-fugitive' }
     use { 'preservim/nerdcommenter' }
@@ -115,13 +116,13 @@ packer.startup(function(use)
     use {
         'kabouzeid/nvim-lspinstall',
         config = function ()
-           require('configs.lsp') 
+            require('configs.lsp') 
         end,
         requires = {
             "neovim/nvim-lspconfig",
             "ray-x/lsp_signature.nvim"
-            }
         }
+    }
 
     use { 'Yggdroot/indentLine' }
     use { 'jiangmiao/auto-pairs' }
@@ -129,7 +130,7 @@ packer.startup(function(use)
     use { 
         'hrsh7th/vim-vsnip',
         config = function ()
-           require('configs.vsnip') 
+            require('configs.vsnip') 
         end
     }
     use { 'nvim-treesitter/nvim-tree-docs' }
@@ -137,7 +138,7 @@ packer.startup(function(use)
     use {
         'danymat/neorg',
         config = function ()
-           require('configs.neorg')
+            require('configs.neorg')
         end,
         requires = "nvim-lua/plenary.nvim"
     }
@@ -147,11 +148,22 @@ packer.startup(function(use)
     use { 
         'sudormrfbin/cheatsheet.nvim',
         configs = function ()
-           require('configs.cheatsheet')
+            require('configs.cheatsheet')
         end
     }
 
     use { 'glepnir/prodoc.nvim' }
 
     use({ 'rose-pine/neovim', as = 'rose-pine' })
+
+    use {
+        'hoob3rt/lualine.nvim',
+        config = function ()
+            custom = require('configs.rose-pine-lualine') 
+            require('lualine').setup {
+                options = {theme = custom }
+            }
+        end,
+        requires = {'kyazdani42/nvim-web-devicons', opt = true}
+    }
 end)
