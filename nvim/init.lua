@@ -5,19 +5,10 @@ vim.cmd [[
 
 require('configuration')
 require('plugins')
+require('keybinds')
 
 vim.cmd [[
-"----------------
-" Syntax and indent
-"----------------
 let g:airline_theme='deus'
-
-"######################################################################
-"######################## Personal key bindings #######################
-"######################################################################
-
-lua require('configuration')
-lua require('keybinds')
 
 lua << EOF
 require'telescope'.setup { 
