@@ -2,26 +2,27 @@ local packer = require('packer')
 
 packer.startup(function(use)
 	use 'wbthomason/packer.nvim'
-    use { 'VundleVim/Vundle.vim' }
+
     use { 'preservim/nerdtree' }
+
     use { 'tpope/vim-surround' }
-    use { 'rakr/vim-one' }
-    use { 'joshdick/onedark.vim' }
-    use { 
+
+    use {
         'vim-airline/vim-airline',
         config = function()
             vim.g.airline_theme = 'deus'
         end,
         requires = "vim-airline/vim-airline-themes"
     }
+
     use { 'tpope/vim-fugitive' }
     use { 'preservim/nerdcommenter' }
     use { 'kyazdani42/nvim-web-devicons' }
+
     use { 'mhinz/vim-startify' }
-    use { 'sheerun/vim-polyglot' }
+
     use { 'airblade/vim-gitgutter' }
-    use { 'nvim-lua/popup.nvim' }
-    use { 'nvim-lua/plenary.nvim' }
+
 
     use { 
         'nvim-telescope/telescope.nvim',
@@ -37,12 +38,18 @@ packer.startup(function(use)
             }
             require'telescope'.load_extension'frecency'
             require'telescope'.load_extension'project'
-        end
+        end,
+        requires = {
+            "nvim-lua/plenary.nvim",
+            'nvim-lua/popup.nvim',
+            'nvim-telescope/telescope-frecency.nvim',
+            'nvim-telescope/telescope-project.nvim'
+        }
     }
 
     use { 'ayu-theme/ayu-vim' }
     use { 'junegunn/goyo.vim' }
-    use { 
+    use {
         'nvim-treesitter/nvim-treesitter',
         run = 'TSUpdate',
         config = function ()
@@ -73,7 +80,7 @@ packer.startup(function(use)
         end
     }
 
-    use { 
+    use {
         'hrsh7th/nvim-compe',
         config = function ()
             require'compe'.setup {
@@ -105,7 +112,7 @@ packer.startup(function(use)
 
     use { 'szw/vim-maximizer' }
 
-    use { 
+    use {
         'kabouzeid/nvim-lspinstall',
         config = function ()
            require('configs.lsp') 
@@ -119,13 +126,32 @@ packer.startup(function(use)
     use { 'Yggdroot/indentLine' }
     use { 'jiangmiao/auto-pairs' }
     use { 'sbdchd/neoformat' }
-    use { 'hrsh7th/vim-vsnip' }
-    use { 'nvim-telescope/telescope-project.nvim' }
+    use { 
+        'hrsh7th/vim-vsnip',
+        config = function ()
+           require('configs.vsnip') 
+        end
+    }
     use { 'nvim-treesitter/nvim-tree-docs' }
     use { 'nacro90/numb.nvim' }
-    use { 'danymat/neorg' }
+    use {
+        'danymat/neorg',
+        config = function ()
+           require('configs.neorg')
+        end,
+        requires = "nvim-lua/plenary.nvim"
+    }
+
     use { 'tami5/sql.nvim' }
-    use { 'nvim-telescope/telescope-frecency.nvim' }
-    use { 'sudormrfbin/cheatsheet.nvim' }
+
+    use { 
+        'sudormrfbin/cheatsheet.nvim',
+        configs = function ()
+           require('configs.cheatsheet')
+        end
+    }
+
     use { 'glepnir/prodoc.nvim' }
+
+    use({ 'rose-pine/neovim', as = 'rose-pine' })
 end)

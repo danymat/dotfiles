@@ -61,7 +61,7 @@ yabai -m space 5_personal_web --display 2
 yabai -m space 3_misc --display 2
 
 # Window rules 
-yabai -m rule --add app="^iTerm" manage=on opacity=0.95 space=1_code
+yabai -m rule --add app="^iTerm" manage=on opacity=1 space=1_code
 yabai -m rule --add app="^Préférences Système$" manage=off
 yabai -m rule --add app="^Spotify$" manage=off
 yabai -m rule --add app="^Finder$" manage=off
