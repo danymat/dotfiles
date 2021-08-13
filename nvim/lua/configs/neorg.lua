@@ -11,9 +11,17 @@ require('neorg').setup {
         ["core.norg.dirman"] = { -- Manage your directories with Neorg
             config = {
                 workspaces = {
-                    my_workspace = "~/neorg"
+                    main = "~/neorg",
+                    gtd = "~/gtd"
                 }
             }
-        }
-    }
+        },
+        ["core.gtd.base"] = {
+            config = { workspace = "gtd" }
+        },
+        ["core.ui"] = {},
+    },
+    logger = {
+		level = "trace" -- Show trace, info, warning, error and fatal messages
+	}
 }

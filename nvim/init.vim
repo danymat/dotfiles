@@ -23,7 +23,6 @@ Plug 'kyazdani42/nvim-web-devicons'
 Plug 'mhinz/vim-startify'
 Plug 'sheerun/vim-polyglot'
 Plug 'airblade/vim-gitgutter'
-Plug 'wakatime/vim-wakatime'
 Plug 'nvim-lua/popup.nvim'
 Plug 'nvim-lua/plenary.nvim'
 Plug 'nvim-telescope/telescope.nvim'
@@ -45,10 +44,11 @@ Plug 'nvim-telescope/telescope-project.nvim'
 Plug 'ray-x/lsp_signature.nvim'
 Plug 'nvim-treesitter/nvim-tree-docs'
 Plug 'nacro90/numb.nvim'
-Plug 'vhyrro/neorg'
+Plug 'danymat/neorg', { 'branch' : 'gtd_base' }
 Plug 'tami5/sql.nvim'
 Plug 'nvim-telescope/telescope-frecency.nvim'
 Plug 'sudormrfbin/cheatsheet.nvim'
+Plug 'glepnir/prodoc.nvim'
 
 "
 " All of your Plugins must be added before the following line
@@ -344,3 +344,4 @@ lua require('configs.cheatsheet')
 lua require('numb').setup()
 
 nnoremap <leader>? :Cheatsheet<CR>
+nnoremap <leader>cj <cmd>:ProDoc<CR>
