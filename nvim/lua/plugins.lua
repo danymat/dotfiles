@@ -166,4 +166,7 @@ packer.startup(function(use)
         end,
         requires = {'kyazdani42/nvim-web-devicons', opt = true}
     }
+    
+    use 'andweeb/presence.nvim'
+
 end)

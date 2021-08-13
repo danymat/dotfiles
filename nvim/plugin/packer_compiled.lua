@@ -120,7 +120,7 @@ _G.packer_plugins = {
     path = "/Users/danielmathiot/.local/share/nvim/site/pack/packer/start/numb.nvim"
   },
   ["nvim-compe"] = {
-    config = { "\27LJ\2\n∂\2\0\0\4\0\6\0\t6\0\0\0'\2\1\0B\0\2\0029\0\2\0005\2\3\0005\3\4\0=\3\5\2B\0\2\1K\0\1\0\vsource\1\0\a\vbuffer\2\nneorg\2\tpath\2\rnvim_lua\2\rnvim_lsp\2\tcalc\2\nvsnip\2\1\0\f\17autocomplete\2\fenabled\2\19max_kind_width\3d\18documentation\2\19max_menu_width\3d\ndebug\1\19max_abbr_width\3d\21incomplete_delay\3ê\3\19source_timeout\3»\1\18throttle_time\3P\14preselect\venable\15min_length\3\1\nsetup\ncompe\frequire\0" },
+    config = { "\27LJ\2\n∂\2\0\0\4\0\6\0\t6\0\0\0'\2\1\0B\0\2\0029\0\2\0005\2\3\0005\3\4\0=\3\5\2B\0\2\1K\0\1\0\vsource\1\0\a\nvsnip\2\rnvim_lua\2\rnvim_lsp\2\tcalc\2\tpath\2\vbuffer\2\nneorg\2\1\0\f\ndebug\1\17autocomplete\2\fenabled\2\18documentation\2\19max_menu_width\3d\19max_kind_width\3d\19max_abbr_width\3d\21incomplete_delay\3ê\3\19source_timeout\3»\1\18throttle_time\3P\14preselect\venable\15min_length\3\1\nsetup\ncompe\frequire\0" },
     loaded = true,
     path = "/Users/danielmathiot/.local/share/nvim/site/pack/packer/start/nvim-compe"
   },
@@ -138,7 +138,7 @@ _G.packer_plugins = {
     path = "/Users/danielmathiot/.local/share/nvim/site/pack/packer/start/nvim-tree-docs"
   },
   ["nvim-treesitter"] = {
-    config = { "\27LJ\2\nˆ\3\0\0\6\0\20\0\0266\0\0\0'\2\1\0B\0\2\0029\0\2\0B\0\1\0025\1\a\0005\2\4\0005\3\5\0=\3\6\2=\2\b\1=\1\3\0006\1\0\0'\3\t\0B\1\2\0029\1\n\0015\3\v\0005\4\f\0=\4\r\0035\4\14\0=\4\15\0035\4\16\0005\5\17\0=\5\18\4=\4\19\3B\1\2\1K\0\1\0\26incremental_selection\fkeymaps\1\0\4\22scope_incremental\t<CR>\21node_decremental\f<S-TAB>\19init_selection\t<CR>\21node_incremental\n<TAB>\1\0\1\venable\2\vindent\1\0\1\venable\2\14highlight\1\0\1\venable\2\1\0\1\20ensure_installd\15maintained\nsetup\28nvim-treesitter.configs\17install_info\1\0\0\nfiles\1\2\0\0\17src/parser.c\1\0\2\vbranch\tmain\burl/https://github.com/vhyrro/tree-sitter-norg\tnorg\23get_parser_configs\28nvim-treesitter.parsers\frequire\0" },
+    config = { "\27LJ\2\nˆ\3\0\0\6\0\20\0\0266\0\0\0'\2\1\0B\0\2\0029\0\2\0B\0\1\0025\1\a\0005\2\4\0005\3\5\0=\3\6\2=\2\b\1=\1\3\0006\1\0\0'\3\t\0B\1\2\0029\1\n\0015\3\v\0005\4\f\0=\4\r\0035\4\14\0=\4\15\0035\4\16\0005\5\17\0=\5\18\4=\4\19\3B\1\2\1K\0\1\0\26incremental_selection\fkeymaps\1\0\4\19init_selection\t<CR>\21node_incremental\n<TAB>\22scope_incremental\t<CR>\21node_decremental\f<S-TAB>\1\0\1\venable\2\vindent\1\0\1\venable\2\14highlight\1\0\1\venable\2\1\0\1\20ensure_installd\15maintained\nsetup\28nvim-treesitter.configs\17install_info\1\0\0\nfiles\1\2\0\0\17src/parser.c\1\0\2\vbranch\tmain\burl/https://github.com/vhyrro/tree-sitter-norg\tnorg\23get_parser_configs\28nvim-treesitter.parsers\frequire\0" },
     loaded = true,
     path = "/Users/danielmathiot/.local/share/nvim/site/pack/packer/start/nvim-treesitter"
   },
@@ -157,6 +157,10 @@ _G.packer_plugins = {
   ["popup.nvim"] = {
     loaded = true,
     path = "/Users/danielmathiot/.local/share/nvim/site/pack/packer/start/popup.nvim"
+  },
+  ["presence.nvim"] = {
+    loaded = true,
+    path = "/Users/danielmathiot/.local/share/nvim/site/pack/packer/start/presence.nvim"
   },
   ["prodoc.nvim"] = {
     loaded = true,
@@ -211,34 +215,34 @@ _G.packer_plugins = {
 }
 
 time([[Defining packer_plugins]], false)
--- Config for: nvim-treesitter
-time([[Config for nvim-treesitter]], true)
-try_loadstring("\27LJ\2\nˆ\3\0\0\6\0\20\0\0266\0\0\0'\2\1\0B\0\2\0029\0\2\0B\0\1\0025\1\a\0005\2\4\0005\3\5\0=\3\6\2=\2\b\1=\1\3\0006\1\0\0'\3\t\0B\1\2\0029\1\n\0015\3\v\0005\4\f\0=\4\r\0035\4\14\0=\4\15\0035\4\16\0005\5\17\0=\5\18\4=\4\19\3B\1\2\1K\0\1\0\26incremental_selection\fkeymaps\1\0\4\22scope_incremental\t<CR>\21node_decremental\f<S-TAB>\19init_selection\t<CR>\21node_incremental\n<TAB>\1\0\1\venable\2\vindent\1\0\1\venable\2\14highlight\1\0\1\venable\2\1\0\1\20ensure_installd\15maintained\nsetup\28nvim-treesitter.configs\17install_info\1\0\0\nfiles\1\2\0\0\17src/parser.c\1\0\2\vbranch\tmain\burl/https://github.com/vhyrro/tree-sitter-norg\tnorg\23get_parser_configs\28nvim-treesitter.parsers\frequire\0", "config", "nvim-treesitter")
-time([[Config for nvim-treesitter]], false)
--- Config for: nvim-compe
-time([[Config for nvim-compe]], true)
-try_loadstring("\27LJ\2\n∂\2\0\0\4\0\6\0\t6\0\0\0'\2\1\0B\0\2\0029\0\2\0005\2\3\0005\3\4\0=\3\5\2B\0\2\1K\0\1\0\vsource\1\0\a\vbuffer\2\nneorg\2\tpath\2\rnvim_lua\2\rnvim_lsp\2\tcalc\2\nvsnip\2\1\0\f\17autocomplete\2\fenabled\2\19max_kind_width\3d\18documentation\2\19max_menu_width\3d\ndebug\1\19max_abbr_width\3d\21incomplete_delay\3ê\3\19source_timeout\3»\1\18throttle_time\3P\14preselect\venable\15min_length\3\1\nsetup\ncompe\frequire\0", "config", "nvim-compe")
-time([[Config for nvim-compe]], false)
--- Config for: nvim-lspinstall
-time([[Config for nvim-lspinstall]], true)
-try_loadstring("\27LJ\2\n+\0\0\3\0\2\0\0046\0\0\0'\2\1\0B\0\2\1K\0\1\0\16configs.lsp\frequire\0", "config", "nvim-lspinstall")
-time([[Config for nvim-lspinstall]], false)
--- Config for: vim-vsnip
-time([[Config for vim-vsnip]], true)
-try_loadstring("\27LJ\2\n-\0\0\3\0\2\0\0046\0\0\0'\2\1\0B\0\2\1K\0\1\0\18configs.vsnip\frequire\0", "config", "vim-vsnip")
-time([[Config for vim-vsnip]], false)
--- Config for: lualine.nvim
-time([[Config for lualine.nvim]], true)
-try_loadstring("\27LJ\2\né\1\0\0\5\0\t\0\0156\0\0\0'\2\1\0B\0\2\0027\0\2\0006\0\0\0'\2\3\0B\0\2\0029\0\4\0005\2\a\0005\3\5\0006\4\2\0=\4\6\3=\3\b\2B\0\2\1K\0\1\0\foptions\1\0\0\ntheme\1\0\0\nsetup\flualine\vcustom\30configs.rose-pine-lualine\frequire\0", "config", "lualine.nvim")
-time([[Config for lualine.nvim]], false)
 -- Config for: neorg
 time([[Config for neorg]], true)
 try_loadstring("\27LJ\2\n-\0\0\3\0\2\0\0046\0\0\0'\2\1\0B\0\2\1K\0\1\0\18configs.neorg\frequire\0", "config", "neorg")
 time([[Config for neorg]], false)
+-- Config for: nvim-compe
+time([[Config for nvim-compe]], true)
+try_loadstring("\27LJ\2\n∂\2\0\0\4\0\6\0\t6\0\0\0'\2\1\0B\0\2\0029\0\2\0005\2\3\0005\3\4\0=\3\5\2B\0\2\1K\0\1\0\vsource\1\0\a\nvsnip\2\rnvim_lua\2\rnvim_lsp\2\tcalc\2\tpath\2\vbuffer\2\nneorg\2\1\0\f\ndebug\1\17autocomplete\2\fenabled\2\18documentation\2\19max_menu_width\3d\19max_kind_width\3d\19max_abbr_width\3d\21incomplete_delay\3ê\3\19source_timeout\3»\1\18throttle_time\3P\14preselect\venable\15min_length\3\1\nsetup\ncompe\frequire\0", "config", "nvim-compe")
+time([[Config for nvim-compe]], false)
+-- Config for: lualine.nvim
+time([[Config for lualine.nvim]], true)
+try_loadstring("\27LJ\2\né\1\0\0\5\0\t\0\0156\0\0\0'\2\1\0B\0\2\0027\0\2\0006\0\0\0'\2\3\0B\0\2\0029\0\4\0005\2\a\0005\3\5\0006\4\2\0=\4\6\3=\3\b\2B\0\2\1K\0\1\0\foptions\1\0\0\ntheme\1\0\0\nsetup\flualine\vcustom\30configs.rose-pine-lualine\frequire\0", "config", "lualine.nvim")
+time([[Config for lualine.nvim]], false)
+-- Config for: nvim-treesitter
+time([[Config for nvim-treesitter]], true)
+try_loadstring("\27LJ\2\nˆ\3\0\0\6\0\20\0\0266\0\0\0'\2\1\0B\0\2\0029\0\2\0B\0\1\0025\1\a\0005\2\4\0005\3\5\0=\3\6\2=\2\b\1=\1\3\0006\1\0\0'\3\t\0B\1\2\0029\1\n\0015\3\v\0005\4\f\0=\4\r\0035\4\14\0=\4\15\0035\4\16\0005\5\17\0=\5\18\4=\4\19\3B\1\2\1K\0\1\0\26incremental_selection\fkeymaps\1\0\4\19init_selection\t<CR>\21node_incremental\n<TAB>\22scope_incremental\t<CR>\21node_decremental\f<S-TAB>\1\0\1\venable\2\vindent\1\0\1\venable\2\14highlight\1\0\1\venable\2\1\0\1\20ensure_installd\15maintained\nsetup\28nvim-treesitter.configs\17install_info\1\0\0\nfiles\1\2\0\0\17src/parser.c\1\0\2\vbranch\tmain\burl/https://github.com/vhyrro/tree-sitter-norg\tnorg\23get_parser_configs\28nvim-treesitter.parsers\frequire\0", "config", "nvim-treesitter")
+time([[Config for nvim-treesitter]], false)
 -- Config for: telescope.nvim
 time([[Config for telescope.nvim]], true)
 try_loadstring("\27LJ\2\ná\2\0\0\6\0\14\0\0276\0\0\0'\2\1\0B\0\2\0029\0\2\0005\2\4\0005\3\3\0=\3\5\0025\3\t\0005\4\6\0005\5\a\0=\5\b\4=\4\n\3=\3\v\2B\0\2\0016\0\0\0'\2\1\0B\0\2\0029\0\f\0'\2\n\0B\0\2\0016\0\0\0'\2\1\0B\0\2\0029\0\f\0'\2\r\0B\0\2\1K\0\1\0\fproject\19load_extension\15extensions\rfrecency\1\0\0\20ignore_patterns\1\3\0\0\f*.git/*\f*/tmp/*\1\0\1\16show_scores\2\rdefaults\1\0\0\1\0\1\rwinblend\3\n\nsetup\14telescope\frequire\0", "config", "telescope.nvim")
 time([[Config for telescope.nvim]], false)
+-- Config for: vim-vsnip
+time([[Config for vim-vsnip]], true)
+try_loadstring("\27LJ\2\n-\0\0\3\0\2\0\0046\0\0\0'\2\1\0B\0\2\1K\0\1\0\18configs.vsnip\frequire\0", "config", "vim-vsnip")
+time([[Config for vim-vsnip]], false)
+-- Config for: nvim-lspinstall
+time([[Config for nvim-lspinstall]], true)
+try_loadstring("\27LJ\2\n+\0\0\3\0\2\0\0046\0\0\0'\2\1\0B\0\2\1K\0\1\0\16configs.lsp\frequire\0", "config", "nvim-lspinstall")
+time([[Config for nvim-lspinstall]], false)
 if should_profile then save_profiles() end
 
 end)
