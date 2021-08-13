@@ -1,5 +1,6 @@
 vim.g.mapleader = " "
 
+
 vim.o.splitright = true -- new window comes right
 vim.o.splitbelow = true -- new window comes below
 
@@ -32,4 +33,4 @@ vim.o.incsearch = true --show search as characters entered
 
 -- Undo/Redo
 vim.o.undofile = true   -- Maintain undo history between sessions
-vim.o.undodir = ~/.vim/undodir  -- Undo directory (to create if not created)
+vim.o.undodir = "/Users/danielmathiot/.vim/undodir"  -- Undo directory (to create if not created)
