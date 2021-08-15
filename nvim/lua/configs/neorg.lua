@@ -17,11 +17,11 @@ require('neorg').setup {
             }
         },
         ["core.gtd.base"] = {
-            config = { workspace = "gtd" }
+            workspace = "gtd"
         },
         ["core.ui"] = {},
     },
     logger = {
-		level = "trace" -- Show trace, info, warning, error and fatal messages
+		level = "info" -- Show trace, info, warning, error and fatal messages
 	}
 }
