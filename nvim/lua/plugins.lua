@@ -34,7 +34,7 @@ packer.startup(function(use)
                     frecency = {
                         show_scores = true,
                         ignore_patterns = {"*.git/*", "*/tmp/*"},
-                    }
+                    },
                 }
             }
             require'telescope'.load_extension'frecency'
@@ -135,12 +135,14 @@ packer.startup(function(use)
     }
     use { 'nvim-treesitter/nvim-tree-docs' }
     use { 'nacro90/numb.nvim' }
+
     use {
-        'danymat/neorg',
+        '~/Developer/neorg',
         config = function ()
             require('configs.neorg')
         end,
-        requires = "nvim-lua/plenary.nvim"
+        requires = "nvim-lua/plenary.nvim",
+        branch = "gtd_base"
     }
 
     use { 'tami5/sql.nvim' }
