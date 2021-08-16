@@ -19,11 +19,8 @@ packer.startup(function(use)
     use { 'tpope/vim-fugitive' }
     use { 'preservim/nerdcommenter' }
     use { 'kyazdani42/nvim-web-devicons' }
-
     use { 'mhinz/vim-startify' }
-
     use { 'airblade/vim-gitgutter' }
-
 
     use { 
         'nvim-telescope/telescope.nvim',
@@ -50,6 +47,7 @@ packer.startup(function(use)
 
     use { 'ayu-theme/ayu-vim' }
     use { 'junegunn/goyo.vim' }
+
     use {
         'nvim-treesitter/nvim-treesitter',
         run = 'TSUpdate',
@@ -77,8 +75,65 @@ packer.startup(function(use)
                         node_decremental = "<S-TAB>",
                     },
                 },
+                textobjects = {
+                    select = {
+                        enable = true,
+                        lookahead = true,
+                        keymaps = {
+                            ["af"] = "@function.outer",
+                            ["if"] = "@function.inner",
+                            ["ac"] = "@class.outer",
+                            ["ic"] = "@class.inner",
+                        }
+                    },
+                    swap = {
+                        enable = true,
+                        swap_next = {
+                            ["<leader>sn"] = "@parameter.inner",
+                        },
+                        swap_previous = {
+                            ["<leader>sp"] = "@parameter.inner",
+                        },
+                    },
+                    move = {
+                        enable = true,
+                        set_jumps = true, -- Whether to set jumps in the jumplist
+                        goto_next_start = {
+                            ["gnf"] = "@function.outer",
+                            ["gnif"] = "@function.inner",
+                            ["gnp"] = "@parameter.inner",
+                            ["gnc"] = "@call.outer",
+                            ["gnic"] = "@call.inner",
+                        },
+                        goto_next_end = {
+                            ["gnF"] = "@function.outer",
+                            ["gniF"] = "@function.inner",
+                            ["gnP"] = "@parameter.inner",
+                            ["gnC"] = "@call.outer",
+                            ["gniC"] = "@call.inner",
+                        },
+                        goto_previous_start = {
+                            ["gpf"] = "@function.outer",
+                            ["gpif"] = "@function.inner",
+                            ["gpp"] = "@parameter.inner",
+                            ["gpc"] = "@call.outer",
+                            ["gpic"] = "@call.inner",
+                        },
+                        goto_previous_end = {
+                            ["gpF"] = "@function.outer",
+                            ["gpiF"] = "@function.inner",
+                            ["gpP"] = "@parameter.inner",
+                            ["gpC"] = "@call.outer",
+                            ["gpiC"] = "@call.inner",
+                        },
+                    }
+                }
             }
-        end
+        end,
+        requires = {
+            "nvim-treesitter/playground",
+            "nvim-treesitter/nvim-treesitter-textobjects"
+        }
     }
 
     use {
@@ -170,5 +225,7 @@ packer.startup(function(use)
     }
     
     use 'andweeb/presence.nvim'
+
+    use '~/Developer/neogen'
 
 end)
