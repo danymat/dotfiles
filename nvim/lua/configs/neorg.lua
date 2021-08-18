@@ -17,7 +17,9 @@ require('neorg').setup {
             }
         },
         ["core.gtd.base"] = {
-            workspace = "gtd"
+            config = {
+                workspace = "gtd"
+            }
         },
         ["core.ui"] = {},
     },

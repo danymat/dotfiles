@@ -56,3 +56,4 @@ vim.api.nvim_set_keymap("n", "<Leader>cj", "<cmd>:ProDoc<CR>", {})
 
 vim.api.nvim_set_keymap('i', "<CR>", "compe#confirm('<CR>')", { silent = true, expr = true })
 
+vim.api.nvim_set_keymap("n", "<Leader>ng", ":Neogen<CR>", {})
