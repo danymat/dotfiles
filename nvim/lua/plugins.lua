@@ -206,7 +206,12 @@ packer.startup(function(use)
         'sudormrfbin/cheatsheet.nvim',
         configs = function ()
             require('configs.cheatsheet')
-        end
+        end,
+        requires = {
+            {'nvim-telescope/telescope.nvim'},
+            {'nvim-lua/popup.nvim'},
+            {'nvim-lua/plenary.nvim'},
+        }
     }
 
     use { 'glepnir/prodoc.nvim' }
@@ -218,7 +223,7 @@ packer.startup(function(use)
         config = function ()
             custom = require('configs.rose-pine-lualine') 
             require('lualine').setup {
-                options = {theme = custom }
+                options = {theme = 'rose-pine' }
             }
         end,
         requires = {'kyazdani42/nvim-web-devicons', opt = true}
@@ -226,6 +231,13 @@ packer.startup(function(use)
     
     use 'andweeb/presence.nvim'
 
-    use '~/Developer/neogen'
+    use {
+        '~/Developer/neogen',
+        config = function ()
+            require('neogen').setup {
+                enabled = true
+            }
+        end
+    }
 
 end)
