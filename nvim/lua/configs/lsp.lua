@@ -3,7 +3,7 @@ local nvim_lsp = require('lspconfig')
 local on_attach = function(_, bufnr)
     require'lsp_signature'.on_attach({
         bind = true,
-        hint_prefix = "🧸 "
+        hint_prefix = "🧸 ",
     })
     local function buf_set_keymap(...) vim.api.nvim_buf_set_keymap(bufnr, ...) end
     local opts = { noremap=true, silent=true }

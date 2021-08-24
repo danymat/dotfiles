@@ -4,11 +4,12 @@ vim.api.nvim_set_keymap("n", "<Leader>ff", ":Telescope live_grep<CR>", {})
 vim.api.nvim_set_keymap("n", "<Leader>fz", ":Telescope current_buffer_fuzzy_find<CR>", {})
 vim.api.nvim_set_keymap("n", "<Leader>b", ":lua require('telescope.builtin').buffers({ show_all_buffers = true })<CR>", {})
 vim.api.nvim_set_keymap("n", "<Leader>o", ":lua require('telescope').extensions.frecency.frecency()<CR>", {})
-vim.api.nvim_set_keymap("n", "<Leader>n", ":lua require('telescope.builtin').file_browser()<CR>", {})
+vim.api.nvim_set_keymap("n", "<Leader>nn", ":lua require('telescope.builtin').file_browser()<CR>", {})
 vim.api.nvim_set_keymap("n", "<Leader>p", ":lua require'telescope'.extensions.project.project{ display_type = 'full' }<CR>", {})
 
-
+vim.api.nvim_set_keymap('n', "<Esc>", ":noh<CR>", { noremap = true, silent = true })
 vim.api.nvim_set_keymap("t", "<Esc><Esc>", "<C-\\><C-n>", {})
+
 -- Goyo
 vim.api.nvim_set_keymap("n", "<Leader>go", ":Goyo<CR>", { silent = true })
 

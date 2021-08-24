@@ -22,6 +22,7 @@ require('neorg').setup {
             }
         },
         ["core.ui"] = {},
+        ["core.integrations.telescope"] = {},
     },
     logger = {
 		level = "info" -- Show trace, info, warning, error and fatal messages
