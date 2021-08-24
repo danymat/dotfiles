@@ -196,7 +196,10 @@ packer.startup(function(use)
         config = function ()
             require('configs.neorg')
         end,
-        requires = "nvim-lua/plenary.nvim",
+        requires = {
+            "nvim-lua/plenary.nvim",
+            "vhyrro/neorg-telescope"
+        },
         branch = "gtd_base"
     }
 
@@ -228,14 +231,26 @@ packer.startup(function(use)
         end,
         requires = {'kyazdani42/nvim-web-devicons', opt = true}
     }
-    
+
     use 'andweeb/presence.nvim'
 
     use {
         '~/Developer/neogen',
         config = function ()
             require('neogen').setup {
-                enabled = true
+                enabled = true,
+            }
+        end
+    }
+
+    use {
+        "folke/todo-comments.nvim",
+        requires = "nvim-lua/plenary.nvim",
+        config = function()
+            require("todo-comments").setup {
+                -- your configuration comes here
+                -- or leave it empty to use the default settings
+                -- refer to the configuration section below
             }
         end
     }
