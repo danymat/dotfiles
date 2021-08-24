@@ -1,4 +1,5 @@
 local packer = require('packer')
+
 packer.startup(function(use)
     use 'wbthomason/packer.nvim'
 
@@ -211,6 +212,7 @@ packer.startup(function(use)
         config = function ()
             require("configs.cmp")
         end,
+        module = "cmp",
         requires = {
             'hrsh7th/cmp-buffer',
             'hrsh7th/cmp-nvim-lsp',
