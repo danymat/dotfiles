@@ -1,4 +1,5 @@
 -- Telescope Stuff
+
 vim.api.nvim_set_keymap("n", "<C-f>", ":lua require'telescope.builtin'.find_files()<cr>", {})
 vim.api.nvim_set_keymap("n", "<Leader>ff", ":Telescope live_grep<CR>", {})
 vim.api.nvim_set_keymap("n", "<Leader>fz", ":Telescope current_buffer_fuzzy_find<CR>", {})
@@ -55,6 +56,6 @@ vim.api.nvim_set_keymap("n", "<Leader>gl", ":lua require('telescope.builtin').gi
 vim.api.nvim_set_keymap("n", "<Leader>?", ":Cheatsheet<CR>", {})
 vim.api.nvim_set_keymap("n", "<Leader>cj", "<cmd>:ProDoc<CR>", {})
 
-vim.api.nvim_set_keymap('i', "<CR>", "compe#confirm('<CR>')", { silent = true, expr = true })
+--vim.api.nvim_set_keymap('i', "<CR>", "compe#confirm('<CR>')", { silent = true, expr = true })
 
 vim.api.nvim_set_keymap("n", "<Leader>ng", ":Neogen<CR>", {})

@@ -1,26 +1,16 @@
 local packer = require('packer')
-
 packer.startup(function(use)
     use 'wbthomason/packer.nvim'
 
     use { 'preservim/nerdtree' }
-
     use { 'tpope/vim-surround' }
-
-    --use {
-        --'vim-airline/vim-airline',
-        --enabled = false,
-        --config = function()
-            --vim.g.airline_theme = 'deus'
-        --end,
-        --requires = "vim-airline/vim-airline-themes"
-    --}
-
     use { 'tpope/vim-fugitive' }
     use { 'preservim/nerdcommenter' }
     use { 'kyazdani42/nvim-web-devicons' }
     use { 'mhinz/vim-startify' }
     use { 'airblade/vim-gitgutter' }
+    use { 'junegunn/goyo.vim' }
+
 
     use { 
         'nvim-telescope/telescope.nvim',
@@ -44,10 +34,6 @@ packer.startup(function(use)
             'nvim-telescope/telescope-project.nvim'
         }
     }
-
-    use { 'ayu-theme/ayu-vim' }
-    use { 'junegunn/goyo.vim' }
-
     use {
         'nvim-treesitter/nvim-treesitter',
         run = 'TSUpdate',
@@ -136,36 +122,6 @@ packer.startup(function(use)
         }
     }
 
-    use {
-        'hrsh7th/nvim-compe',
-        config = function ()
-            require'compe'.setup {
-                enabled = true;
-                autocomplete = true;
-                debug = false;
-                min_length = 1;
-                preselect = 'enable';
-                throttle_time = 80;
-                source_timeout = 200;
-                incomplete_delay = 400;
-                max_abbr_width = 100;
-                max_kind_width = 100;
-                max_menu_width = 100;
-                documentation = true;
-
-                source = {
-                    path = true;
-                    buffer = true;
-                    calc = true;
-                    nvim_lsp = true;
-                    nvim_lua = true;
-                    vsnip = true;
-                    neorg = true;
-                };
-            }
-        end
-    }
-
     use { 'szw/vim-maximizer' }
 
     use {
@@ -182,12 +138,6 @@ packer.startup(function(use)
     use { 'Yggdroot/indentLine' }
     use { 'jiangmiao/auto-pairs' }
     use { 'sbdchd/neoformat' }
-    use { 
-        'hrsh7th/vim-vsnip',
-        config = function ()
-            require('configs.vsnip') 
-        end
-    }
     use { 'nvim-treesitter/nvim-tree-docs' }
     use { 'nacro90/numb.nvim' }
 
@@ -254,5 +204,20 @@ packer.startup(function(use)
             }
         end
     }
+
+    use({
+        "hrsh7th/nvim-cmp",
+        event = "InsertEnter",
+        config = function ()
+            require("configs.cmp")
+        end,
+        requires = {
+            'hrsh7th/cmp-buffer',
+            'hrsh7th/cmp-nvim-lsp',
+            'hrsh7th/cmp-path',
+            'hrsh7th/vim-vsnip',
+            'hrsh7th/cmp-nvim-lua'
+        },
+    })
 
 end)
