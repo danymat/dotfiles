@@ -56,6 +56,7 @@ vim.api.nvim_set_keymap("n", "<Leader>gl", ":lua require('telescope.builtin').gi
 vim.api.nvim_set_keymap("n", "<Leader>?", ":Cheatsheet<CR>", {})
 vim.api.nvim_set_keymap("n", "<Leader>cj", "<cmd>:ProDoc<CR>", {})
 
---vim.api.nvim_set_keymap('i', "<CR>", "compe#confirm('<CR>')", { silent = true, expr = true })
-
-vim.api.nvim_set_keymap("n", "<Leader>ng", ":Neogen<CR>", {})
+-- Neogen
+vim.api.nvim_set_keymap("n", "<Leader>ng", ":lua require('neogen').generate()<CR>", { silent = true })
+vim.api.nvim_set_keymap("n", "<Leader>nc", ":lua require('neogen').generate({ type = 'class' })<CR>", { silent = true })
+vim.api.nvim_set_keymap("n", "<Leader>nt", ":lua require('neogen').generate({ type = 'type' })<CR>", { silent = true })
