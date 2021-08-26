@@ -12,7 +12,6 @@ packer.startup(function(use)
     use { 'airblade/vim-gitgutter' }
     use { 'junegunn/goyo.vim' }
 
-
     use { 
         'nvim-telescope/telescope.nvim',
         config = function()
@@ -175,7 +174,7 @@ packer.startup(function(use)
     use {
         'hoob3rt/lualine.nvim',
         config = function ()
-            custom = require('configs.rose-pine-lualine') 
+            custom = require('configs.rose-pine-lualine')
             require('lualine').setup {
                 options = {theme = 'rose-pine' }
             }
@@ -221,5 +220,29 @@ packer.startup(function(use)
             'hrsh7th/cmp-nvim-lua'
         },
     })
+
+    use {
+        "akinsho/toggleterm.nvim",
+        config = function ()
+            require("toggleterm").setup{
+                direction = "float",
+                size = 90,
+                persists = true,
+                float_opts = {
+                    -- The border key is *almost* the same as 'nvim_win_open'
+                    -- see :h nvim_win_open for details on borders however
+                    -- the 'curved' border is a custom border type
+                    -- not natively supported but implemented in this plugin.
+                    border = "double",
+                    winblend = 3,
+                    highlights = {
+                        border = "Normal",
+                        background = "Normal",
+                    }
+                }
+            } 
+        end
+
+    }
 
 end)

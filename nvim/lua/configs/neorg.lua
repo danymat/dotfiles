@@ -23,6 +23,11 @@ require('neorg').setup {
         },
         ["core.ui"] = {},
         ["core.integrations.telescope"] = {},
+        ["core.norg.completion"] = {
+            config = {
+                engine = "nvim-cmp"
+            }
+        }
     },
     logger = {
 		level = "info" -- Show trace, info, warning, error and fatal messages
