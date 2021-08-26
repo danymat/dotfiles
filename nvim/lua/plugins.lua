@@ -187,10 +187,9 @@ packer.startup(function(use)
     use {
         '~/Developer/neogen',
         config = function ()
-            require('neogen').setup {
-                enabled = true,
-            }
-        end
+            local setup = require('configs.neogen')
+            require('neogen').setup(setup)
+        end,
     }
 
     use {
