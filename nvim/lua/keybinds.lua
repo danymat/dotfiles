@@ -60,6 +60,7 @@ vim.api.nvim_set_keymap("n", "<Leader>cj", "<cmd>:ProDoc<CR>", {})
 vim.api.nvim_set_keymap("n", "<Leader>nf", ":lua require('neogen').generate()<CR>", { silent = true })
 vim.api.nvim_set_keymap("n", "<Leader>nc", ":lua require('neogen').generate({ type = 'class' })<CR>", { silent = true })
 vim.api.nvim_set_keymap("n", "<Leader>nt", ":lua require('neogen').generate({ type = 'type' })<CR>", { silent = true })
+vim.api.nvim_set_keymap("n", "<Leader>ez", ":lua R('neogen', { setup = require('configs.neogen') })<CR>", { silent = true })
 
 -- Keybinds for toggleterm.lua
 vim.api.nvim_set_keymap('n', "<Leader>shf", ":lua require('toggleterm.terminal').Terminal:new { direction = 'float', count = 1 }:toggle()<CR>", { noremap = true, silent = true })
