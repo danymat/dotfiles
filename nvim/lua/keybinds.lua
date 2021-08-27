@@ -1,5 +1,10 @@
--- Telescope Stuff
+-- LOL STILL USING ARROWS?
+--vim.api.nvim_set_keymap("i", "<Up>", "<Noh>", {})
+--vim.api.nvim_set_keymap("i", "<Down>", "<Noh>", {})
+--vim.api.nvim_set_keymap("i", "<Left>", "<Noh>", {})
+--vim.api.nvim_set_keymap("i", "<Right>", "<Noh>", {})
 
+-- Telescope Stuff
 vim.api.nvim_set_keymap("n", "<C-f>", ":lua require'telescope.builtin'.find_files()<cr>", {})
 vim.api.nvim_set_keymap("n", "<Leader>ff", ":Telescope live_grep<CR>", {})
 vim.api.nvim_set_keymap("n", "<Leader>fz", ":Telescope current_buffer_fuzzy_find<CR>", {})
