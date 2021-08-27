@@ -1,8 +1,8 @@
 -- LOL STILL USING ARROWS?
---vim.api.nvim_set_keymap("i", "<Up>", "<Noh>", {})
---vim.api.nvim_set_keymap("i", "<Down>", "<Noh>", {})
---vim.api.nvim_set_keymap("i", "<Left>", "<Noh>", {})
---vim.api.nvim_set_keymap("i", "<Right>", "<Noh>", {})
+vim.api.nvim_set_keymap("i", "<Up>", "<Nop>", {})
+vim.api.nvim_set_keymap("i", "<Down>", "<Nop>", {})
+vim.api.nvim_set_keymap("i", "<Left>", "<Nop>", {})
+vim.api.nvim_set_keymap("i", "<Right>", "<Nop>", {})
 
 -- Telescope Stuff
 vim.api.nvim_set_keymap("n", "<C-f>", ":lua require'telescope.builtin'.find_files()<cr>", {})
@@ -70,3 +70,5 @@ vim.api.nvim_set_keymap("n", "<Leader>ez", ":lua R('neogen', { setup = require('
 -- Keybinds for toggleterm.lua
 vim.api.nvim_set_keymap('n', "<Leader>shf", ":lua require('toggleterm.terminal').Terminal:new { direction = 'float', count = 1 }:toggle()<CR>", { noremap = true, silent = true })
 vim.api.nvim_set_keymap('n', "<Leader>shr", ":lua require('toggleterm.terminal').Terminal:new { direction = 'vertical', count = 2 }:toggle()<CR>", { noremap = true, silent = true })
+
+--vim.api.nvim_set_keymap("i", "<Tab>", "<cmd>lua require('neogen').jump_next()<CR>", { })

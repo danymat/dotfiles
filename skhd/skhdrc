@@ -35,17 +35,13 @@ hyper - l :  yabai -m window --focus stack.next || yabai -m window --focus stack
 # HYPER &/é/"/': Focus space 1/2/3/4 if it exists
 hyper - 0x12: yabai -m space --focus 1_code
 hyper - 0x13 : yabai -m space --focus 2_web
-hyper - 0x14 : yabai -m space --focus 3_misc
-hyper - 0x15 : yabai -m space --focus 4_work
-hyper - 0x17 : yabai -m space --focus 5_personal_web
-hyper - 0x16 : yabai -m space --focus 6_music
+hyper - 0x14 : yabai -m space --focus 3_work
+hyper - 0x15 : yabai -m space --focus 4_misc
 
 hyper + fn - 0x12 : yabai -m window --space 1_code
 hyper + fn - 0x13 : yabai -m window --space 2_web
-hyper + fn - 0x14 : yabai -m window --space 3_misc
-hyper + fn - 0x15 : yabai -m window --space 4_work
-hyper + fn - 0x17 : yabai -m window --space 5_personal_web
-hyper + fn - 0x16 : yabai -m window --space 6_music
+hyper + fn - 0x14 : yabai -m window --space 3_work
+hyper + fn - 0x15 : yabai -m window --space 4_misc
 
 # HYPER F: Focus the first fullscreen window
 hyper - f: SPACE=$(yabai -m query --spaces | jq -er 'map(select(."native-fullscreen" == 1))[0].index') && yabai -m space --focus $SPACE
