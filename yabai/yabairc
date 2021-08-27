@@ -47,29 +47,25 @@ yabai -m config normal_window_opacity 0.95
 # Desktop labels
 yabai -m space 1 --label 1_code
 yabai -m space 2 --label 2_web
-yabai -m space 3 --label 3_misc
-yabai -m space 4 --label 4_work
-yabai -m space 5 --label 5_personal_web
-yabai -m space 6 --label 6_music
+yabai -m space 3 --label 3_work
+yabai -m space 4 --label 4_misc
 
 # Move spaces to correct displays
 yabai -m space 2_web --display 1
 yabai -m space 1_code --display 2
-yabai -m space 6_music --display 1
-yabai -m space 4_work --display 1
-yabai -m space 5_personal_web --display 2
-yabai -m space 3_misc --display 2
+yabai -m space 4_misc --display 1
+yabai -m space 3_work --display 2
 
 # Window rules 
-yabai -m rule --add app="^iTerm" manage=on opacity=1 space=1_code
+yabai -m rule --add app="^iTerm" manage=on opacity=0.95 space=1_code
 yabai -m rule --add app="^Préférences Système$" manage=off
 yabai -m rule --add app="^Spotify$" manage=off
 yabai -m rule --add app="^Finder$" manage=off
-yabai -m rule --add app="^Mail" manage=on space=4_work
+yabai -m rule --add app="^Mail" manage=on space=4_misc
 yabai -m rule --add app="^Musique" manage=off space=6_music
 yabai -m rule --add app=Safari space=2_web
-yabai -m rule --add app="^Slack" space=4_work
-yabai -m rule --add app="Obsidian" space=3_misc
+yabai -m rule --add app="^Slack" space=4_misc
+yabai -m rule --add app="Obsidian" space=3_work
 yabai -m rule --add app="VMware Fusion" space=1_code manage=off
 
 yabai -m config window_border on
