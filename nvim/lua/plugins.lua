@@ -15,8 +15,19 @@ packer.startup(function(use)
     use { 
         'nvim-telescope/telescope.nvim',
         config = function()
+            local actions = require('telescope.actions')
             require'telescope'.setup { 
-                defaults = { winblend = 10 } ,
+                defaults = { 
+                    winblend = 10,
+                    mappings = {
+                        i = {
+                            ["<Down>"] = false,
+                            ["<Up>"] = false,
+                            ["<C-j>"] = actions.move_selection_next,
+                            ["<C-k>"] = actions.move_selection_previous,
+                        }
+                    }
+                } ,
                 extensions = {
                     frecency = {
                         show_scores = true,
