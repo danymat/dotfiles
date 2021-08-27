@@ -43,20 +43,20 @@ packer.startup(function(use)
             parser_configs.norg = {
                 install_info = {
                     url = "https://github.com/vhyrro/tree-sitter-norg",
-                    files = { "src/parser.c" },
+                    files = { "src/parser.c", "src/scanner.cc" },
                     branch = "main"
                 },
             }
 
             require'nvim-treesitter.configs'.setup {
-                ensure_installd = "maintained", -- one of "all", "maintained" (parsers with maintainers), or a list of languages
+                ensure_installed = "maintained", -- one of "all", "maintained" (parsers with maintainers), or a list of languages
                 highlight = { enable = true },
                 indent = { enable = true, },
                 incremental_selection = { 
                     enable = true,
                     keymaps = {
-                        init_selection = "<CR>",
-                        scope_incremental = "<CR>",
+                        init_selection = "<TAB>",
+                        scope_incremental = "<TAB>",
                         node_incremental = "<TAB>",
                         node_decremental = "<S-TAB>",
                     },
@@ -135,8 +135,30 @@ packer.startup(function(use)
         }
     }
 
-    use { 'Yggdroot/indentLine' }
-    use { 'jiangmiao/auto-pairs' }
+    use {
+        "lukas-reineke/indent-blankline.nvim",
+        config = function ()
+           require("indent_blankline").setup {
+               show_current_context = true,
+            }
+        end
+    }
+
+    use {
+        'windwp/nvim-autopairs',
+        config = function ()
+            require('nvim-autopairs').setup{
+                fast_wrap = { map = '€'},
+            }
+            require("nvim-autopairs.completion.cmp").setup({
+                map_cr = true, --  map <CR> on insert mode
+                map_complete = true, -- it will auto insert `(` after select function or method item
+                auto_select = true -- automatically select the first item
+            })
+        end,
+        after = "nvim-cmp"
+    }
+
     use { 'sbdchd/neoformat' }
     use { 'nvim-treesitter/nvim-tree-docs' }
     use { 'nacro90/numb.nvim' }
@@ -245,3 +267,4 @@ packer.startup(function(use)
     }
 
 end)
+
