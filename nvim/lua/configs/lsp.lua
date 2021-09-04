@@ -62,7 +62,9 @@ local lua_settings = {
       -- Get the language server to recognize the `vim` global
       globals = {'vim', 'P', 'G'},
     },
+    telemetry = { enable = false },
     workspace = {
+        preloadFileSize = 180,
       -- Make the server aware of Neovim runtime files
       library = {
         [vim.fn.expand('$VIMRUNTIME/lua')] = true,
@@ -74,7 +76,16 @@ local lua_settings = {
 
 for _, server in pairs(servers) do
     if server == "lua" then
-      config.settings = lua_settings
+        local luadev = require("lua-dev").setup({
+            library = {
+                vimruntime = true,
+                types = true,
+                plugins = false
+            },
+            lspconfig = lua_settings
+        })
+        config = vim.tbl_extend("keep", config, luadev)
+        
     end
     require'lspconfig'[server].setup(config)
 end

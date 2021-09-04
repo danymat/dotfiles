@@ -27,7 +27,8 @@ require('neorg').setup {
             config = {
                 engine = "nvim-cmp"
             }
-        }
+        },
+        ["core.queries.native"] = {}
     },
     logger = {
 		level = "info" -- Show trace, info, warning, error and fatal messages

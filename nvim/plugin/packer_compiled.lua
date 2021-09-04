@@ -97,6 +97,11 @@ _G.packer_plugins = {
     loaded = true,
     path = "/Users/danielmathiot/.local/share/nvim/site/pack/packer/start/cmp_luasnip"
   },
+  ["gitsigns.nvim"] = {
+    config = { "\27LJ\2\n6\0\0\3\0\3\0\0066\0\0\0'\2\1\0B\0\2\0029\0\2\0B\0\1\1K\0\1\0\nsetup\rgitsigns\frequire\0" },
+    loaded = true,
+    path = "/Users/danielmathiot/.local/share/nvim/site/pack/packer/start/gitsigns.nvim"
+  },
   ["goyo.vim"] = {
     loaded = true,
     path = "/Users/danielmathiot/.local/share/nvim/site/pack/packer/start/goyo.vim"
@@ -109,6 +114,10 @@ _G.packer_plugins = {
   ["lsp_signature.nvim"] = {
     loaded = true,
     path = "/Users/danielmathiot/.local/share/nvim/site/pack/packer/start/lsp_signature.nvim"
+  },
+  ["lua-dev.nvim"] = {
+    loaded = true,
+    path = "/Users/danielmathiot/.local/share/nvim/site/pack/packer/start/lua-dev.nvim"
   },
   ["lualine.nvim"] = {
     config = { "\27LJ\2\nê\1\0\0\4\0\b\0\r6\0\0\0'\2\1\0B\0\2\0027\0\2\0006\0\0\0'\2\3\0B\0\2\0029\0\4\0005\2\6\0005\3\5\0=\3\a\2B\0\2\1K\0\1\0\foptions\1\0\0\1\0\1\ntheme\14rose-pine\nsetup\flualine\vcustom\30configs.rose-pine-lualine\frequire\0" },
@@ -146,7 +155,7 @@ _G.packer_plugins = {
     path = "/Users/danielmathiot/.local/share/nvim/site/pack/packer/start/numb.nvim"
   },
   ["nvim-autopairs"] = {
-    config = { "\27LJ\2\nº\1\0\0\4\0\b\0\0156\0\0\0'\2\1\0B\0\2\0029\0\2\0005\2\4\0005\3\3\0=\3\5\2B\0\2\0016\0\0\0'\2\6\0B\0\2\0029\0\2\0005\2\a\0B\0\2\1K\0\1\0\1\0\3\vmap_cr\2\16auto_select\2\17map_complete\2\"nvim-autopairs.completion.cmp\14fast_wrap\1\0\0\1\0\1\bmap\b‚Ç¨\nsetup\19nvim-autopairs\frequire\0" },
+    config = { "\27LJ\2\nº\1\0\0\4\0\b\0\0156\0\0\0'\2\1\0B\0\2\0029\0\2\0005\2\4\0005\3\3\0=\3\5\2B\0\2\0016\0\0\0'\2\6\0B\0\2\0029\0\2\0005\2\a\0B\0\2\1K\0\1\0\1\0\3\16auto_select\2\17map_complete\2\vmap_cr\2\"nvim-autopairs.completion.cmp\14fast_wrap\1\0\0\1\0\1\bmap\b‚Ç¨\nsetup\19nvim-autopairs\frequire\0" },
     load_after = {
       ["nvim-cmp"] = true
     },
@@ -175,7 +184,7 @@ _G.packer_plugins = {
     path = "/Users/danielmathiot/.local/share/nvim/site/pack/packer/start/nvim-tree-docs"
   },
   ["nvim-treesitter"] = {
-    config = { "\27LJ\2\n¢\n\0\0\a\0)\00006\0\0\0'\2\1\0B\0\2\0029\0\2\0B\0\1\0025\1\a\0005\2\4\0005\3\5\0=\3\6\2=\2\b\1=\1\3\0006\1\0\0'\3\t\0B\1\2\0029\1\n\0015\3\v\0005\4\f\0=\4\r\0035\4\14\0=\4\15\0035\4\16\0005\5\17\0=\5\18\4=\4\19\0035\4\22\0005\5\20\0005\6\21\0=\6\18\5=\5\23\0045\5\24\0005\6\25\0=\6\26\0055\6\27\0=\6\28\5=\5\29\0045\5\30\0005\6\31\0=\6 \0055\6!\0=\6\"\0055\6#\0=\6$\0055\6%\0=\6&\5=\5'\4=\4(\3B\1\2\1K\0\1\0\16textobjects\tmove\22goto_previous_end\1\0\5\tgpiC\16@call.inner\bgpC\16@call.outer\bgpP\21@parameter.inner\tgpiF\20@function.inner\bgpF\20@function.outer\24goto_previous_start\1\0\5\bgpc\16@call.outer\bgpp\21@parameter.inner\tgpif\20@function.inner\bgpf\20@function.outer\tgpic\16@call.inner\18goto_next_end\1\0\5\tgniF\20@function.inner\bgnF\20@function.outer\tgniC\16@call.inner\bgnC\16@call.outer\bgnP\21@parameter.inner\20goto_next_start\1\0\5\tgnic\16@call.inner\bgnc\16@call.outer\bgnp\21@parameter.inner\tgnif\20@function.inner\bgnf\20@function.outer\1\0\2\venable\2\14set_jumps\2\tswap\18swap_previous\1\0\1\15<leader>sp\21@parameter.inner\14swap_next\1\0\1\15<leader>sn\21@parameter.inner\1\0\1\venable\2\vselect\1\0\0\1\0\4\aic\17@class.inner\aif\20@function.inner\aaf\20@function.outer\aac\17@class.outer\1\0\2\venable\2\14lookahead\2\26incremental_selection\fkeymaps\1\0\4\22scope_incremental\n<TAB>\21node_decremental\f<S-TAB>\19init_selection\n<TAB>\21node_incremental\n<TAB>\1\0\1\venable\2\vindent\1\0\1\venable\2\14highlight\1\0\1\venable\2\1\0\1\21ensure_installed\15maintained\nsetup\28nvim-treesitter.configs\17install_info\1\0\0\nfiles\1\3\0\0\17src/parser.c\19src/scanner.cc\1\0\2\vbranch\tmain\burl/https://github.com/vhyrro/tree-sitter-norg\tnorg\23get_parser_configs\28nvim-treesitter.parsers\frequire\0" },
+    config = { "\27LJ\2\nÀ\n\0\0\a\0+\00026\0\0\0'\2\1\0B\0\2\0029\0\2\0B\0\1\0025\1\a\0005\2\4\0005\3\5\0=\3\6\2=\2\b\1=\1\3\0006\1\0\0'\3\t\0B\1\2\0029\1\n\0015\3\f\0005\4\v\0=\4\r\0035\4\14\0=\4\15\0035\4\16\0=\4\17\0035\4\18\0005\5\19\0=\5\20\4=\4\21\0035\4\24\0005\5\22\0005\6\23\0=\6\20\5=\5\25\0045\5\26\0005\6\27\0=\6\28\0055\6\29\0=\6\30\5=\5\31\0045\5 \0005\6!\0=\6\"\0055\6#\0=\6$\0055\6%\0=\6&\0055\6'\0=\6(\5=\5)\4=\4*\3B\1\2\1K\0\1\0\16textobjects\tmove\22goto_previous_end\1\0\5\bgpP\21@parameter.inner\tgpiF\20@function.inner\bgpF\20@function.outer\tgpiC\16@call.inner\bgpC\16@call.outer\24goto_previous_start\1\0\5\bgpf\20@function.outer\tgpic\16@call.inner\bgpc\16@call.outer\bgpp\21@parameter.inner\tgpif\20@function.inner\18goto_next_end\1\0\5\tgniC\16@call.inner\bgnC\16@call.outer\bgnP\21@parameter.inner\tgniF\20@function.inner\bgnF\20@function.outer\20goto_next_start\1\0\5\tgnic\16@call.inner\bgnc\16@call.outer\bgnp\21@parameter.inner\tgnif\20@function.inner\bgnf\20@function.outer\1\0\2\14set_jumps\2\venable\2\tswap\18swap_previous\1\0\1\15<leader>sp\21@parameter.inner\14swap_next\1\0\1\15<leader>sn\21@parameter.inner\1\0\1\venable\2\vselect\1\0\0\1\0\4\aif\20@function.inner\aac\17@class.outer\aaf\20@function.outer\aic\17@class.inner\1\0\2\14lookahead\2\venable\2\26incremental_selection\fkeymaps\1\0\4\19init_selection\n<TAB>\21node_incremental\n<TAB>\22scope_incremental\n<TAB>\21node_decremental\f<S-TAB>\1\0\1\venable\2\vindent\1\0\1\venable\2\14highlight\1\0\1\venable\2\26context_commentstring\1\0\1\21ensure_installed\15maintained\1\0\1\venable\2\nsetup\28nvim-treesitter.configs\17install_info\1\0\0\nfiles\1\3\0\0\17src/parser.c\19src/scanner.cc\1\0\2\vbranch\tmain\burl/https://github.com/vhyrro/tree-sitter-norg\tnorg\23get_parser_configs\28nvim-treesitter.parsers\frequire\0" },
     loaded = true,
     path = "/Users/danielmathiot/.local/share/nvim/site/pack/packer/start/nvim-treesitter"
   },
@@ -183,13 +192,18 @@ _G.packer_plugins = {
     loaded = true,
     path = "/Users/danielmathiot/.local/share/nvim/site/pack/packer/start/nvim-treesitter-textobjects"
   },
+  ["nvim-ts-context-commentstring"] = {
+    loaded = true,
+    path = "/Users/danielmathiot/.local/share/nvim/site/pack/packer/start/nvim-ts-context-commentstring"
+  },
   ["nvim-web-devicons"] = {
     loaded = true,
     path = "/Users/danielmathiot/.local/share/nvim/site/pack/packer/start/nvim-web-devicons"
   },
   ["packer.nvim"] = {
-    loaded = true,
-    path = "/Users/danielmathiot/.local/share/nvim/site/pack/packer/start/packer.nvim"
+    loaded = false,
+    needs_bufread = false,
+    path = "/Users/danielmathiot/.local/share/nvim/site/pack/packer/opt/packer.nvim"
   },
   playground = {
     loaded = true,
@@ -204,6 +218,7 @@ _G.packer_plugins = {
     path = "/Users/danielmathiot/.local/share/nvim/site/pack/packer/start/popup.nvim"
   },
   ["presence.nvim"] = {
+    config = { "\27LJ\2\nQ\0\0\4\0\4\0\b6\0\0\0'\2\1\0B\0\2\2\18\2\0\0009\0\2\0005\3\3\0B\0\3\1K\0\1\0\1\0\1\15main_image\tfile\nsetup\rpresence\frequire\0" },
     loaded = true,
     path = "/Users/danielmathiot/.local/share/nvim/site/pack/packer/start/presence.nvim"
   },
@@ -228,7 +243,7 @@ _G.packer_plugins = {
     path = "/Users/danielmathiot/.local/share/nvim/site/pack/packer/start/telescope-project.nvim"
   },
   ["telescope.nvim"] = {
-    config = { "\27LJ\2\nú\3\0\0\b\0\23\0&6\0\0\0'\2\1\0B\0\2\0026\1\0\0'\3\2\0B\1\2\0029\1\3\0015\3\r\0005\4\4\0005\5\n\0005\6\5\0009\a\6\0=\a\a\0069\a\b\0=\a\t\6=\6\v\5=\5\f\4=\4\14\0035\4\18\0005\5\15\0005\6\16\0=\6\17\5=\5\19\4=\4\20\3B\1\2\0016\1\0\0'\3\2\0B\1\2\0029\1\21\1'\3\19\0B\1\2\0016\1\0\0'\3\2\0B\1\2\0029\1\21\1'\3\22\0B\1\2\1K\0\1\0\fproject\19load_extension\15extensions\rfrecency\1\0\0\20ignore_patterns\1\3\0\0\f*.git/*\f*/tmp/*\1\0\1\16show_scores\2\rdefaults\1\0\0\rmappings\6i\1\0\0\n<C-k>\28move_selection_previous\n<C-j>\24move_selection_next\1\0\2\t<Up>\1\v<Down>\1\1\0\1\rwinblend\3\n\nsetup\14telescope\22telescope.actions\frequire\0" },
+    config = { "\27LJ\2\n¥\2\0\0\b\0\18\0\0286\0\0\0'\2\1\0B\0\2\0026\1\0\0'\3\2\0B\1\2\0029\1\3\0015\3\r\0005\4\4\0005\5\n\0005\6\5\0009\a\6\0=\a\a\0069\a\b\0=\a\t\6=\6\v\5=\5\f\4=\4\14\0034\4\0\0=\4\15\3B\1\2\0016\1\0\0'\3\2\0B\1\2\0029\1\16\1'\3\17\0B\1\2\1K\0\1\0\fproject\19load_extension\15extensions\rdefaults\1\0\0\rmappings\6i\1\0\0\n<C-k>\28move_selection_previous\n<C-j>\24move_selection_next\1\0\2\t<Up>\1\v<Down>\1\1\0\1\rwinblend\3\n\nsetup\14telescope\22telescope.actions\frequire\0" },
     loaded = true,
     path = "/Users/danielmathiot/.local/share/nvim/site/pack/packer/start/telescope.nvim"
   },
@@ -238,7 +253,7 @@ _G.packer_plugins = {
     path = "/Users/danielmathiot/.local/share/nvim/site/pack/packer/start/todo-comments.nvim"
   },
   ["toggleterm.nvim"] = {
-    config = { "\27LJ\2\n≈\1\0\0\5\0\b\0\v6\0\0\0'\2\1\0B\0\2\0029\0\2\0005\2\3\0005\3\4\0005\4\5\0=\4\6\3=\3\a\2B\0\2\1K\0\1\0\15float_opts\15highlights\1\0\2\15background\vNormal\vborder\vNormal\1\0\2\rwinblend\3\3\vborder\vdouble\1\0\3\rpersists\2\tsize\3Z\14direction\nfloat\nsetup\15toggleterm\frequire\0" },
+    config = { "\27LJ\2\n≈\1\0\0\5\0\b\0\v6\0\0\0'\2\1\0B\0\2\0029\0\2\0005\2\3\0005\3\4\0005\4\5\0=\4\6\3=\3\a\2B\0\2\1K\0\1\0\15float_opts\15highlights\1\0\2\15background\vNormal\vborder\vNormal\1\0\2\rwinblend\3\3\vborder\vdouble\1\0\3\tsize\3Z\14direction\nfloat\rpersists\2\nsetup\15toggleterm\frequire\0" },
     loaded = true,
     path = "/Users/danielmathiot/.local/share/nvim/site/pack/packer/start/toggleterm.nvim"
   },
@@ -246,17 +261,9 @@ _G.packer_plugins = {
     loaded = true,
     path = "/Users/danielmathiot/.local/share/nvim/site/pack/packer/start/vim-fugitive"
   },
-  ["vim-gitgutter"] = {
-    loaded = true,
-    path = "/Users/danielmathiot/.local/share/nvim/site/pack/packer/start/vim-gitgutter"
-  },
   ["vim-maximizer"] = {
     loaded = true,
     path = "/Users/danielmathiot/.local/share/nvim/site/pack/packer/start/vim-maximizer"
-  },
-  ["vim-startify"] = {
-    loaded = true,
-    path = "/Users/danielmathiot/.local/share/nvim/site/pack/packer/start/vim-startify"
   },
   ["vim-surround"] = {
     loaded = true,
@@ -293,34 +300,18 @@ if not vim.g.packer_custom_loader_enabled then
   vim.g.packer_custom_loader_enabled = true
 end
 
--- Config for: neorg
-time([[Config for neorg]], true)
-try_loadstring("\27LJ\2\n-\0\0\3\0\2\0\0046\0\0\0'\2\1\0B\0\2\1K\0\1\0\18configs.neorg\frequire\0", "config", "neorg")
-time([[Config for neorg]], false)
--- Config for: telescope.nvim
-time([[Config for telescope.nvim]], true)
-try_loadstring("\27LJ\2\nú\3\0\0\b\0\23\0&6\0\0\0'\2\1\0B\0\2\0026\1\0\0'\3\2\0B\1\2\0029\1\3\0015\3\r\0005\4\4\0005\5\n\0005\6\5\0009\a\6\0=\a\a\0069\a\b\0=\a\t\6=\6\v\5=\5\f\4=\4\14\0035\4\18\0005\5\15\0005\6\16\0=\6\17\5=\5\19\4=\4\20\3B\1\2\0016\1\0\0'\3\2\0B\1\2\0029\1\21\1'\3\19\0B\1\2\0016\1\0\0'\3\2\0B\1\2\0029\1\21\1'\3\22\0B\1\2\1K\0\1\0\fproject\19load_extension\15extensions\rfrecency\1\0\0\20ignore_patterns\1\3\0\0\f*.git/*\f*/tmp/*\1\0\1\16show_scores\2\rdefaults\1\0\0\rmappings\6i\1\0\0\n<C-k>\28move_selection_previous\n<C-j>\24move_selection_next\1\0\2\t<Up>\1\v<Down>\1\1\0\1\rwinblend\3\n\nsetup\14telescope\22telescope.actions\frequire\0", "config", "telescope.nvim")
-time([[Config for telescope.nvim]], false)
--- Config for: nvim-lspinstall
-time([[Config for nvim-lspinstall]], true)
-try_loadstring("\27LJ\2\n+\0\0\3\0\2\0\0046\0\0\0'\2\1\0B\0\2\1K\0\1\0\16configs.lsp\frequire\0", "config", "nvim-lspinstall")
-time([[Config for nvim-lspinstall]], false)
+-- Config for: gitsigns.nvim
+time([[Config for gitsigns.nvim]], true)
+try_loadstring("\27LJ\2\n6\0\0\3\0\3\0\0066\0\0\0'\2\1\0B\0\2\0029\0\2\0B\0\1\1K\0\1\0\nsetup\rgitsigns\frequire\0", "config", "gitsigns.nvim")
+time([[Config for gitsigns.nvim]], false)
 -- Config for: todo-comments.nvim
 time([[Config for todo-comments.nvim]], true)
 try_loadstring("\27LJ\2\n?\0\0\3\0\3\0\a6\0\0\0'\2\1\0B\0\2\0029\0\2\0004\2\0\0B\0\2\1K\0\1\0\nsetup\18todo-comments\frequire\0", "config", "todo-comments.nvim")
 time([[Config for todo-comments.nvim]], false)
--- Config for: toggleterm.nvim
-time([[Config for toggleterm.nvim]], true)
-try_loadstring("\27LJ\2\n≈\1\0\0\5\0\b\0\v6\0\0\0'\2\1\0B\0\2\0029\0\2\0005\2\3\0005\3\4\0005\4\5\0=\4\6\3=\3\a\2B\0\2\1K\0\1\0\15float_opts\15highlights\1\0\2\15background\vNormal\vborder\vNormal\1\0\2\rwinblend\3\3\vborder\vdouble\1\0\3\rpersists\2\tsize\3Z\14direction\nfloat\nsetup\15toggleterm\frequire\0", "config", "toggleterm.nvim")
-time([[Config for toggleterm.nvim]], false)
--- Config for: nvim-treesitter
-time([[Config for nvim-treesitter]], true)
-try_loadstring("\27LJ\2\n¢\n\0\0\a\0)\00006\0\0\0'\2\1\0B\0\2\0029\0\2\0B\0\1\0025\1\a\0005\2\4\0005\3\5\0=\3\6\2=\2\b\1=\1\3\0006\1\0\0'\3\t\0B\1\2\0029\1\n\0015\3\v\0005\4\f\0=\4\r\0035\4\14\0=\4\15\0035\4\16\0005\5\17\0=\5\18\4=\4\19\0035\4\22\0005\5\20\0005\6\21\0=\6\18\5=\5\23\0045\5\24\0005\6\25\0=\6\26\0055\6\27\0=\6\28\5=\5\29\0045\5\30\0005\6\31\0=\6 \0055\6!\0=\6\"\0055\6#\0=\6$\0055\6%\0=\6&\5=\5'\4=\4(\3B\1\2\1K\0\1\0\16textobjects\tmove\22goto_previous_end\1\0\5\tgpiC\16@call.inner\bgpC\16@call.outer\bgpP\21@parameter.inner\tgpiF\20@function.inner\bgpF\20@function.outer\24goto_previous_start\1\0\5\bgpc\16@call.outer\bgpp\21@parameter.inner\tgpif\20@function.inner\bgpf\20@function.outer\tgpic\16@call.inner\18goto_next_end\1\0\5\tgniF\20@function.inner\bgnF\20@function.outer\tgniC\16@call.inner\bgnC\16@call.outer\bgnP\21@parameter.inner\20goto_next_start\1\0\5\tgnic\16@call.inner\bgnc\16@call.outer\bgnp\21@parameter.inner\tgnif\20@function.inner\bgnf\20@function.outer\1\0\2\venable\2\14set_jumps\2\tswap\18swap_previous\1\0\1\15<leader>sp\21@parameter.inner\14swap_next\1\0\1\15<leader>sn\21@parameter.inner\1\0\1\venable\2\vselect\1\0\0\1\0\4\aic\17@class.inner\aif\20@function.inner\aaf\20@function.outer\aac\17@class.outer\1\0\2\venable\2\14lookahead\2\26incremental_selection\fkeymaps\1\0\4\22scope_incremental\n<TAB>\21node_decremental\f<S-TAB>\19init_selection\n<TAB>\21node_incremental\n<TAB>\1\0\1\venable\2\vindent\1\0\1\venable\2\14highlight\1\0\1\venable\2\1\0\1\21ensure_installed\15maintained\nsetup\28nvim-treesitter.configs\17install_info\1\0\0\nfiles\1\3\0\0\17src/parser.c\19src/scanner.cc\1\0\2\vbranch\tmain\burl/https://github.com/vhyrro/tree-sitter-norg\tnorg\23get_parser_configs\28nvim-treesitter.parsers\frequire\0", "config", "nvim-treesitter")
-time([[Config for nvim-treesitter]], false)
--- Config for: lualine.nvim
-time([[Config for lualine.nvim]], true)
-try_loadstring("\27LJ\2\nê\1\0\0\4\0\b\0\r6\0\0\0'\2\1\0B\0\2\0027\0\2\0006\0\0\0'\2\3\0B\0\2\0029\0\4\0005\2\6\0005\3\5\0=\3\a\2B\0\2\1K\0\1\0\foptions\1\0\0\1\0\1\ntheme\14rose-pine\nsetup\flualine\vcustom\30configs.rose-pine-lualine\frequire\0", "config", "lualine.nvim")
-time([[Config for lualine.nvim]], false)
+-- Config for: neorg
+time([[Config for neorg]], true)
+try_loadstring("\27LJ\2\n-\0\0\3\0\2\0\0046\0\0\0'\2\1\0B\0\2\1K\0\1\0\18configs.neorg\frequire\0", "config", "neorg")
+time([[Config for neorg]], false)
 -- Config for: indent-blankline.nvim
 time([[Config for indent-blankline.nvim]], true)
 try_loadstring("\27LJ\2\n[\0\0\3\0\4\0\a6\0\0\0'\2\1\0B\0\2\0029\0\2\0005\2\3\0B\0\2\1K\0\1\0\1\0\1\25show_current_context\2\nsetup\21indent_blankline\frequire\0", "config", "indent-blankline.nvim")
@@ -329,11 +320,36 @@ time([[Config for indent-blankline.nvim]], false)
 time([[Config for neogen]], true)
 try_loadstring("\27LJ\2\nS\0\0\4\0\4\0\n6\0\0\0'\2\1\0B\0\2\0026\1\0\0'\3\2\0B\1\2\0029\1\3\1\18\3\0\0B\1\2\1K\0\1\0\nsetup\vneogen\19configs.neogen\frequire\0", "config", "neogen")
 time([[Config for neogen]], false)
+-- Config for: presence.nvim
+time([[Config for presence.nvim]], true)
+try_loadstring("\27LJ\2\nQ\0\0\4\0\4\0\b6\0\0\0'\2\1\0B\0\2\2\18\2\0\0009\0\2\0005\3\3\0B\0\3\1K\0\1\0\1\0\1\15main_image\tfile\nsetup\rpresence\frequire\0", "config", "presence.nvim")
+time([[Config for presence.nvim]], false)
+-- Config for: toggleterm.nvim
+time([[Config for toggleterm.nvim]], true)
+try_loadstring("\27LJ\2\n≈\1\0\0\5\0\b\0\v6\0\0\0'\2\1\0B\0\2\0029\0\2\0005\2\3\0005\3\4\0005\4\5\0=\4\6\3=\3\a\2B\0\2\1K\0\1\0\15float_opts\15highlights\1\0\2\15background\vNormal\vborder\vNormal\1\0\2\rwinblend\3\3\vborder\vdouble\1\0\3\tsize\3Z\14direction\nfloat\rpersists\2\nsetup\15toggleterm\frequire\0", "config", "toggleterm.nvim")
+time([[Config for toggleterm.nvim]], false)
+-- Config for: lualine.nvim
+time([[Config for lualine.nvim]], true)
+try_loadstring("\27LJ\2\nê\1\0\0\4\0\b\0\r6\0\0\0'\2\1\0B\0\2\0027\0\2\0006\0\0\0'\2\3\0B\0\2\0029\0\4\0005\2\6\0005\3\5\0=\3\a\2B\0\2\1K\0\1\0\foptions\1\0\0\1\0\1\ntheme\14rose-pine\nsetup\flualine\vcustom\30configs.rose-pine-lualine\frequire\0", "config", "lualine.nvim")
+time([[Config for lualine.nvim]], false)
+-- Config for: nvim-treesitter
+time([[Config for nvim-treesitter]], true)
+try_loadstring("\27LJ\2\nÀ\n\0\0\a\0+\00026\0\0\0'\2\1\0B\0\2\0029\0\2\0B\0\1\0025\1\a\0005\2\4\0005\3\5\0=\3\6\2=\2\b\1=\1\3\0006\1\0\0'\3\t\0B\1\2\0029\1\n\0015\3\f\0005\4\v\0=\4\r\0035\4\14\0=\4\15\0035\4\16\0=\4\17\0035\4\18\0005\5\19\0=\5\20\4=\4\21\0035\4\24\0005\5\22\0005\6\23\0=\6\20\5=\5\25\0045\5\26\0005\6\27\0=\6\28\0055\6\29\0=\6\30\5=\5\31\0045\5 \0005\6!\0=\6\"\0055\6#\0=\6$\0055\6%\0=\6&\0055\6'\0=\6(\5=\5)\4=\4*\3B\1\2\1K\0\1\0\16textobjects\tmove\22goto_previous_end\1\0\5\bgpP\21@parameter.inner\tgpiF\20@function.inner\bgpF\20@function.outer\tgpiC\16@call.inner\bgpC\16@call.outer\24goto_previous_start\1\0\5\bgpf\20@function.outer\tgpic\16@call.inner\bgpc\16@call.outer\bgpp\21@parameter.inner\tgpif\20@function.inner\18goto_next_end\1\0\5\tgniC\16@call.inner\bgnC\16@call.outer\bgnP\21@parameter.inner\tgniF\20@function.inner\bgnF\20@function.outer\20goto_next_start\1\0\5\tgnic\16@call.inner\bgnc\16@call.outer\bgnp\21@parameter.inner\tgnif\20@function.inner\bgnf\20@function.outer\1\0\2\14set_jumps\2\venable\2\tswap\18swap_previous\1\0\1\15<leader>sp\21@parameter.inner\14swap_next\1\0\1\15<leader>sn\21@parameter.inner\1\0\1\venable\2\vselect\1\0\0\1\0\4\aif\20@function.inner\aac\17@class.outer\aaf\20@function.outer\aic\17@class.inner\1\0\2\14lookahead\2\venable\2\26incremental_selection\fkeymaps\1\0\4\19init_selection\n<TAB>\21node_incremental\n<TAB>\22scope_incremental\n<TAB>\21node_decremental\f<S-TAB>\1\0\1\venable\2\vindent\1\0\1\venable\2\14highlight\1\0\1\venable\2\26context_commentstring\1\0\1\21ensure_installed\15maintained\1\0\1\venable\2\nsetup\28nvim-treesitter.configs\17install_info\1\0\0\nfiles\1\3\0\0\17src/parser.c\19src/scanner.cc\1\0\2\vbranch\tmain\burl/https://github.com/vhyrro/tree-sitter-norg\tnorg\23get_parser_configs\28nvim-treesitter.parsers\frequire\0", "config", "nvim-treesitter")
+time([[Config for nvim-treesitter]], false)
+-- Config for: nvim-lspinstall
+time([[Config for nvim-lspinstall]], true)
+try_loadstring("\27LJ\2\n+\0\0\3\0\2\0\0046\0\0\0'\2\1\0B\0\2\1K\0\1\0\16configs.lsp\frequire\0", "config", "nvim-lspinstall")
+time([[Config for nvim-lspinstall]], false)
+-- Config for: telescope.nvim
+time([[Config for telescope.nvim]], true)
+try_loadstring("\27LJ\2\n¥\2\0\0\b\0\18\0\0286\0\0\0'\2\1\0B\0\2\0026\1\0\0'\3\2\0B\1\2\0029\1\3\0015\3\r\0005\4\4\0005\5\n\0005\6\5\0009\a\6\0=\a\a\0069\a\b\0=\a\t\6=\6\v\5=\5\f\4=\4\14\0034\4\0\0=\4\15\3B\1\2\0016\1\0\0'\3\2\0B\1\2\0029\1\16\1'\3\17\0B\1\2\1K\0\1\0\fproject\19load_extension\15extensions\rdefaults\1\0\0\rmappings\6i\1\0\0\n<C-k>\28move_selection_previous\n<C-j>\24move_selection_next\1\0\2\t<Up>\1\v<Down>\1\1\0\1\rwinblend\3\n\nsetup\14telescope\22telescope.actions\frequire\0", "config", "telescope.nvim")
+time([[Config for telescope.nvim]], false)
 vim.cmd [[augroup packer_load_aucmds]]
 vim.cmd [[au!]]
   -- Event lazy-loads
 time([[Defining lazy-load event autocommands]], true)
 vim.cmd [[au InsertEnter * ++once lua require("packer.load")({'nvim-cmp'}, { event = "InsertEnter *" }, _G.packer_plugins)]]
+vim.cmd [[au ColorScheme * ++once lua require("packer.load")({'nvim-autopairs'}, { event = "ColorScheme *" }, _G.packer_plugins)]]
 time([[Defining lazy-load event autocommands]], false)
 vim.cmd("augroup END")
 if should_profile then save_profiles() end

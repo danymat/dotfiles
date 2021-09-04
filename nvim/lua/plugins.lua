@@ -1,16 +1,30 @@
+vim.cmd("packadd packer.nvim")
+
 local packer = require('packer')
-    
+
 packer.startup(function(use)
-    use 'wbthomason/packer.nvim'
+    use {  
+        'wbthomason/packer.nvim',
+        opt = true
+    }
 
     use { 'preservim/nerdtree' }
     use { 'tpope/vim-surround' }
     use { 'tpope/vim-fugitive' }
     use { 'preservim/nerdcommenter' }
     use { 'kyazdani42/nvim-web-devicons' }
-    use { 'mhinz/vim-startify' }
-    use { 'airblade/vim-gitgutter' }
     use { 'junegunn/goyo.vim' }
+
+    use {
+        'lewis6991/gitsigns.nvim',
+        requires = {
+            'nvim-lua/plenary.nvim'
+        },
+        config = function()
+            require('gitsigns').setup()
+        end
+    }
+
 
     use { 
         'nvim-telescope/telescope.nvim',
@@ -29,13 +43,8 @@ packer.startup(function(use)
                     }
                 } ,
                 extensions = {
-                    frecency = {
-                        show_scores = true,
-                        ignore_patterns = {"*.git/*", "*/tmp/*"},
-                    },
                 }
             }
-            require'telescope'.load_extension'frecency'
             require'telescope'.load_extension'project'
         end,
         requires = {
@@ -47,7 +56,7 @@ packer.startup(function(use)
     }
     use {
         'nvim-treesitter/nvim-treesitter',
-        run = 'TSUpdate',
+        run = ':TSUpdate',
         config = function ()
             local parser_configs = require('nvim-treesitter.parsers').get_parser_configs()
 
@@ -60,6 +69,9 @@ packer.startup(function(use)
             }
 
             require'nvim-treesitter.configs'.setup {
+                context_commentstring = {
+                    enable = true
+                },
                 ensure_installed = "maintained", -- one of "all", "maintained" (parsers with maintainers), or a list of languages
                 highlight = { enable = true },
                 indent = { enable = true, },
@@ -129,7 +141,8 @@ packer.startup(function(use)
         end,
         requires = {
             "nvim-treesitter/playground",
-            "nvim-treesitter/nvim-treesitter-textobjects"
+            "nvim-treesitter/nvim-treesitter-textobjects",
+            "JoosepAlviste/nvim-ts-context-commentstring"
         }
     }
 
@@ -149,14 +162,15 @@ packer.startup(function(use)
     use {
         "lukas-reineke/indent-blankline.nvim",
         config = function ()
-           require("indent_blankline").setup {
-               show_current_context = true,
+            require("indent_blankline").setup {
+                show_current_context = true,
             }
         end
     }
 
     use {
         'windwp/nvim-autopairs',
+        event = "ColorScheme",
         config = function ()
             require('nvim-autopairs').setup{
                 fast_wrap = { map = '€'},
@@ -215,7 +229,14 @@ packer.startup(function(use)
         requires = {'kyazdani42/nvim-web-devicons', opt = true}
     }
 
-    use 'andweeb/presence.nvim'
+    use { 
+        'andweeb/presence.nvim',
+        config = function ()
+            require('presence'):setup {
+                main_image = "file"
+            }
+        end
+    }
 
     use {
         '~/Developer/neogen',
@@ -254,7 +275,7 @@ packer.startup(function(use)
     })
 
     use {
-        "L3MON4D3/LuaSnip"
+        "L3MON4D3/LuaSnip",
     }
 
     use {
@@ -280,6 +301,9 @@ packer.startup(function(use)
         end
 
     }
+
+    use "folke/lua-dev.nvim"
+
 
 end)
 

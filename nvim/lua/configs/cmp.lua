@@ -51,10 +51,10 @@ cmp.setup {
 
     -- You should specify your *installed* sources.
     sources = {
-        { name = 'buffer' },
         { name = 'path' },
         { name = 'nvim_lsp' },
         { name = 'nvim_lua' },
+        { name = 'buffer' },
         { name = "neorg" },
         { name = 'luasnip' }
     },
