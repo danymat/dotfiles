@@ -25,7 +25,5 @@ inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
 " ---------
 let g:gitgutter_map_keys = 0
 
-lua require('configs.cheatsheet')
-lua require('numb').setup()
 
 ]]
