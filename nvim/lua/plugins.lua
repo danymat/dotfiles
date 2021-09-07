@@ -189,7 +189,11 @@ packer.startup(function(use)
 
     use { 'sbdchd/neoformat' }
     use { 'nvim-treesitter/nvim-tree-docs' }
-    use { 'nacro90/numb.nvim' }
+    use { 
+        'nacro90/numb.nvim',
+        config = function ()
+            require('numb').setup()
+        end}
 
     use {
         '~/Developer/neorg',
@@ -205,26 +209,11 @@ packer.startup(function(use)
 
     use { 'tami5/sql.nvim' }
 
-    use { 
-        'sudormrfbin/cheatsheet.nvim',
-        configs = function ()
-            require('configs.cheatsheet')
-        end,
-        requires = {
-            {'nvim-telescope/telescope.nvim'},
-            {'nvim-lua/popup.nvim'},
-            {'nvim-lua/plenary.nvim'},
-        }
-    }
-
-    use { 'glepnir/prodoc.nvim' }
-
     use({ 'rose-pine/neovim', as = 'rose-pine' })
 
     use {
         'hoob3rt/lualine.nvim',
         config = function ()
-            custom = require('configs.rose-pine-lualine')
             require('lualine').setup {
                 options = {theme = 'rose-pine' }
             }
@@ -307,6 +296,7 @@ packer.startup(function(use)
 
     use "folke/lua-dev.nvim"
 
+    use "kdheepak/lazygit.nvim"
 
 end)
 
