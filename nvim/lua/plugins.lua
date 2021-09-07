@@ -30,20 +30,23 @@ packer.startup(function(use)
         'nvim-telescope/telescope.nvim',
         config = function()
             local actions = require('telescope.actions')
-            require'telescope'.setup { 
-                defaults = { 
-                    winblend = 10,
-                    mappings = {
-                        i = {
-                            ["<Down>"] = false,
-                            ["<Up>"] = false,
-                            ["<C-j>"] = actions.move_selection_next,
-                            ["<C-k>"] = actions.move_selection_previous,
+            require'telescope'.setup {
+                defaults =
+                    require'telescope.themes'.get_ivy {
+
+                        winblend = 10,
+                        mappings = {
+                            i = {
+                                ["<Down>"] = false,
+                                ["<Up>"] = false,
+                                ["<C-j>"] = actions.move_selection_next,
+                                ["<C-k>"] = actions.move_selection_previous,
+                            }
                         }
-                    }
-                } ,
+                    } ,
                 extensions = {
                 }
+
             }
             require'telescope'.load_extension'project'
         end,
