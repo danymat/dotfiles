@@ -49,9 +49,6 @@ vim.api.nvim_set_keymap("i", "?", "?<c-g>u", {})
 
 vim.api.nvim_set_keymap("n", "<Leader>t", ":NERDTreeFocus<CR>", {})
 
--- Fugitive
-vim.api.nvim_set_keymap("n", "<Leader>gs", ":LazyGit<CR>", {})
-
 -- Neogen
 vim.api.nvim_set_keymap("n", "<Leader>nf", ":lua require('neogen').generate()<CR>", { silent = true })
 vim.api.nvim_set_keymap("n", "<Leader>nc", ":lua require('neogen').generate({ type = 'class' })<CR>", { silent = true })
@@ -61,5 +58,6 @@ vim.api.nvim_set_keymap("n", "<Leader>ez", ":lua R('neogen', { setup = require('
 -- Keybinds for toggleterm.lua
 vim.api.nvim_set_keymap('n', "<Leader>shf", ":lua require('toggleterm.terminal').Terminal:new { direction = 'float', count = 1 }:toggle()<CR>", { noremap = true, silent = true })
 vim.api.nvim_set_keymap('n', "<Leader>shr", ":lua require('toggleterm.terminal').Terminal:new { direction = 'vertical', count = 2 }:toggle()<CR>", { noremap = true, silent = true })
+vim.api.nvim_set_keymap('n', "<Leader>gs", ":lua require('toggleterm.terminal').Terminal:new { cmd = 'lazygit', hidden = true }:toggle()<CR>", { noremap = true, silent = true })
 
 --vim.api.nvim_set_keymap("i", "<Tab>", "<cmd>lua require('neogen').jump_next()<CR>", { })

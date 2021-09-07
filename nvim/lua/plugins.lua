@@ -295,8 +295,5 @@ packer.startup(function(use)
     }
 
     use "folke/lua-dev.nvim"
-
-    use "kdheepak/lazygit.nvim"
-
 end)
 
