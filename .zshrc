@@ -98,3 +98,8 @@ alias luamake=/Users/danielmathiot/Developer/lua-language-server/3rd/luamake/lua
 if [ -e /Users/danielmathiot/.nix-profile/etc/profile.d/nix.sh ]; then . /Users/danielmathiot/.nix-profile/etc/profile.d/nix.sh; fi # added by Nix installer
 
 alias vim=nvim
+alias lg=lazygit
+
+export EDITOR=nvim
+autoload edit-command-line; zle -N edit-command-line
+bindkey '^v' edit-command-line
