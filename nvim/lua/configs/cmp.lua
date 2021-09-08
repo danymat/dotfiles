@@ -3,10 +3,6 @@ local cmp = require('cmp')
 local t = function(str)
   return vim.api.nvim_replace_termcodes(str, true, true, true)
 end
-local check_back_space = function()
-  local col = vim.fn.col '.' - 1
-  return col == 0 or vim.fn.getline('.'):sub(col, col):match '%s' ~= nil
-end
 local luasnip = require("luasnip")
 local neogen = require('neogen')
 
@@ -26,8 +22,6 @@ cmp.setup {
                 vim.fn.feedkeys(t("<Plug>luasnip-expand-or-jump"), "")
             elseif neogen.jumpable() then
                 vim.fn.feedkeys(t("<cmd>lua require('neogen').jump_next()<CR>"), "")
-            elseif check_back_space() then
-                vim.fn.feedkeys(t("<tab>"), "n")
             else
                 fallback()
             end
