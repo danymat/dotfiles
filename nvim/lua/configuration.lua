@@ -42,6 +42,7 @@ vim.o.rnu = true --set relative number of lines
 vim.o.scrolloff = 3 -- The number of screen lines to keep above and below the cursor.
 vim.o.sidescrolloff = 5 -- The number of screen columns to keep to the left and right of the cursor.
 vim.o.termguicolors = true -- Add true colors support
+vim.o.conceallevel = 2 -- Conceal items
 
 -- Tabulation
 vim.o.expandtab = true --tabs are spaces (thanks python)

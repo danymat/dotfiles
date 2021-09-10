@@ -18,17 +18,16 @@ require('neorg').setup {
         },
         ["core.gtd.base"] = {
             config = {
-                workspace = "gtd"
+                workspace = "gtd",
+                exclude = { "gtd.norg", "neogen.norg" }
             }
         },
-        ["core.ui"] = {},
         ["core.integrations.telescope"] = {},
         ["core.norg.completion"] = {
             config = {
                 engine = "nvim-cmp"
             }
         },
-        ["core.queries.native"] = {}
     },
     logger = {
 		level = "info" -- Show trace, info, warning, error and fatal messages
