@@ -53,6 +53,7 @@ packer.startup(function(use)
 			"nvim-telescope/telescope-project.nvim",
 		},
 	})
+
 	use({
 		"nvim-treesitter/nvim-treesitter",
 		run = ":TSUpdate",
