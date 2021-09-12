@@ -10,7 +10,6 @@ packer.startup(function(use)
 
 	use({ "preservim/nerdtree" })
 	use({ "tpope/vim-surround" })
-	use({ "tpope/vim-fugitive" })
 	use({ "preservim/nerdcommenter" })
 	use({ "kyazdani42/nvim-web-devicons" })
 	use({ "junegunn/goyo.vim" })
@@ -147,17 +146,6 @@ packer.startup(function(use)
 	})
 
 	use({ "szw/vim-maximizer" })
-
-	use({
-		"kabouzeid/nvim-lspinstall",
-		config = function()
-			require("configs.lsp")
-		end,
-		requires = {
-			"neovim/nvim-lspconfig",
-			"ray-x/lsp_signature.nvim",
-		},
-	})
 
 	use({
 		"lukas-reineke/indent-blankline.nvim",
@@ -298,4 +286,19 @@ packer.startup(function(use)
 	})
 
 	use("folke/lua-dev.nvim")
+
+    use {
+        '~/Developer/nvim-lspmanager',
+        requires = {'neovim/nvim-lspconfig', 'nvim-lua/plenary.nvim'},
+        branch = "dev",
+        config = function()
+            require('lspmanager').setup()
+			require("configs.lsp")
+        end,
+        requires = {
+			"neovim/nvim-lspconfig",
+			"ray-x/lsp_signature.nvim",
+        }
+    }
+
 end)
