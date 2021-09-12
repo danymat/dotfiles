@@ -1,0 +1,30 @@
+# This is Git's per-user configuration file.
+[user]
+	name = Daniel Mathiot
+	email = d.danymat@gmail.com
+
+[core]
+	editor = nvim
+
+[pager]
+    diff = delta
+    log = delta
+    reflog = delta
+    show = delta
+
+[delta]
+    plus-style = "syntax #012800"
+    minus-style = "syntax #340001"
+    syntax-theme = Monokai Extnded
+    navigate = true
+    line-numbers = true
+    side-by-side = true
+    features = tangara-chilensis
+
+[interactive]
+    diffFilter = delta --color-only
+
+[include]
+    path = /Users/danielmathiot/.config/delta/themes.gitconfig
+[pull]
+	rebase = true

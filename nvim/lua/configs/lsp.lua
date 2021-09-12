@@ -46,9 +46,7 @@ for _, lsp in ipairs(servers) do
     nvim_lsp[lsp].setup(config)
 end
 
--- Lspinstall stuff
-require'lspinstall'.setup() -- important
-servers = require'lspinstall'.installed_servers()
+servers = require'lspmanager'.installed_servers()
 
 -- Configure lua language server for neovim development
 local lua_settings = {
@@ -75,7 +73,7 @@ local lua_settings = {
 }
 
 for _, server in pairs(servers) do
-    if server == "lua" then
+    if server == "sumneko_lua" then
         local luadev = require("lua-dev").setup({
             library = {
                 vimruntime = true,
@@ -85,7 +83,6 @@ for _, server in pairs(servers) do
             lspconfig = lua_settings
         })
         config = vim.tbl_extend("keep", config, luadev)
-        
     end
     require'lspconfig'[server].setup(config)
 end
