@@ -289,7 +289,6 @@ packer.startup(function(use)
 
     use {
         '~/Developer/nvim-lspmanager',
-        requires = {'neovim/nvim-lspconfig', 'nvim-lua/plenary.nvim'},
         branch = "dev",
         config = function()
             require('lspmanager').setup()
@@ -298,6 +297,7 @@ packer.startup(function(use)
         requires = {
 			"neovim/nvim-lspconfig",
 			"ray-x/lsp_signature.nvim",
+            "nvim-lua/plenary.nvim"
         }
     }
 
