@@ -197,10 +197,10 @@ packer.startup(function(use)
         "rose-pine/neovim",
         as = "rose-pine",
         config = function ()
-            require('rose-pine').set()
-            vim.g.rose_pine_variant = 'moon'
+            require('rose-pine.functions').select_variant('moon')
             vim.g.rose_pine_enable_italics = true
             vim.g.rose_pine_disable_background = false
+            vim.cmd [[ colorscheme rose-pine ]]
         end})
 
 	use({
