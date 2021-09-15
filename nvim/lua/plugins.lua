@@ -12,7 +12,6 @@ packer.startup(function(use)
 	use({ "tpope/vim-surround" })
 	use({ "preservim/nerdcommenter" })
 	use({ "kyazdani42/nvim-web-devicons" })
-	use({ "junegunn/goyo.vim" })
 
 	use({
 		"lewis6991/gitsigns.nvim",
@@ -30,7 +29,6 @@ packer.startup(function(use)
 			local actions = require("telescope.actions")
 			require("telescope").setup({
 				defaults = require("telescope.themes").get_ivy({
-
 					winblend = 10,
 					mappings = {
 						i = {
@@ -193,11 +191,11 @@ packer.startup(function(use)
 
 	use({ "tami5/sql.nvim" })
 
-	use({ 
+	use({
         "rose-pine/neovim",
         as = "rose-pine",
         config = function ()
-            require('rose-pine.functions').select_variant('moon')
+            vim.g.rose_pine_variant = 'moon'
             vim.g.rose_pine_enable_italics = true
             vim.g.rose_pine_disable_background = false
             vim.cmd [[ colorscheme rose-pine ]]
@@ -254,7 +252,6 @@ packer.startup(function(use)
 			"hrsh7th/cmp-nvim-lsp",
 			"hrsh7th/cmp-path",
 			"saadparwaiz1/cmp_luasnip",
-			"hrsh7th/cmp-nvim-lua",
 		},
 	})
 
@@ -297,8 +294,10 @@ packer.startup(function(use)
         requires = {
 			"neovim/nvim-lspconfig",
 			"ray-x/lsp_signature.nvim",
-            "nvim-lua/plenary.nvim"
         }
     }
+
+    use "jbyuki/venn.nvim"
+
 
 end)
