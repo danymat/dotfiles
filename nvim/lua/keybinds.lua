@@ -16,9 +16,6 @@ vim.api.nvim_set_keymap("n", "<Leader>p", ":lua require'telescope'.extensions.pr
 vim.api.nvim_set_keymap('n', "<Esc>", ":noh<CR>", { noremap = true, silent = true })
 vim.api.nvim_set_keymap("t", "<Esc><Esc>", "<C-\\><C-n>", {})
 
--- Goyo
-vim.api.nvim_set_keymap("n", "<Leader>go", ":Goyo<CR>", { silent = true })
-
 -- Dotfiles
 vim.api.nvim_set_keymap("n", "<Leader>ev", ":lua require('configs.telescope').search_dotfiles()<CR>", { silent = true })
 vim.api.nvim_set_keymap("n", "<Leader>sv", ":source ~/.config/nvim/init.lua<CR>", {})
@@ -30,6 +27,7 @@ vim.api.nvim_set_keymap("n", "<Leader>k", ":wincmd k<CR>", { silent = true })
 vim.api.nvim_set_keymap("n", "<Leader>l", ":wincmd l<CR>", { silent = true })
 vim.api.nvim_set_keymap("n", "<Leader>h", ":wincmd h<CR>", { silent = true })
 vim.api.nvim_set_keymap("n", "<Leader>r", "<C-w>r<CR>", { silent = true })
+vim.api.nvim_set_keymap("n", "<Leader>vs", "<C-w>v", { silent = true })
 vim.api.nvim_set_keymap("n", "<Leader>zz", "<cmd>MaximizerToggle<CR>", { silent = true })
 
 -- Moving speed
@@ -60,4 +58,28 @@ vim.api.nvim_set_keymap('n', "<Leader>shf", ":lua require('toggleterm.terminal')
 vim.api.nvim_set_keymap('n', "<Leader>shr", ":lua require('toggleterm.terminal').Terminal:new { direction = 'vertical', count = 2 }:toggle()<CR>", { noremap = true, silent = true })
 vim.api.nvim_set_keymap('n', "<Leader>gs", ":lua require('toggleterm.terminal').Terminal:new { cmd = 'lazygit', hidden = true }:toggle()<CR>", { noremap = true, silent = true })
 
---vim.api.nvim_set_keymap("i", "<Tab>", "<cmd>lua require('neogen').jump_next()<CR>", { })
+-- Venn.nvim
+-- enable or disable keymappings for venn
+function _G.toggle_venn()
+    local venn_enabled = vim.inspect(vim.b.venn_enabled) 
+    if(venn_enabled == "nil") then
+        vim.b.venn_enabled = true
+        vim.cmd[[setlocal ve=all]]
+        -- draw a line on HJKL keystokes
+        vim.api.nvim_buf_set_keymap(0, "n", "J", "<C-v>j:VBox<cr>", {noremap = true})
+        vim.api.nvim_buf_set_keymap(0, "n", "K", "<C-v>k:VBox<cr>", {noremap = true})
+        vim.api.nvim_buf_set_keymap(0, "n", "L", "<C-v>l:VBox<cr>", {noremap = true})
+        vim.api.nvim_buf_set_keymap(0, "n", "H", "<C-v>h:VBox<cr>", {noremap = true})
+        -- draw a box by pressing "f" with visual selection
+        vim.api.nvim_buf_set_keymap(0, "v", "f", ":VBox<cr>", {noremap = true})
+        print("Enabled Venn")
+    else
+        vim.cmd[[setlocal ve=]]
+        vim.cmd[[mapclear <buffer>]]
+        vim.b.venn_enabled = nil
+        print("Disabled Venn")
+    end
+end
+-- toggle keymappings for venn using <leader>v
+vim.api.nvim_set_keymap('n', '<leader>v', ":lua toggle_venn()<cr>", { noremap = true})
+
