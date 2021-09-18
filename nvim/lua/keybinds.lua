@@ -35,6 +35,7 @@ vim.api.nvim_set_keymap("n", "÷", "{", {})
 vim.api.nvim_set_keymap("n", "≠", "}", {})
 vim.api.nvim_set_keymap("v", "÷", "{", {})
 vim.api.nvim_set_keymap("v", "≠", "}", {})
+vim.api.nvim_set_keymap("n", "^", "^<Esc>", {})
 
 -- thanks to theprimeagen for this
 vim.api.nvim_set_keymap("n", "n", "nzzzv", {})
@@ -44,6 +45,8 @@ vim.api.nvim_set_keymap("i", ",", ",<c-g>u", {})
 vim.api.nvim_set_keymap("i", "!", "!<c-g>u", {})
 vim.api.nvim_set_keymap("i", ".", ".<c-g>u", {})
 vim.api.nvim_set_keymap("i", "?", "?<c-g>u", {})
+vim.api.nvim_set_keymap("v", '<Leader>p', '"_P', {})
+
 
 vim.api.nvim_set_keymap("n", "<Leader>t", ":NERDTreeFocus<CR>", {})
 
@@ -83,3 +86,5 @@ end
 -- toggle keymappings for venn using <leader>v
 vim.api.nvim_set_keymap('n', '<leader>v', ":lua toggle_venn()<cr>", { noremap = true})
 
+-- Inverse of join-line
+vim.api.nvim_set_keymap('n', "<C-j>", "i<CR><Esc>J", { noremap = true })
