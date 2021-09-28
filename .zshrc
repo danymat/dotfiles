@@ -99,6 +99,9 @@ if [ -e /Users/danielmathiot/.nix-profile/etc/profile.d/nix.sh ]; then . /Users/
 
 alias vim=nvim
 alias gs=lazygit
+alias l="exa -al --color=always --group-directories-first --icons"
+alias ls="exa"
+
 
 export EDITOR=nvim
 autoload edit-command-line; zle -N edit-command-line

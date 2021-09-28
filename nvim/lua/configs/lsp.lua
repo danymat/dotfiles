@@ -87,8 +87,3 @@ for _, server in pairs(servers) do
     require'lspconfig'[server].setup(config)
 end
 
-require "lsp_signature".setup {
-    bind = true,
-    hint_prefix = "🧸 ",
-    handler_opts = { border = "double" },
-}

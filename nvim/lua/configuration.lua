@@ -21,7 +21,6 @@ vim.g.loaded_netrw = 1
 vim.g.loaded_netrwPlugin = 1
 vim.g.loaded_netrwSettings = 1
 
-
 vim.o.splitright = true -- new window comes right
 vim.o.splitbelow = true -- new window comes below
 
@@ -56,3 +55,5 @@ vim.o.incsearch = true --show search as characters entered
 -- Undo/Redo
 vim.o.undofile = true   -- Maintain undo history between sessions
 vim.o.undodir = "/Users/danielmathiot/.vim/undodir"  -- Undo directory (to create if not created)
+
+vim.o.shortmess = "I" -- Do not show the intro message
