@@ -42,6 +42,7 @@ packer.startup({
 					signcolumn = false,
 					numhl = true,
 					word_diff = true,
+                    current_line_blame = true,
 					keymaps = {
 						-- Default keymap options
 						noremap = true,
