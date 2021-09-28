@@ -97,3 +97,6 @@ vim.api.nvim_set_keymap('n', "<C-j>", "i<CR><Esc>J", { noremap = true })
 
 -- Todo Comments
 vim.api.nvim_set_keymap('n', "<Leader>?", ":TodoQuickFix<CR>", { noremap = true })
+
+-- LSP
+vim.api.nvim_set_keymap('n', "<Leader>lf", ":lua vim.lsp.buf.formatting_sync()<CR>", { noremap = true, silent = true})
