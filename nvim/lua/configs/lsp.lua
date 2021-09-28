@@ -39,7 +39,7 @@ if not nvim_lsp.zettelkastenlsp then
         };
     }
 end
-local servers = { 'pyright', 'vimls', 'bashls', 'html', 'flow', 'tsserver', 'vuels', 'intelephense', 'zettelkastenlsp', 'ccls', 'dockerls'}
+local servers = { 'pyright', 'vimls', 'bashls', 'html', 'flow', 'tsserver', 'vuels', 'intelephense', 'zettelkastenlsp', 'dockerls'}
 local config = { on_attach = on_attach, capabilities = capabilities}
 
 for _, lsp in ipairs(servers) do
@@ -50,26 +50,26 @@ servers = require'lspmanager'.installed_servers()
 
 -- Configure lua language server for neovim development
 local lua_settings = {
-  Lua = {
-    runtime = {
-      -- LuaJIT in the case of Neovim
-      version = 'LuaJIT',
-      path = vim.split(package.path, ';'),
-    },
-    diagnostics = {
-      -- Get the language server to recognize the `vim` global
-      globals = {'vim', 'P', 'G'},
-    },
-    telemetry = { enable = false },
-    workspace = {
-        preloadFileSize = 180,
-      -- Make the server aware of Neovim runtime files
-      library = {
-        [vim.fn.expand('$VIMRUNTIME/lua')] = true,
-        [vim.fn.expand('$VIMRUNTIME/lua/vim/lsp')] = true,
-      },
-    },
-  }
+    Lua = {
+        runtime = {
+            -- LuaJIT in the case of Neovim
+            version = 'LuaJIT',
+            path = vim.split(package.path, ';'),
+        },
+        diagnostics = {
+            -- Get the language server to recognize the `vim` global
+            globals = {'vim', 'P', 'G'},
+        },
+        telemetry = { enable = false },
+        workspace = {
+            preloadFileSize = 180,
+            -- Make the server aware of Neovim runtime files
+            library = {
+                [vim.fn.expand('$VIMRUNTIME/lua')] = true,
+                [vim.fn.expand('$VIMRUNTIME/lua/vim/lsp')] = true,
+            },
+        },
+    }
 }
 
 for _, server in pairs(servers) do
@@ -86,4 +86,19 @@ for _, server in pairs(servers) do
     end
     require'lspconfig'[server].setup(config)
 end
+
+-- Null-ls
+local null_ls = require("null-ls")
+local b = null_ls.builtins
+
+local sources = {
+    b.formatting.stylua
+}
+
+null_ls.config({
+    debug = true,
+    sources = sources,
+})
+
+require("lspconfig")["null-ls"].setup({ on_attach = on_attach })
 

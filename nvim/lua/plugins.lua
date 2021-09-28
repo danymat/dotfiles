@@ -297,11 +297,10 @@ packer.startup({
             end,
         })
 
-
         use ({
                 "MordechaiHadad/nvim-lspmanager",
                 config = [[ require("lspmanager").setup(); require('configs.lsp') ]],
-                requires = { 'neovim/nvim-lspconfig', "folke/lua-dev.nvim", "ray-x/lsp_signature.nvim"},
+                requires = { 'neovim/nvim-lspconfig', "folke/lua-dev.nvim", "ray-x/lsp_signature.nvim", "jose-elias-alvarez/null-ls.nvim"},
         })
 
         use ({
