@@ -42,7 +42,7 @@ packer.startup({
 					signcolumn = false,
 					numhl = true,
 					word_diff = true,
-                    current_line_blame = true,
+					current_line_blame = true,
 					keymaps = {
 						-- Default keymap options
 						noremap = true,
@@ -359,6 +359,18 @@ packer.startup({
 		})
 
 		use({ "jbyuki/venn.nvim" })
+
+		use({
+			"jameshiew/nvim-magic",
+			event = "BufRead",
+			config = function()
+				require("nvim-magic").setup()
+			end,
+			requires = {
+				"nvim-lua/plenary.nvim",
+				"MunifTanjim/nui.nvim",
+			},
+		})
 	end,
 	config = { compile_path = vim.fn.stdpath("config") .. "/lua/packer_compiled.lua" },
 })
