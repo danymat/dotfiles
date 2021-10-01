@@ -41,7 +41,6 @@ packer.startup({
 				require("gitsigns").setup({
 					signcolumn = false,
 					numhl = true,
-					word_diff = true,
 					current_line_blame = true,
 					keymaps = {
 						-- Default keymap options
