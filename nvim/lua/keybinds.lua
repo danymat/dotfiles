@@ -100,3 +100,4 @@ vim.api.nvim_set_keymap('n', "<Leader>?", ":TodoQuickFix<CR>", { noremap = true 
 
 -- LSP
 vim.api.nvim_set_keymap('n', "<Leader>lf", ":lua vim.lsp.buf.formatting_sync()<CR>", { noremap = true, silent = true})
+vim.api.nvim_set_keymap('n', "<Leader>la", ":CodeActionMenu<CR>", { noremap = true, silent = true})
