@@ -39,7 +39,7 @@ if not nvim_lsp.zettelkastenlsp then
         };
     }
 end
-local servers = { 'pyright', 'vimls', 'bashls', 'html', 'flow', 'tsserver', 'vuels', 'intelephense', 'zettelkastenlsp', 'dockerls'}
+local servers = { 'pyright', 'vimls', 'bashls', 'html', 'flow', 'tsserver', 'vuels', 'intelephense', 'zettelkastenlsp', 'dockerls', 'jdtls'}
 local config = { on_attach = on_attach, capabilities = capabilities}
 
 for _, lsp in ipairs(servers) do
@@ -93,6 +93,7 @@ local b = null_ls.builtins
 
 local sources = {
     b.formatting.stylua,
+    b.formatting.prettier,
     b.code_actions.gitsigns
 }
 
