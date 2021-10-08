@@ -3,10 +3,15 @@ local cmp = require("cmp")
 local t = function(str)
 	return vim.api.nvim_replace_termcodes(str, true, true, true)
 end
+
 local luasnip = require("luasnip")
+local lspkind = require('lspkind')
 local neogen = require("neogen")
 
 cmp.setup({
+    formatting = {
+        format = lspkind.cmp_format({ with_text = true, maxwidth = 50 })
+    },
 	snippet = {
 		expand = function(args)
 			require("luasnip").lsp_expand(args.body)
