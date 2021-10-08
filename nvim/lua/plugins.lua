@@ -370,6 +370,11 @@ packer.startup({
 				"MunifTanjim/nui.nvim",
 			},
 		})
+
+		use({
+			"weilbith/nvim-code-action-menu",
+			cmd = "CodeActionMenu",
+		})
 	end,
 	config = { compile_path = vim.fn.stdpath("config") .. "/lua/packer_compiled.lua" },
 })
