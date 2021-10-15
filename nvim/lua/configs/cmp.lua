@@ -5,13 +5,24 @@ local t = function(str)
 end
 
 local luasnip = require("luasnip")
-local lspkind = require('lspkind')
+
+-- Do not jump to snippet if i'm outside it
+-- https://github.com/L3MON4D3/LuaSnip/issues/78
+luasnip.config.setup({
+	region_check_events = "CursorMoved",
+	delete_check_events = "TextChanged",
+})
+
+local lspkind = require("lspkind")
 local neogen = require("neogen")
 
 cmp.setup({
-    formatting = {
-        format = lspkind.cmp_format({ with_text = true, maxwidth = 50 })
-    },
+	documentation = {
+		border = { "╭", "─", "╮", "│", "╯", "─", "╰", "│" },
+	},
+	formatting = {
+		format = lspkind.cmp_format({ with_text = true, maxwidth = 50 }),
+	},
 	snippet = {
 		expand = function(args)
 			require("luasnip").lsp_expand(args.body)

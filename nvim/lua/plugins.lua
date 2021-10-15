@@ -307,7 +307,7 @@ packer.startup({
 				"hrsh7th/cmp-path",
 				"saadparwaiz1/cmp_luasnip",
 				"L3MON4D3/LuaSnip",
-                "onsails/lspkind-nvim"
+				"onsails/lspkind-nvim",
 			},
 			after = "neogen",
 		})
