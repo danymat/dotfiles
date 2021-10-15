@@ -11,19 +11,20 @@ export PATH="/usr/local/sbin:$PATH"
 export ZPLUG_HOME=/usr/local/opt/zplug
 source $ZPLUG_HOME/init.zsh
 
-zplug "zplug/zplug", hook-build:'zplug --self-manage'
 zplug romkatv/powerlevel10k, as:theme, depth:1
+zplug "zplug/zplug", hook-build:'zplug --self-manage'
+zplug "djui/alias-tips"
+zplug "skywind3000/z.lua"
 zplug "zsh-users/zsh-autosuggestions"
 zplug "zsh-users/zsh-completions"
 zplug "zsh-users/zsh-syntax-highlighting", defer:2 # Should be loaded 2nd last.
-zplug "djui/alias-tips"
-#
+zplug "zsh-users/zsh-history-substring-search", hook-load:"bindkey '^[[A' history-substring-search-up; bindkey '^[[B' history-substring-search-down"
+
 # Supports oh-my-zsh plugins and the like
 zplug "plugins/git", from:oh-my-zsh
 zplug "plugins/common-aliases", from:oh-my-zsh
-zplug "plugins/history-substring-search", from:oh-my-zsh, hook-load:"bindkey '^[[A' history-substring-search-up; bindkey '^[[B' history-substring-search-down"
 zplug "lib/theme-and-appearance", from:oh-my-zsh
-zplug "skywind3000/z.lua"
+
 
 # Check for uninstalled plugins.
 if ! zplug check --verbose; then
