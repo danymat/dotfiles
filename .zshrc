@@ -13,7 +13,6 @@ source $ZPLUG_HOME/init.zsh
 
 zplug romkatv/powerlevel10k, as:theme, depth:1
 zplug "zplug/zplug", hook-build:'zplug --self-manage'
-zplug "djui/alias-tips"
 zplug "skywind3000/z.lua"
 zplug "zsh-users/zsh-autosuggestions"
 zplug "zsh-users/zsh-completions"
