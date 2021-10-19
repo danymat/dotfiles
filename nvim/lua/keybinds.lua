@@ -16,7 +16,7 @@ vim.api.nvim_set_keymap("n", "<Leader>fz", ":Telescope current_buffer_fuzzy_find
 vim.api.nvim_set_keymap("n", "<Leader>b", ":lua require('telescope.builtin').buffers({ show_all_buffers = true })<CR>", {})
 vim.api.nvim_set_keymap("n", "<Leader>o", ":lua require('telescope.builtin').oldfiles()<CR>", {})
 vim.api.nvim_set_keymap("n", "<Leader>nn", ":lua require('telescope.builtin').file_browser()<CR>", {})
-vim.api.nvim_set_keymap("n", "<Leader>p", ":lua require'telescope'.extensions.project.project{ display_type = 'full' }<CR>", {})
+vim.api.nvim_set_keymap("n", "<Leader>p", ":lua require'telescope'.extensions.projects.projects{ display_type = 'full' }<CR>", {})
 
 vim.api.nvim_set_keymap('n', "<Esc>", ":noh<CR>", { noremap = true, silent = true })
 vim.api.nvim_set_keymap("t", "<Esc><Esc>", "<C-\\><C-n>", {})
@@ -100,4 +100,6 @@ vim.api.nvim_set_keymap('n', "<Leader>?", ":TodoQuickFix<CR>", { noremap = true 
 
 -- LSP
 vim.api.nvim_set_keymap('n', "<Leader>lf", ":lua vim.lsp.buf.formatting_sync()<CR>", { noremap = true, silent = true})
+vim.api.nvim_set_keymap("n", "<C-u>", "<C-u>zzzv", {})
+vim.api.nvim_set_keymap("n", "<C-u>", "<C-u>zzzv", {})
 vim.api.nvim_set_keymap('n', "<Leader>la", ":CodeActionMenu<CR>", { noremap = true, silent = true})

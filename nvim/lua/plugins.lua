@@ -46,25 +46,25 @@ packer.startup({
 						-- Default keymap options
 						noremap = true,
 
-						["n <leader>nh"] = {
+						["n <leader>gj"] = {
 							expr = true,
 							"&diff ? ']c' : '<cmd>lua require\"gitsigns.actions\".next_hunk()<CR>'",
 						},
-						["n <leader>bh"] = {
+						["n <leader>gk"] = {
 							expr = true,
 							"&diff ? '[c' : '<cmd>lua require\"gitsigns.actions\".prev_hunk()<CR>'",
 						},
 
-						["n <leader>hs"] = '<cmd>lua require"gitsigns".stage_hunk()<CR>',
-						["v <leader>hs"] = '<cmd>lua require"gitsigns".stage_hunk({vim.fn.line("."), vim.fn.line("v")})<CR>',
-						["n <leader>hu"] = '<cmd>lua require"gitsigns".undo_stage_hunk()<CR>',
-						["n <leader>hr"] = '<cmd>lua require"gitsigns".reset_hunk()<CR>',
-						["v <leader>hr"] = '<cmd>lua require"gitsigns".reset_hunk({vim.fn.line("."), vim.fn.line("v")})<CR>',
-						["n <leader>hR"] = '<cmd>lua require"gitsigns".reset_buffer()<CR>',
-						["n <leader>hp"] = '<cmd>lua require"gitsigns".preview_hunk()<CR>',
-						["n <leader>hb"] = '<cmd>lua require"gitsigns".blame_line(true)<CR>',
-						["n <leader>hS"] = '<cmd>lua require"gitsigns".stage_buffer()<CR>',
-						["n <leader>hU"] = '<cmd>lua require"gitsigns".reset_buffer_index()<CR>',
+						["n <leader>gs"] = '<cmd>lua require"gitsigns".stage_hunk()<CR>',
+						["v <leader>gs"] = '<cmd>lua require"gitsigns".stage_hunk({vim.fn.line("."), vim.fn.line("v")})<CR>',
+						["n <leader>gu"] = '<cmd>lua require"gitsigns".undo_stage_hunk()<CR>',
+						["n <leader>gr"] = '<cmd>lua require"gitsigns".reset_hunk()<CR>',
+						["v <leader>gr"] = '<cmd>lua require"gitsigns".reset_hunk({vim.fn.line("."), vim.fn.line("v")})<CR>',
+						["n <leader>gR"] = '<cmd>lua require"gitsigns".reset_buffer()<CR>',
+						["n <leader>gp"] = '<cmd>lua require"gitsigns".preview_hunk()<CR>',
+						["n <leader>gl"] = '<cmd>lua require"gitsigns".blame_line(true)<CR>',
+						["n <leader>gS"] = '<cmd>lua require"gitsigns".stage_buffer()<CR>',
+						["n <leader>gU"] = '<cmd>lua require"gitsigns".reset_buffer_index()<CR>',
 
 						-- Text objects
 						["o ih"] = ':<C-U>lua require"gitsigns.actions".select_hunk()<CR>',
@@ -101,9 +101,12 @@ packer.startup({
 				{ "nvim-lua/plenary.nvim", after = "telescope.nvim" },
 				{ "nvim-lua/popup.nvim", after = "telescope.nvim" },
 				{
-					"nvim-telescope/telescope-project.nvim",
+					"ahmedkhalf/project.nvim",
 					after = "telescope.nvim",
-					config = [[ require("telescope").load_extension("project") ]],
+					config = function()
+						require("project_nvim").setup({})
+						require("telescope").load_extension("projects")
+					end,
 				},
 			},
 		})
@@ -337,7 +340,11 @@ packer.startup({
 
 		use({
 			"MordechaiHadad/nvim-lspmanager",
-			config = [[ require("lspmanager").setup(); require('configs.lsp') ]],
+			config = function()
+				require("lspmanager").setup()
+				require("telescope").load_extension("lspmanager")
+				require("configs.lsp")
+			end,
 			requires = {
 				"neovim/nvim-lspconfig",
 				"folke/lua-dev.nvim",
@@ -376,6 +383,13 @@ packer.startup({
 			"weilbith/nvim-code-action-menu",
 			cmd = "CodeActionMenu",
 		})
+
+		use({
+			"luukvbaal/stabilize.nvim",
+			config = [[ require("stabilize").setup() ]],
+            event = "BufRead"
+		})
+
 	end,
 	config = { compile_path = vim.fn.stdpath("config") .. "/lua/packer_compiled.lua" },
 })
