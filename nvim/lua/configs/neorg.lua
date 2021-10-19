@@ -12,7 +12,7 @@ require("neorg").setup({
 			config = {
 				workspaces = {
 					main = "~/neorg",
-					gtd = "~/gtd",
+					gtd = "~/Documents/000 Meta/00.03 gtd",
 					insa = "~/Documents/101 Personnel/40-49 Insa/46 5A/101.46.00 Notes",
 				},
 			},
@@ -32,9 +32,9 @@ require("neorg").setup({
 				engine = "nvim-cmp",
 			},
 		},
-		--["core.norg.qol.toc"] = {},
+		["core.norg.qol.toc"] = {},
 	},
-	logger = {
-		level = "info", -- Show trace, info, warning, error and fatal messages
-	},
+	-- logger = {
+	-- 	level = "info", -- Show trace, info, warning, error and fatal messages
+	-- },
 })

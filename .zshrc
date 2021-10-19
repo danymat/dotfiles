@@ -23,6 +23,7 @@ zplug "zsh-users/zsh-history-substring-search", hook-load:"bindkey '^[[A' histor
 zplug "plugins/git", from:oh-my-zsh
 zplug "plugins/common-aliases", from:oh-my-zsh
 zplug "lib/theme-and-appearance", from:oh-my-zsh
+zplug "plugins/zsh-interactive-cd", from:oh-my-zsh
 
 
 # Check for uninstalled plugins.
@@ -36,13 +37,19 @@ fi
 # Then, source plugins and add commands to $PATH
 zplug load
 
+# Cool stuff
 export EDITOR=nvim
 autoload edit-command-line; zle -N edit-command-line
 bindkey '^v' edit-command-line
 
+export JDTLS_HOME=/opt/jdt-language-server-1.4.0-202109161824
+
+# Personal Aliases
 alias vim=nvim
 alias j=z
 alias gs=lazygit
 
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
+
+[[ -s "$HOME/.xmake/profile" ]] && source "$HOME/.xmake/profile" # load xmake profile
