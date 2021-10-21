@@ -39,6 +39,7 @@ zplug load
 
 # Cool stuff
 export EDITOR=nvim
+export MANPAGER='nvim +Man!'
 autoload edit-command-line; zle -N edit-command-line
 bindkey '^v' edit-command-line
 
@@ -46,8 +47,10 @@ export JDTLS_HOME=/opt/jdt-language-server-1.4.0-202109161824
 
 # Personal Aliases
 alias vim=nvim
-alias j=z
 alias gs=lazygit
+alias zz="z -I"
+alias j=z
+alias jj=zz
 
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh

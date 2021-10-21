@@ -51,14 +51,15 @@ yabai -m space 3 --label 3_work
 yabai -m space 4 --label 4_misc
 
 # Move spaces to correct displays
-yabai -m space 2_web --display 1
-yabai -m space 1_code --display 2
-yabai -m space 4_misc --display 1
-yabai -m space 3_work --display 2
+yabai -m space 2_web --display 2
+yabai -m space 1_code --display 1
+yabai -m space 4_misc --display 2
+yabai -m space 3_work --display 1
 
 # Window rules 
 yabai -m rule --add app="^iTerm" manage=on opacity=0.95 space=1_code
 yabai -m rule --add app="^Préférences Système$" manage=off
+yabai -m rule --add app="^League" manage=off
 yabai -m rule --add app="^Spotify$" manage=off
 yabai -m rule --add app="^Finder$" manage=off
 yabai -m rule --add app="^Mail" manage=on space=4_misc

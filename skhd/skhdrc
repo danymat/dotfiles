@@ -14,10 +14,10 @@ hyper - z : yabai -m window --toggle zoom-fullscreen
 hyper - r : yabai -m window --toggle split
 
 # HYPER k: Move window to second monitor
-hyper - k : yabai -m window --display 2 && yabai -m display --focus 2
+hyper - k : yabai -m window --display 1 && yabai -m display --focus 1
 
 # HYPER j: Move window to Mac
-hyper - j : yabai -m window --display 1 && yabai -m display --focus 1
+hyper - j : yabai -m window --display 2 && yabai -m display --focus 2
 
 # HYPER S: Create a stack (the double float toggle allow to unstack)
 hyper - s : window=$(yabai -m query --windows --window | jq -r '.id') && yabai -m window east --stack $window || (yabai -m window $window --toggle float && yabai -m window $window --toggle float)
