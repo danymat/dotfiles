@@ -6,7 +6,7 @@ if fn.empty(fn.glob(install_path)) > 0 then
 	fn.system({ "git", "clone", "--depth", "1", "https://github.com/wbthomason/packer.nvim", install_path })
 	print("Installed packer!")
 end
-
+le = 
 vim.cmd("packadd packer.nvim")
 local packer = require("packer")
 
@@ -135,10 +135,10 @@ packer.startup({
 					incremental_selection = {
 						enable = true,
 						keymaps = {
-							init_selection = "<TAB>",
-							scope_incremental = "<TAB>",
-							node_incremental = "<TAB>",
-							node_decremental = "<S-TAB>",
+							init_selection = "<Tab>",
+							scope_incremental = "<Tab>",
+							node_incremental = "<Tab>",
+							node_decremental = "<S-Tab>",
 						},
 					},
 					textobjects = {
@@ -386,10 +386,11 @@ packer.startup({
 
 		use({
 			"luukvbaal/stabilize.nvim",
+			-- "~/Developer/stabilize.nvim",
 			config = [[ require("stabilize").setup() ]],
-            event = "BufRead"
+			event = "BufRead",
+            disable = false,
 		})
-
 	end,
 	config = { compile_path = vim.fn.stdpath("config") .. "/lua/packer_compiled.lua" },
 })

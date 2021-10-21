@@ -7,7 +7,11 @@ require("neorg").setup({
 				neorg_leader = "<Leader>o",
 			},
 		},
-		["core.norg.concealer"] = {}, -- Allows for use of icons
+		["core.norg.concealer"] = {
+			config = {
+				icon_preset = "diamond",
+			},
+		}, -- Allows for use of icons
 		["core.norg.dirman"] = { -- Manage your directories with Neorg
 			config = {
 				workspaces = {
@@ -19,10 +23,10 @@ require("neorg").setup({
 		},
 
 		["core.gtd.base"] = {
-		    config = {
-		        workspace = "gtd",
-		        exclude = { "gtd.norg", "neogen.norg" }
-		    }
+			config = {
+				workspace = "gtd",
+				exclude = { "gtd.norg", "neogen.norg" },
+			},
 		},
 		["core.integrations.pandoc"] = {},
 
