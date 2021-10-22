@@ -1,5 +1,4 @@
 local cmp = require("cmp")
-
 local t = function(str)
 	return vim.api.nvim_replace_termcodes(str, true, true, true)
 end
@@ -21,7 +20,17 @@ cmp.setup({
 		border = { "╭", "─", "╮", "│", "╯", "─", "╰", "│" },
 	},
 	formatting = {
-		format = lspkind.cmp_format({ with_text = true, maxwidth = 50 }),
+		format = lspkind.cmp_format({
+			with_text = true,
+			maxwidth = 50,
+			menu = {
+				buffer = "﬘ (buffer)",
+				nvim_lsp = " (lsp)",
+				luasnip = " (luaSnip)",
+				nvim_lua = " (lua)",
+				latex_symbols = " (latex)",
+			},
+		}),
 	},
 	snippet = {
 		expand = function(args)
@@ -64,7 +73,11 @@ cmp.setup({
 		{ name = "path" },
 		{ name = "luasnip" },
 		{ name = "nvim_lsp" },
-		{ name = "buffer" },
+		{ name = "buffer", keyword_length = 5, max_item_count = 5 },
 		{ name = "neorg" },
+	},
+
+	experimental = {
+		ghost_text = true,
 	},
 })
