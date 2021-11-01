@@ -40,7 +40,7 @@ cmp.setup({
 
 	-- You must set mapping if you want.
 	mapping = {
-		["<tab>"] = cmp.mapping(function(fallback)
+		["<Tab>"] = cmp.mapping(function(fallback)
 			if cmp.visible() then
 				cmp.select_next_item()
 			elseif luasnip.expand_or_jumpable() then
@@ -53,8 +53,9 @@ cmp.setup({
 		end, {
 			"i",
 			"s",
+            "c"
 		}),
-		["<S-tab>"] = cmp.mapping(function(fallback)
+		["<S-Tab>"] = cmp.mapping(function(fallback)
 			if cmp.visible() then
 				cmp.select_prev_item()
 			elseif luasnip.jumpable(-1) then
@@ -65,7 +66,9 @@ cmp.setup({
 		end, {
 			"i",
 			"s",
+            "c"
 		}),
+        ['<CR>'] = cmp.mapping.confirm({ select = true }),
 	},
 
 	-- You should specify your *installed* sources.
@@ -81,3 +84,10 @@ cmp.setup({
 		ghost_text = true,
 	},
 })
+
+require'cmp'.setup.cmdline(':', {
+  sources = {
+    { name = 'cmdline', keyword_length = 3}
+  }
+})
+

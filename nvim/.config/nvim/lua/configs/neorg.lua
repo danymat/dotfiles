@@ -15,7 +15,6 @@ require("neorg").setup({
 		["core.norg.dirman"] = { -- Manage your directories with Neorg
 			config = {
 				workspaces = {
-					main = "~/neorg",
 					gtd = "~/Documents/000 Meta/00.03 gtd",
 					insa = "~/Documents/101 Personnel/40-49 Insa/46 5A/101.46.00 Notes",
 				},
@@ -25,10 +24,10 @@ require("neorg").setup({
 		["core.gtd.base"] = {
 			config = {
 				workspace = "gtd",
-				exclude = { "gtd.norg", "neogen.norg" },
+				exclude = { "gtd.norg", "neogen.norg", "kenaos.norg"},
 			},
 		},
-		["core.integrations.pandoc"] = {},
+		-- ["core.integrations.pandoc"] = {},
 
 		["core.integrations.telescope"] = {},
 		["core.norg.completion"] = {
