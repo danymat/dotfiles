@@ -6,7 +6,6 @@ if fn.empty(fn.glob(install_path)) > 0 then
 	fn.system({ "git", "clone", "--depth", "1", "https://github.com/wbthomason/packer.nvim", install_path })
 	print("Installed packer!")
 end
-le = 
 vim.cmd("packadd packer.nvim")
 local packer = require("packer")
 
@@ -42,34 +41,6 @@ packer.startup({
 					signcolumn = false,
 					numhl = true,
 					current_line_blame = true,
-					keymaps = {
-						-- Default keymap options
-						noremap = true,
-
-						["n <leader>gj"] = {
-							expr = true,
-							"&diff ? ']c' : '<cmd>lua require\"gitsigns.actions\".next_hunk()<CR>'",
-						},
-						["n <leader>gk"] = {
-							expr = true,
-							"&diff ? '[c' : '<cmd>lua require\"gitsigns.actions\".prev_hunk()<CR>'",
-						},
-
-						["n <leader>gs"] = '<cmd>lua require"gitsigns".stage_hunk()<CR>',
-						["v <leader>gs"] = '<cmd>lua require"gitsigns".stage_hunk({vim.fn.line("."), vim.fn.line("v")})<CR>',
-						["n <leader>gu"] = '<cmd>lua require"gitsigns".undo_stage_hunk()<CR>',
-						["n <leader>gr"] = '<cmd>lua require"gitsigns".reset_hunk()<CR>',
-						["v <leader>gr"] = '<cmd>lua require"gitsigns".reset_hunk({vim.fn.line("."), vim.fn.line("v")})<CR>',
-						["n <leader>gR"] = '<cmd>lua require"gitsigns".reset_buffer()<CR>',
-						["n <leader>gp"] = '<cmd>lua require"gitsigns".preview_hunk()<CR>',
-						["n <leader>gl"] = '<cmd>lua require"gitsigns".blame_line(true)<CR>',
-						["n <leader>gS"] = '<cmd>lua require"gitsigns".stage_buffer()<CR>',
-						["n <leader>gU"] = '<cmd>lua require"gitsigns".reset_buffer_index()<CR>',
-
-						-- Text objects
-						["o ih"] = ':<C-U>lua require"gitsigns.actions".select_hunk()<CR>',
-						["x ih"] = ':<C-U>lua require"gitsigns.actions".select_hunk()<CR>',
-					},
 				})
 			end,
 			requires = {
@@ -135,10 +106,10 @@ packer.startup({
 					incremental_selection = {
 						enable = true,
 						keymaps = {
-							init_selection = "<Tab>",
-							scope_incremental = "<Tab>",
-							node_incremental = "<Tab>",
-							node_decremental = "<S-Tab>",
+							init_selection = "gcc",
+							scope_incremental = "gcc",
+							node_incremental = "gcc",
+							node_decremental = "gcr",
 						},
 					},
 					textobjects = {
@@ -225,11 +196,9 @@ packer.startup({
 				require("nvim-autopairs").setup({
 					fast_wrap = { map = "€" },
 				})
-				require("nvim-autopairs.completion.cmp").setup({
-					map_cr = true, --  map <CR> on insert mode
-					map_complete = true, -- it will auto insert `(` after select function or method item
-					auto_select = true, -- automatically select the first item
-				})
+				local cmp_autopairs = require("nvim-autopairs.completion.cmp")
+				local cmp = require("cmp")
+				cmp.event:on("confirm_done", cmp_autopairs.on_confirm_done({ map_char = { tex = "" } }))
 			end,
 			after = "nvim-cmp",
 		})
@@ -261,7 +230,7 @@ packer.startup({
 		})
 
 		use({
-			"hoob3rt/lualine.nvim",
+			"nvim-lualine/lualine.nvim",
 			config = function()
 				require("lualine").setup({
 					options = { theme = "rose-pine" },
@@ -306,6 +275,7 @@ packer.startup({
 			module = "cmp",
 			requires = {
 				"hrsh7th/cmp-buffer",
+				"hrsh7th/cmp-cmdline",
 				"hrsh7th/cmp-nvim-lsp",
 				"hrsh7th/cmp-path",
 				"saadparwaiz1/cmp_luasnip",
@@ -381,16 +351,30 @@ packer.startup({
 
 		use({
 			"weilbith/nvim-code-action-menu",
-			cmd = "CodeActionMenu",
+			event = "BufRead",
 		})
 
-		use({
-			"luukvbaal/stabilize.nvim",
-			-- "~/Developer/stabilize.nvim",
-			config = [[ require("stabilize").setup() ]],
-			event = "BufRead",
-            disable = false,
-		})
+		-- use({
+		-- 	"narutoxy/themer.lua",
+		-- 	branch = "dev",
+		-- 	config = function()
+		-- 		require("themer").setup({
+		-- 			transparency = true,
+		-- 			integrations = {
+		-- 				cmp = true,
+		-- 				gitsigns = true,
+		-- 				telescope = true,
+		-- 				indent_blankline = {
+		-- 					enabled = true,
+		-- 				},
+		-- 			},
+		-- 			extra_integrations = {
+		-- 				lualine = true,
+		-- 			},
+		-- 		})
+		-- 		require("themer").load("rose_pine_moon")
+		-- 	end,
+		-- })
 	end,
 	config = { compile_path = vim.fn.stdpath("config") .. "/lua/packer_compiled.lua" },
 })

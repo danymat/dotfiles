@@ -1,5 +1,0 @@
-#!/bin/sh
-
-ZK="/Users/danielmathiot/Documents/000 Meta/00.01 NewBrain"
-number_notes=$( ls "$ZK" | grep \.md$ | wc -l | sed 's/ //g')
-echo "$number_notes Notes"

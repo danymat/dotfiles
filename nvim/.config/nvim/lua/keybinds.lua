@@ -40,6 +40,10 @@ vim.api.nvim_set_keymap("n", "÷", "{", {})
 vim.api.nvim_set_keymap("n", "≠", "}", {})
 vim.api.nvim_set_keymap("v", "÷", "{", {})
 vim.api.nvim_set_keymap("v", "≠", "}", {})
+-- vim.api.nvim_set_keymap("n", "÷", "{", {})
+-- vim.api.nvim_set_keymap("n", "≠", "}", {})
+-- vim.api.nvim_set_keymap("v", "÷", "{", {})
+-- vim.api.nvim_set_keymap("v", "≠", "}", {})
 vim.api.nvim_set_keymap("n", "^", "^<Esc>", {})
 
 -- thanks to theprimeagen for this
@@ -64,7 +68,7 @@ vim.api.nvim_set_keymap("n", "<Leader>ez", ":lua R('neogen', { setup = require('
 -- Keybinds for toggleterm.lua
 vim.api.nvim_set_keymap('n', "<Leader>shf", ":lua require('toggleterm.terminal').Terminal:new { direction = 'float', count = 1 }:toggle()<CR>", { noremap = true, silent = true })
 vim.api.nvim_set_keymap('n', "<Leader>shr", ":lua require('toggleterm.terminal').Terminal:new { direction = 'vertical', count = 2 }:toggle()<CR>", { noremap = true, silent = true })
-vim.api.nvim_set_keymap('n', "<Leader>gs", ":lua require('toggleterm.terminal').Terminal:new { cmd = 'lazygit', hidden = true }:toggle()<CR>", { noremap = true, silent = true })
+vim.api.nvim_set_keymap('n', "<Leader>gs", ":lua require('toggleterm.terminal').Terminal:new { cmd = 'lazygit', hidden = true }:toggle()<CR>", { noremap = true, silent = false })
 
 -- Venn.nvim
 -- enable or disable keymappings for venn

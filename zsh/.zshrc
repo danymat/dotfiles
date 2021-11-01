@@ -8,7 +8,7 @@ fi
 export PATH="/usr/local/sbin:$PATH"
 
 # ZPLUG
-export ZPLUG_HOME=/usr/local/opt/zplug
+export ZPLUG_HOME=/opt/homebrew/opt/zplug
 source $ZPLUG_HOME/init.zsh
 
 zplug romkatv/powerlevel10k, as:theme, depth:1
@@ -56,3 +56,5 @@ alias jj=zz
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
 
 [[ -s "$HOME/.xmake/profile" ]] && source "$HOME/.xmake/profile" # load xmake profile
+
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
