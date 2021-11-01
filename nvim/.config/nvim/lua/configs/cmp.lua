@@ -5,7 +5,7 @@ end
 
 local luasnip = require("luasnip")
 
--- Do not jump to snippet if i'm outside it
+-- Do not jump to snippet if i'm outside of it
 -- https://github.com/L3MON4D3/LuaSnip/issues/78
 luasnip.config.setup({
 	region_check_events = "CursorMoved",
@@ -38,12 +38,33 @@ cmp.setup({
 		end,
 	},
 
-	-- You must set mapping if you want.
 	mapping = {
+		["<C-j>"] = cmp.mapping(
+			cmp.mapping.select_next_item({ behavior = cmp.SelectBehavior.Select }),
+			{ "i", "s", "c" }
+		),
+		["<C-k>"] = cmp.mapping(
+			cmp.mapping.select_prev_item({ behavior = cmp.SelectBehavior.Select }),
+			{ "i", "s", "c" }
+		),
 		["<Tab>"] = cmp.mapping(function(fallback)
+			-- This little snippet will confirm with tab, and if no entry is selected, will confirm the first item
 			if cmp.visible() then
-				cmp.select_next_item()
-			elseif luasnip.expand_or_jumpable() then
+				local entry = cmp.get_selected_entry()
+				if not entry then
+					cmp.select_next_item({ behavior = cmp.SelectBehavior.Select })
+				end
+				cmp.confirm()
+			else
+				fallback()
+			end
+		end, {
+			"i",
+			"s",
+			"c",
+		}),
+		["<C-l>"] = cmp.mapping(function(fallback)
+			if luasnip.expand_or_jumpable() then
 				vim.fn.feedkeys(t("<Plug>luasnip-expand-or-jump"), "")
 			elseif neogen.jumpable() then
 				vim.fn.feedkeys(t("<cmd>lua require('neogen').jump_next()<CR>"), "")
@@ -53,12 +74,9 @@ cmp.setup({
 		end, {
 			"i",
 			"s",
-            "c"
 		}),
-		["<S-Tab>"] = cmp.mapping(function(fallback)
-			if cmp.visible() then
-				cmp.select_prev_item()
-			elseif luasnip.jumpable(-1) then
+		["<C-h>"] = cmp.mapping(function(fallback)
+			if luasnip.jumpable(-1) then
 				vim.fn.feedkeys(t("<Plug>luasnip-jump-prev"), "")
 			else
 				fallback()
@@ -66,9 +84,8 @@ cmp.setup({
 		end, {
 			"i",
 			"s",
-            "c"
 		}),
-        ['<CR>'] = cmp.mapping.confirm({ select = true }),
+		["<CR>"] = cmp.mapping.confirm({ select = true }),
 	},
 
 	-- You should specify your *installed* sources.
@@ -85,9 +102,8 @@ cmp.setup({
 	},
 })
 
-require'cmp'.setup.cmdline(':', {
-  sources = {
-    { name = 'cmdline', keyword_length = 3}
-  }
+require("cmp").setup.cmdline(":", {
+	sources = {
+		{ name = "cmdline", keyword_length = 3 },
+	},
 })
-
