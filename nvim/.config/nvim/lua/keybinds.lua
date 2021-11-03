@@ -106,4 +106,4 @@ vim.api.nvim_set_keymap('n', "<Leader>?", ":TodoQuickFix<CR>", { noremap = true 
 vim.api.nvim_set_keymap('n', "<Leader>lf", ":lua vim.lsp.buf.formatting_sync()<CR>", { noremap = true, silent = true})
 vim.api.nvim_set_keymap("n", "<C-u>", "<C-u>zzzv", {})
 vim.api.nvim_set_keymap("n", "<C-u>", "<C-u>zzzv", {})
-vim.api.nvim_set_keymap('n', "<Leader>la", ":CodeActionMenu<CR>", { noremap = true, silent = true})
+vim.api.nvim_set_keymap('n', "<Leader>la", ":lua require'telescope.builtin'.lsp_code_actions(require('telescope.themes').get_cursor({}))<cr>", { noremap = true, silent = true})

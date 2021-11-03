@@ -248,100 +248,101 @@ packer.startup({
 				})
 			end,
 		})
- 
- 		use({
- 			"~/Developer/neogen",
- 			event = "BufRead",
- 			module = "neogen",
- 			config = function()
- 				local setup = require("configs.neogen")
- 				require("neogen").setup(setup)
- 			end,
- 			requires = "nvim-treesitter/nvim-treesitter",
- 		})
- 
- 		use({
- 			"folke/todo-comments.nvim",
- 			requires = "nvim-lua/plenary.nvim",
- 			config = [[ require("todo-comments").setup {} ]],
- 		})
- 
- 		use({
- 			"hrsh7th/nvim-cmp",
- 			event = "InsertEnter",
- 			config = function()
- 				require("configs.cmp")
- 			end,
- 			module = "cmp",
- 			requires = {
- 				"hrsh7th/cmp-buffer",
- 				"hrsh7th/cmp-cmdline",
- 				"hrsh7th/cmp-nvim-lsp",
- 				"hrsh7th/cmp-path",
- 				"saadparwaiz1/cmp_luasnip",
- 				"L3MON4D3/LuaSnip",
- 				"onsails/lspkind-nvim",
- 			},
- 			after = "neogen",
- 		})
- 
- 		use({
- 			"akinsho/toggleterm.nvim",
- 			config = function()
- 				require("toggleterm").setup({
- 					direction = "float",
- 					size = 90,
- 					persists = true,
- 					float_opts = {
- 						-- The border key is *almost* the same as 'nvim_win_open'
- 						-- see :h nvim_win_open for details on borders however
- 						-- the 'curved' border is a custom border type
- 						-- not natively supported but implemented in this plugin.
- 						border = "double",
- 						winblend = 3,
- 						highlights = {
- 							border = "Normal",
- 							background = "Normal",
- 						},
- 					},
- 				})
- 			end,
- 		})
- 
- 		use({
- 			"MordechaiHadad/nvim-lspmanager",
- 			config = function()
- 				require("lspmanager").setup()
- 				require("telescope").load_extension("lspmanager")
- 				require("configs.lsp")
- 			end,
- 			requires = {
- 				"neovim/nvim-lspconfig",
- 				"folke/lua-dev.nvim",
- 				"ray-x/lsp_signature.nvim",
- 				"jose-elias-alvarez/null-ls.nvim",
- 			},
- 		})
- 
- 		use({
- 			"ray-x/lsp_signature.nvim",
- 			config = function()
- 				require("lsp_signature").setup({
- 					bind = true,
- 					hint_prefix = "🧸 ",
- 					handler_opts = { border = "double" },
- 				})
- 			end,
- 			after = "nvim-lspmanager",
- 		})
- 
- 		use({ "jbyuki/venn.nvim" })
- 
- 		use({
- 			"weilbith/nvim-code-action-menu",
- 			event = "BufRead",
- 		})
- 
+
+		use({
+			"~/Developer/neogen",
+			event = "BufRead",
+			module = "neogen",
+			config = function()
+				local setup = require("configs.neogen")
+				require("neogen").setup(setup)
+			end,
+			requires = "nvim-treesitter/nvim-treesitter",
+		})
+
+		use({
+			"folke/todo-comments.nvim",
+			requires = "nvim-lua/plenary.nvim",
+			config = [[ require("todo-comments").setup {} ]],
+		})
+
+		use({
+			"hrsh7th/nvim-cmp",
+			event = "InsertEnter",
+			config = function()
+				require("configs.cmp")
+			end,
+			module = "cmp",
+			requires = {
+				"hrsh7th/cmp-buffer",
+				"hrsh7th/cmp-cmdline",
+				"hrsh7th/cmp-nvim-lsp",
+				"hrsh7th/cmp-path",
+				"saadparwaiz1/cmp_luasnip",
+				"L3MON4D3/LuaSnip",
+				"onsails/lspkind-nvim",
+			},
+			after = "neogen",
+		})
+
+		use({
+			"akinsho/toggleterm.nvim",
+			config = function()
+				require("toggleterm").setup({
+					direction = "float",
+					size = 90,
+					persists = true,
+					float_opts = {
+						-- The border key is *almost* the same as 'nvim_win_open'
+						-- see :h nvim_win_open for details on borders however
+						-- the 'curved' border is a custom border type
+						-- not natively supported but implemented in this plugin.
+						border = "double",
+						winblend = 3,
+						highlights = {
+							border = "Normal",
+							background = "Normal",
+						},
+					},
+				})
+			end,
+		})
+
+		use({
+			"MordechaiHadad/nvim-lspmanager",
+			config = function()
+				require("lspmanager").setup()
+				require("telescope").load_extension("lspmanager")
+				require("configs.lsp")
+			end,
+			requires = {
+				"neovim/nvim-lspconfig",
+				"folke/lua-dev.nvim",
+				"ray-x/lsp_signature.nvim",
+				"jose-elias-alvarez/null-ls.nvim",
+			},
+		})
+
+		use({
+			"ray-x/lsp_signature.nvim",
+			config = function()
+				require("lsp_signature").setup({
+					bind = true,
+					hint_prefix = "🧸 ",
+					handler_opts = { border = "double" },
+				})
+			end,
+			after = "nvim-lspmanager",
+		})
+
+		use({ "jbyuki/venn.nvim" })
+
+		use({
+			"weilbith/nvim-code-action-menu",
+			event = "BufRead",
+		})
+
+
 		-- use({
 		-- 	"narutoxy/themer.lua",
 		-- 	branch = "dev",

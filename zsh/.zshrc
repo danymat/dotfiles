@@ -43,7 +43,7 @@ export MANPAGER='nvim +Man!'
 autoload edit-command-line; zle -N edit-command-line
 bindkey '^v' edit-command-line
 
-export JDTLS_HOME=/opt/jdt-language-server-1.4.0-202109161824
+export JDTLS_HOME=/opt/jdt-language-server-latest/
 
 # Personal Aliases
 alias vim=nvim
