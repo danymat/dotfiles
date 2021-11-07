@@ -85,11 +85,11 @@ cmp.setup({
 			"i",
 			"s",
 		}),
-		["<CR>"] = cmp.mapping.confirm({ select = true }),
 	},
 
 	-- You should specify your *installed* sources.
 	sources = {
+        { name = "cmp_git" },
 		{ name = "path" },
 		{ name = "luasnip" },
 		{ name = "nvim_lsp" },

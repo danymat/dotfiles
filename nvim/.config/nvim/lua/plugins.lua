@@ -103,15 +103,6 @@ packer.startup({
 					ensure_installed = "maintained", -- one of "all", "maintained" (parsers with maintainers), or a list of languages
 					highlight = { enable = true },
 					indent = { enable = true },
-					incremental_selection = {
-						enable = true,
-						keymaps = {
-							init_selection = "gcc",
-							scope_incremental = "gcc",
-							node_incremental = "gcc",
-							node_decremental = "gcr",
-						},
-					},
 					textobjects = {
 						select = {
 							enable = true,
@@ -281,6 +272,7 @@ packer.startup({
 				"saadparwaiz1/cmp_luasnip",
 				"L3MON4D3/LuaSnip",
 				"onsails/lspkind-nvim",
+				{ "petertriho/cmp-git", requires = "nvim-lua/plenary.nvim" },
 			},
 			after = "neogen",
 		})
@@ -329,19 +321,13 @@ packer.startup({
 				require("lsp_signature").setup({
 					bind = true,
 					hint_prefix = "🧸 ",
-					handler_opts = { border = "double" },
+					handler_opts = { border = "rounded" },
 				})
 			end,
 			after = "nvim-lspmanager",
 		})
 
 		use({ "jbyuki/venn.nvim" })
-
-		use({
-			"weilbith/nvim-code-action-menu",
-			event = "BufRead",
-		})
-
 
 		-- use({
 		-- 	"narutoxy/themer.lua",
