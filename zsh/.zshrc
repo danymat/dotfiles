@@ -6,6 +6,8 @@ if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]
 fi
 
 export PATH="/usr/local/sbin:$PATH"
+export PATH="/usr/local/bin:$PATH"
+export PATH="/opt/yabai/bin/:$PATH"
 
 # ZPLUG
 export ZPLUG_HOME=/opt/homebrew/opt/zplug
@@ -51,6 +53,7 @@ alias gs=lazygit
 alias zz="z -I"
 alias j=z
 alias jj=zz
+alias cc=gcc
 
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
@@ -58,3 +61,14 @@ alias jj=zz
 [[ -s "$HOME/.xmake/profile" ]] && source "$HOME/.xmake/profile" # load xmake profile
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+
+# fa - including hidden directories
+fa() {
+  local dir
+  dir=$(find ${1:-~} -type d 2> /dev/null | fzf +m) && cd "$dir"
+}
+
+
+# BEGIN_KITTY_SHELL_INTEGRATION
+if test -e "/private/var/folders/n1/4279cdyx6fbf50r3cwqdf0pr0000gn/T/AppTranslocation/F49C8B63-5701-45CA-AFA7-4DE4C9380317/d/kitty.app/Contents/Resources/kitty/shell-integration/kitty.zsh"; then source "/private/var/folders/n1/4279cdyx6fbf50r3cwqdf0pr0000gn/T/AppTranslocation/F49C8B63-5701-45CA-AFA7-4DE4C9380317/d/kitty.app/Contents/Resources/kitty/shell-integration/kitty.zsh"; fi
+# END_KITTY_SHELL_INTEGRATION

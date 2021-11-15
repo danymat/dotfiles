@@ -41,6 +41,7 @@ packer.startup({
 					signcolumn = false,
 					numhl = true,
 					current_line_blame = true,
+					keymaps = {},
 				})
 			end,
 			requires = {
@@ -87,16 +88,27 @@ packer.startup({
 			run = ":TSUpdate",
 			config = function()
 				local parser_configs = require("nvim-treesitter.parsers").get_parser_configs()
+				parser_configs.norg_meta = {
+					install_info = {
+						url = "~/Developer/tree-sitter-norg-meta",
+						files = { "src/parser.c" },
+					},
+				}
 
 				parser_configs.norg = {
 					install_info = {
-						url = "https://github.com/vhyrro/tree-sitter-norg",
+						-- url = "https://github.com/nvim-neorg/tree-sitter-norg",
+						url = "~/Developer/tree-sitter-norg/",
 						files = { "src/parser.c", "src/scanner.cc" },
-						branch = "main",
+						-- branch = "main",
+						-- branch = "attached-modifier"
 					},
 				}
 
 				require("nvim-treesitter.configs").setup({
+					playground = {
+						enable = true,
+					},
 					context_commentstring = {
 						enable = true,
 					},
@@ -210,10 +222,11 @@ packer.startup({
 		})
 
 		use({
-			"rose-pine/neovim",
+			"~/Developer/neovim/",
 			as = "rose-pine",
 			config = function()
 				vim.g.rose_pine_variant = "moon"
+				vim.g.rose_pine_bold_vertical_split_line = true
 				vim.g.rose_pine_enable_italics = true
 				vim.g.rose_pine_disable_background = false
 				vim.cmd([[ colorscheme rose-pine ]])

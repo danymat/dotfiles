@@ -10,7 +10,12 @@ vim.api.nvim_set_keymap("i", "<Left>", "<Nop>", {})
 vim.api.nvim_set_keymap("i", "<Right>", "<Nop>", {})
 
 -- Telescope Stuff
-vim.api.nvim_set_keymap("n", "<C-f>", ":lua require'telescope.builtin'.find_files({ hidden = true, file_ignore_patterns = { '^.git/' }})<cr>", {})
+vim.api.nvim_set_keymap(
+	"n",
+	"<C-f>",
+	":lua require'telescope.builtin'.find_files({ hidden = true, file_ignore_patterns = { '^.git/' }})<cr>",
+	{}
+)
 vim.api.nvim_set_keymap("n", "<Leader>ff", ":Telescope live_grep<CR>", {})
 vim.api.nvim_set_keymap("n", "<Leader>fz", ":Telescope current_buffer_fuzzy_find<CR>", {})
 vim.api.nvim_set_keymap(
@@ -52,11 +57,11 @@ vim.api.nvim_set_keymap("n", "÷", "{", {})
 vim.api.nvim_set_keymap("n", "≠", "}", {})
 vim.api.nvim_set_keymap("v", "÷", "{", {})
 vim.api.nvim_set_keymap("v", "≠", "}", {})
--- vim.api.nvim_set_keymap("n", "÷", "{", {})
--- vim.api.nvim_set_keymap("n", "≠", "}", {})
--- vim.api.nvim_set_keymap("v", "÷", "{", {})
--- vim.api.nvim_set_keymap("v", "≠", "}", {})
-vim.api.nvim_set_keymap("n", "^", "^<Esc>", {})
+vim.api.nvim_set_keymap("n", "÷", "{", {})
+vim.api.nvim_set_keymap("n", "≠", "}", {})
+vim.api.nvim_set_keymap("v", "÷", "{", {})
+vim.api.nvim_set_keymap("v", "≠", "}", {})
+vim.api.nvim_set_keymap("n", "^", "^<Esc>", { nowait = true })
 
 -- thanks to theprimeagen for this
 vim.api.nvim_set_keymap("n", "n", "nzzzv", {})
@@ -135,13 +140,13 @@ vim.api.nvim_set_keymap("n", "<C-j>", "i<CR><Esc>J", { noremap = true })
 -- Todo Comments
 vim.api.nvim_set_keymap("n", "<Leader>?", ":TodoQuickFix<CR>", { noremap = true })
 
+vim.api.nvim_set_keymap("n", "<Leader>ai", ":TSHighlightCapturesUnderCursor<CR>", { noremap = true, silent = true })
 -- LSP
-vim.api.nvim_set_keymap("n", "<Leader>lf", ":lua vim.lsp.buf.formatting_sync()<CR>", { noremap = true, silent = true })
 vim.api.nvim_set_keymap("n", "<C-u>", "<C-u>zzzv", {})
 vim.api.nvim_set_keymap("n", "<C-d>", "<C-d>zzzv", {})
 vim.api.nvim_set_keymap(
 	"n",
-	"<Leader>la",
+	"<Leader>aa",
 	":lua require'telescope.builtin'.lsp_code_actions(require('telescope.themes').get_cursor({}))<cr>",
 	{ noremap = true, silent = true }
 )
