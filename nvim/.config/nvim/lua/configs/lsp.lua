@@ -14,7 +14,7 @@ local on_attach = function(_, bufnr)
 	buf_set_keymap("n", "<C-k>", "<cmd>lua vim.lsp.buf.signature_help()<CR>", opts)
 	buf_set_keymap("n", "<C-b>", "<cmd>lua vim.lsp.diagnostic.goto_prev()<CR>", opts)
 	buf_set_keymap("n", "<C-n>", "<cmd>lua vim.lsp.diagnostic.goto_next()<CR>", opts)
-	buf_set_keymap("n", "<Leader>lf", ":lua vim.lsp.buf.formatting_sync()<CR>", { noremap = true, silent = true })
+	buf_set_keymap("n", "<Leader>fs", ":lua vim.lsp.buf.formatting_sync()<CR>", opts)
 end
 
 local capabilities = vim.lsp.protocol.make_client_capabilities()
