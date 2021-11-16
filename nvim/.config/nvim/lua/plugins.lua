@@ -66,18 +66,24 @@ packer.startup({
 							},
 						},
 					}),
-					extensions = {},
+					extensions = { file_browser = {} },
 				})
 			end,
 			requires = {
 				{ "nvim-lua/plenary.nvim", after = "telescope.nvim" },
 				{ "nvim-lua/popup.nvim", after = "telescope.nvim" },
 				{
-					"ahmedkhalf/project.nvim",
+					"nvim-telescope/telescope-project.nvim",
 					after = "telescope.nvim",
 					config = function()
-						require("project_nvim").setup({})
-						require("telescope").load_extension("projects")
+						require("telescope").load_extension("project")
+					end,
+				},
+				{
+					"nvim-telescope/telescope-file-browser.nvim",
+					after = "telescope.nvim",
+					config = function()
+						require("telescope").load_extension("file_browser")
 					end,
 				},
 			},
@@ -342,6 +348,7 @@ packer.startup({
 
 		use({ "jbyuki/venn.nvim" })
 
+		use({ "Pocco81/TrueZen.nvim" })
 		-- use({
 		-- 	"narutoxy/themer.lua",
 		-- 	branch = "dev",
