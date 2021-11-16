@@ -25,11 +25,11 @@ vim.api.nvim_set_keymap(
 	{}
 )
 vim.api.nvim_set_keymap("n", "<Leader>o", ":lua require('telescope.builtin').oldfiles()<CR>", {})
-vim.api.nvim_set_keymap("n", "<Leader>nn", ":lua require('telescope.builtin').file_browser()<CR>", {})
+vim.api.nvim_set_keymap("n", "<Leader>nn", ":lua require 'telescope'.extensions.file_browser.file_browser()<CR>", {})
 vim.api.nvim_set_keymap(
 	"n",
 	"<Leader>p",
-	":lua require'telescope'.extensions.projects.projects{ display_type = 'full' }<CR>",
+	":lua require'telescope'.extensions.project.project{ display_type = 'full' }<CR>",
 	{}
 )
 
