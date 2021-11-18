@@ -44,4 +44,4 @@ hyper + fn - 0x14 : yabai -m window --space 3_work
 hyper + fn - 0x15 : yabai -m window --space 4_misc
 
 # HYPER F: Focus the first fullscreen window
-hyper - f: SPACE=$(yabai -m query --spaces | jq -er 'map(select(."native-fullscreen" == 1))[0].index') && yabai -m space --focus $SPACE
+hyper - f: SPACE=$(yabai -m query --spaces | jq -er 'map(select(."is-native-fullscreen" == true))[0].index') && yabai -m space --focus $SPACE

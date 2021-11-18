@@ -18,7 +18,7 @@ require("neorg").setup({
 					gtd = "~/Documents/000 Meta/00.03 gtd",
 					work = "~/Documents/000 Meta/00.04 work/",
 					insa = "~/Documents/101 Personnel/40-49 Insa/46 5A/101.46.00 Notes",
-					test = "/tmp/salut",
+					hack = "~/Documents/000 Meta/00.05 hack",
 				},
 			},
 		},
