@@ -32,6 +32,30 @@ vim.api.nvim_set_keymap(
 	":lua require'telescope'.extensions.project.project{ display_type = 'full' }<CR>",
 	{}
 )
+vim.api.nvim_set_keymap(
+	"n",
+	"<Leader>§§",
+	":lua require('configs.telescope').open_starting_files()<CR>",
+	{ noremap = true, silent = true }
+)
+vim.api.nvim_set_keymap(
+	"n",
+	"<Leader>zi",
+	":lua require('configs.telescope').search_zettelkasten_in_files()<CR>",
+	{ noremap = true, silent = true }
+)
+vim.api.nvim_set_keymap(
+	"n",
+	"<Leader>zl",
+	":lua require('configs.telescope').find_link()<CR>",
+	{ noremap = true, silent = true }
+)
+vim.api.nvim_set_keymap(
+	"n",
+	"<Leader>zk",
+	":lua require('configs.telescope').search_zettelkasten()<CR>",
+	{ noremap = true, silent = true }
+)
 
 vim.api.nvim_set_keymap("n", "<Esc>", ":noh<CR>", { noremap = true, silent = true })
 vim.api.nvim_set_keymap("t", "<Esc><Esc>", "<C-\\><C-n>", {})
@@ -150,3 +174,12 @@ vim.api.nvim_set_keymap(
 	":lua require'telescope.builtin'.lsp_code_actions(require('telescope.themes').get_cursor({}))<cr>",
 	{ noremap = true, silent = true }
 )
+
+-- Zettelkasten
+vim.cmd([[
+    let g:zettelkasten = "/Users/danielmathiot/Documents/000 Meta/00.01 Brain/"
+command! -nargs=1 NewZettel :execute ":e" zettelkasten . strftime("%Y%m%d%H%M") . " <args>.md"
+]])
+
+vim.api.nvim_set_keymap("n", "<Leader>zn", ":NewZettel ", { noremap = true, silent = false })
+vim.api.nvim_set_keymap("n", "<Leader>@", ":lua require('configs.telescope').paste_file_name()<CR>", {})
