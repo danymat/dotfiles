@@ -59,10 +59,22 @@ packer.startup({
 						winblend = 10,
 						mappings = {
 							i = {
+								-- Change keys to select previous and next
 								["<Down>"] = false,
 								["<Up>"] = false,
 								["<C-j>"] = actions.move_selection_next,
 								["<C-k>"] = actions.move_selection_previous,
+
+								-- Use <C-a> to move all to qflist
+								-- Use <C-q> to move selected to qflist
+								["<M-q>"] = false,
+								["<C-q>"] = actions.send_selected_to_qflist + actions.open_qflist,
+								["<C-a>"] = actions.send_to_qflist + actions.open_qflist,
+							},
+							n = {
+								["<M-q>"] = false,
+								["<C-q>"] = actions.send_selected_to_qflist + actions.open_qflist,
+								["<C-a>"] = actions.send_to_qflist + actions.open_qflist,
 							},
 						},
 					}),
