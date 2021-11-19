@@ -25,13 +25,6 @@ hyper - s : window=$(yabai -m query --windows --window | jq -r '.id') && yabai -
 # HYPER L: Focus to next/previous window in stack
 hyper - l :  yabai -m window --focus stack.next || yabai -m window --focus stack.first
 
-## HYPER ù: Swap the current window with the largest one
-#hyper -   : window=$(yabai -m query --windows --window | jq -r '.id') \
-    #&& (yabai -m window --swap largest || yabai -m window --swap next || yabai -m window --swap prev ) \
-    #&& yabai -m window --focus $window \
-    #&& yabai -m window --focus prev \
-    #&& yabai -m window --focus $window
-
 # HYPER &/é/"/': Focus space 1/2/3/4 if it exists
 hyper - 0x12: yabai -m space --focus 1_code
 hyper - 0x13 : yabai -m space --focus 2_web
