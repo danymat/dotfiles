@@ -72,3 +72,8 @@ fa() {
 # BEGIN_KITTY_SHELL_INTEGRATION
 if test -e "/private/var/folders/n1/4279cdyx6fbf50r3cwqdf0pr0000gn/T/AppTranslocation/F49C8B63-5701-45CA-AFA7-4DE4C9380317/d/kitty.app/Contents/Resources/kitty/shell-integration/kitty.zsh"; then source "/private/var/folders/n1/4279cdyx6fbf50r3cwqdf0pr0000gn/T/AppTranslocation/F49C8B63-5701-45CA-AFA7-4DE4C9380317/d/kitty.app/Contents/Resources/kitty/shell-integration/kitty.zsh"; fi
 # END_KITTY_SHELL_INTEGRATION
+
+export PATH="/opt/homebrew/opt/curl/bin:$PATH"
+export PATH="/opt/homebrew/opt/openssl@3/bin:$PATH"
+
+export CC=/opt/homebrew/Cellar/gcc/11.2.0_2/bin/gcc-11
