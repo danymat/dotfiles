@@ -19,13 +19,15 @@ require("neorg").setup({
 					work = "~/Documents/000 Meta/00.04 work/",
 					insa = "~/Documents/101 Personnel/40-49 Insa/46 5A/101.46.00 Notes",
 					hack = "~/Documents/000 Meta/00.05 hack",
+                    test = "~/Developer/neorg_test"
 				},
 			},
 		},
 
 		["core.gtd.base"] = {
 			config = {
-				workspace = "gtd",
+				-- workspace = "gtd",
+                workspace = "test",
 				exclude = { "gtd.norg", "neogen.norg", "kenaos.norg" },
 			},
 		},

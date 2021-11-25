@@ -40,7 +40,8 @@ yabai -m config focus_follows_mouse autofocus
 # example: render all unfocused windows with 90% opacity
 yabai -m config window_opacity on
 yabai -m config active_window_opacity 1.0
-yabai -m config normal_window_opacity 0.95
+# yabai -m config normal_window_opacity 0.95
+yabai -m config normal_window_opacity 1.0
 
 # Desktop labels
 yabai -m space 1 --label 1_code
@@ -55,7 +56,7 @@ yabai -m space 4_misc --display 1
 yabai -m space 3_work --display 2
 
 # Window rules 
-yabai -m rule --add app="^iTerm" manage=on opacity=0.95 space=1_code
+yabai -m rule --add app="^iTerm" manage=on space=1_code
 yabai -m rule --add app="^Préférences Système$" manage=off
 yabai -m rule --add app="^League" manage=off
 yabai -m rule --add app="^Spotify$" manage=off
