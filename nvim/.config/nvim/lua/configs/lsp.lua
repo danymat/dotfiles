@@ -42,6 +42,7 @@ if not nvim_lsp.zettelkastenlsp then
 		},
 	}
 end
+
 local servers = {
 	"pyright",
 	"vimls",

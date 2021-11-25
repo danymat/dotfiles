@@ -67,7 +67,7 @@ M.paste_file_name = function()
 	if file == "" then
 		return
 	end
-	local text = "# " .. file
+	local text = "# " .. file:sub(1, -4)
 	local cursor = vim.api.nvim_win_get_cursor(0)
 	vim.api.nvim_buf_set_lines(0, cursor[1] -1 , cursor[1]-1, false, { text })
     vim.api.nvim_feedkeys("i", "n", false)
