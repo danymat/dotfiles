@@ -27,7 +27,7 @@ end
 local capabilities = vim.lsp.protocol.make_client_capabilities()
 capabilities = require("cmp_nvim_lsp").update_capabilities(capabilities)
 
--- See https://github.com/neovim/nvim-lspconfig/blob/master/CONFIG.md for more lsp servers
+-- See https://github.com/neovim/nvim-lspconfig/blob/master/doc/server_configurations.md for more lsp servers
 local configs = require("lspconfig/configs")
 
 -- Personal lsp
