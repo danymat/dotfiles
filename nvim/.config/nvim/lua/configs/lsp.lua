@@ -1,5 +1,5 @@
+-- Map keybinds
 local nvim_lsp = require("lspconfig")
-
 local on_attach = function(_, bufnr)
 	local function buf_set_keymap(...)
 		vim.api.nvim_buf_set_keymap(bufnr, ...)
@@ -15,22 +15,23 @@ local on_attach = function(_, bufnr)
 	buf_set_keymap("n", "<C-b>", "<cmd>lua vim.lsp.diagnostic.goto_prev()<CR>", opts)
 	buf_set_keymap("n", "<C-n>", "<cmd>lua vim.lsp.diagnostic.goto_next()<CR>", opts)
 	buf_set_keymap("n", "<Leader>fs", ":lua vim.lsp.buf.formatting_sync()<CR>", opts)
+
+	require("lsp_signature").on_attach({
+		bind = true,
+		hint_prefix = "🧸 ",
+		handler_opts = { border = "rounded" },
+	})
 end
 
+-- Add completion capabilities (completion, snippets)
 local capabilities = vim.lsp.protocol.make_client_capabilities()
-capabilities.textDocument.completion.completionItem.snippetSupport = true
-capabilities.textDocument.completion.completionItem.resolveSupport = {
-	properties = {
-		"documentation",
-		"detail",
-		"additionalTextEdits",
-	},
-}
+capabilities = require("cmp_nvim_lsp").update_capabilities(capabilities)
 
 -- See https://github.com/neovim/nvim-lspconfig/blob/master/CONFIG.md for more lsp servers
 local configs = require("lspconfig/configs")
 
-if not nvim_lsp.zettelkastenlsp then
+-- Personal lsp
+if not configs.zettelkastenlsp then
 	configs.zettelkastenlsp = {
 		default_config = {
 			cmd = { "node", "/Users/danielmathiot/Developer/lsp-zettelkasten/server/out/server.js", "--stdio" },
@@ -41,85 +42,82 @@ if not nvim_lsp.zettelkastenlsp then
 			settings = {},
 		},
 	}
+	nvim_lsp.zettelkastenlsp = configs.zettelkastenlsp
 end
 
+-- Use these servers and default configs
+-- Add more servers here
 local servers = {
-	"pyright",
-	"vimls",
-	"bashls",
-	"html",
-	"flow",
-	"tsserver",
-	"vuels",
-	"intelephense",
 	"zettelkastenlsp",
-	"dockerls",
-	"jdtls",
+	"sumneko_lua",
+	"null-ls",
 }
 local config = { on_attach = on_attach, capabilities = capabilities }
 
-for _, lsp in ipairs(servers) do
-	nvim_lsp[lsp].setup(config)
-end
+--- Generates a config table for lspconfig
+--- @return table
+local function generate_sumneko_config()
+	-- Configure lua language server for neovim development
+	local runtime_path = vim.split(package.path, ";")
+	table.insert(runtime_path, "lua/?.lua")
+	table.insert(runtime_path, "lua/?/init.lua")
 
-servers = require("lspmanager").installed_servers()
-
--- Configure lua language server for neovim development
-local lua_settings = {
-	Lua = {
-		runtime = {
-			-- LuaJIT in the case of Neovim
-			version = "LuaJIT",
-			path = vim.split(package.path, ";"),
-		},
-		diagnostics = {
-			-- Get the language server to recognize the `vim` global
-			globals = { "vim", "P", "G" },
-		},
-		telemetry = { enable = false },
-		workspace = {
-			preloadFileSize = 180,
-			-- Make the server aware of Neovim runtime files
-			library = {
-				[vim.fn.expand("$VIMRUNTIME/lua")] = true,
-				[vim.fn.expand("$VIMRUNTIME/lua/vim/lsp")] = true,
+	local sumneko_root_path = "/opt/lua-language-server/"
+	local lua_settings = {
+		Lua = {
+			runtime = {
+				-- LuaJIT in the case of Neovim
+				version = "LuaJIT",
+				path = runtime_path,
+			},
+			diagnostics = {
+				-- Get the language server to recognize the `vim` global
+				globals = { "vim", "P", "G" },
+			},
+			telemetry = { enable = false },
+			workspace = {
+				preloadFileSize = 180,
+				-- Make the server aware of Neovim runtime files
+				library = vim.api.nvim_get_runtime_file("", true),
 			},
 		},
-	},
-}
+	}
+	local luadev = require("lua-dev").setup({
+		library = {
+			vimruntime = true,
+			types = true,
+			plugins = false,
+		},
+		lspconfig = lua_settings,
+	})
+	local _config = vim.tbl_extend("keep", config, luadev)
+	_config.cmd = { sumneko_root_path .. "bin/macOS/lua-language-server", "-E", sumneko_root_path .. "main.lua" }
+	return _config
+end
 
+-- Start null-ls if it's in servers table
+if vim.tbl_contains(servers, "null-ls") then
+	require("null-ls").config({
+		debug = true,
+		sources = {
+			require("null-ls").builtins.formatting.stylua,
+			require("null-ls").builtins.formatting.prettier,
+			require("null-ls").builtins.code_actions.gitsigns,
+		},
+	})
+end
+
+-- Setup all servers from servers table
 for _, server in pairs(servers) do
 	if server == "sumneko_lua" then
-		local luadev = require("lua-dev").setup({
-			library = {
-				vimruntime = true,
-				types = true,
-				plugins = false,
-			},
-			lspconfig = lua_settings,
-		})
-		config = vim.tbl_extend("keep", config, luadev)
+		local sumneko_config = generate_sumneko_config()
+		nvim_lsp[server].setup(sumneko_config)
+	else
+		nvim_lsp[server].setup(config)
 	end
-	require("lspconfig")[server].setup(config)
 end
 
--- Null-ls
-local null_ls = require("null-ls")
-local b = null_ls.builtins
-
-local sources = {
-	b.formatting.stylua,
-	b.formatting.prettier,
-	b.code_actions.gitsigns,
-}
-
-null_ls.config({
-	debug = true,
-	sources = sources,
-})
-
-require("lspconfig")["null-ls"].setup({ on_attach = on_attach })
-
+-- Change icons for Lsp Diagnostic
 local signs = { Error = "", Warn = "", Info = "כֿ", Hint = "" }
 for sign, icon in pairs(signs) do
 	vim.fn.sign_define(

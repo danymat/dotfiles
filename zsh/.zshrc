@@ -77,3 +77,5 @@ export PATH="/opt/homebrew/opt/curl/bin:$PATH"
 export PATH="/opt/homebrew/opt/openssl@3/bin:$PATH"
 
 export CC=/opt/homebrew/Cellar/gcc/11.2.0_2/bin/gcc-11
+
+alias luamake=/opt/lua-language-server/3rd/luamake/luamake
