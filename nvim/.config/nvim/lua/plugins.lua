@@ -332,30 +332,10 @@ packer.startup({
 		})
 
 		use({
-			"MordechaiHadad/nvim-lspmanager",
-			config = function()
-				require("lspmanager").setup()
-				require("telescope").load_extension("lspmanager")
-				require("configs.lsp")
-			end,
-			requires = {
-				"neovim/nvim-lspconfig",
-				"folke/lua-dev.nvim",
-				"ray-x/lsp_signature.nvim",
-				"jose-elias-alvarez/null-ls.nvim",
-			},
-		})
-
-		use({
+			"neovim/nvim-lspconfig",
+			"folke/lua-dev.nvim",
 			"ray-x/lsp_signature.nvim",
-			config = function()
-				require("lsp_signature").setup({
-					bind = true,
-					hint_prefix = "🧸 ",
-					handler_opts = { border = "rounded" },
-				})
-			end,
-			after = "nvim-lspmanager",
+			"jose-elias-alvarez/null-ls.nvim",
 		})
 
 		use({ "jbyuki/venn.nvim" })
@@ -375,27 +355,6 @@ packer.startup({
 				})
 			end,
 		})
-		-- use({
-		-- 	"narutoxy/themer.lua",
-		-- 	branch = "dev",
-		-- 	config = function()
-		-- 		require("themer").setup({
-		-- 			transparency = true,
-		-- 			integrations = {
-		-- 				cmp = true,
-		-- 				gitsigns = true,
-		-- 				telescope = true,
-		-- 				indent_blankline = {
-		-- 					enabled = true,
-		-- 				},
-		-- 			},
-		-- 			extra_integrations = {
-		-- 				lualine = true,
-		-- 			},
-		-- 		})
-		-- 		require("themer").load("rose_pine_moon")
-		-- 	end,
-		-- })
 	end,
 	config = { compile_path = vim.fn.stdpath("config") .. "/lua/packer_compiled.lua" },
 })

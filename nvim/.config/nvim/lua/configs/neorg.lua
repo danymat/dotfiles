@@ -26,8 +26,8 @@ require("neorg").setup({
 
 		["core.gtd.base"] = {
 			config = {
-				-- workspace = "gtd",
-                workspace = "test",
+				workspace = "gtd",
+               -- workspace = "test",
 				exclude = { "gtd.norg", "neogen.norg", "kenaos.norg" },
 			},
 		},
