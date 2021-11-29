@@ -56,7 +56,7 @@ vim.o.incsearch = true --show search as characters entered
 vim.o.undofile = true   -- Maintain undo history between sessions
 vim.o.undodir = "/Users/danielmathiot/.vim/undodir"  -- Undo directory (to create if not created)
 
-vim.o.shortmess = "filnxtToOFI" -- Do not show the intro message
+--vim.o.shortmess = "filnxtToOF" .. "I" -- Do not show the intro message
 vim.o.lazyredraw = true -- Do not redraw screen while processing macros
 
 

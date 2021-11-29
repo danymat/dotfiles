@@ -43,11 +43,6 @@ require("neorg").setup({
 				engine = "nvim-cmp",
 			},
 		},
-		["core.norg.journal"] = {
-			config = {
-				workspace = "insa",
-			},
-		},
 	},
 	-- logger = {
 	-- 	level = "info", -- Show trace, info, warning, error and fatal messages

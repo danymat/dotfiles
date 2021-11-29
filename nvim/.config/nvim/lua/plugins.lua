@@ -108,17 +108,17 @@ packer.startup({
 				local parser_configs = require("nvim-treesitter.parsers").get_parser_configs()
 				parser_configs.norg_meta = {
 					install_info = {
-						url = "~/Developer/tree-sitter-norg-meta",
-						files = { "src/parser.c" },
+						url = "https://github.com/nvim-neorg/tree-sitter-norg-meta",
+						-- files = { "src/parser.c" },
 					},
 				}
 
 				parser_configs.norg = {
 					install_info = {
-						-- url = "https://github.com/nvim-neorg/tree-sitter-norg",
-						url = "~/Developer/tree-sitter-norg/",
-						files = { "src/parser.c", "src/scanner.cc" },
-						-- branch = "main",
+						url = "https://github.com/nvim-neorg/tree-sitter-norg",
+						-- url = "~/Developer/tree-sitter-norg/",
+						-- files = { "src/parser.c", "src/scanner.cc" },
+						branch = "main",
 						-- branch = "attached-modifier"
 					},
 				}
@@ -239,6 +239,12 @@ packer.startup({
 			branch = "gtd_base",
 		})
 
+		-- use({
+		-- 	"catppuccin/nvim",
+		-- 	config = [[ require("configs.catpuccin")]],
+		-- 	branch = "dev-rc",
+		-- })
+
 		use({
 			"~/Developer/neovim/",
 			as = "rose-pine",
@@ -256,6 +262,7 @@ packer.startup({
 			config = function()
 				require("lualine").setup({
 					options = { theme = "rose-pine" },
+					-- options = { theme = "catppuccin" },
 				})
 			end,
 			requires = { "kyazdani42/nvim-web-devicons", opt = true },
