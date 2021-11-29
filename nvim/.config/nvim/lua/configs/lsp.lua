@@ -51,6 +51,7 @@ local servers = {
 	"zettelkastenlsp",
 	"sumneko_lua",
 	"null-ls",
+    "pyright"
 }
 local config = { on_attach = on_attach, capabilities = capabilities }
 
