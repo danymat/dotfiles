@@ -6,14 +6,13 @@ if fn.empty(fn.glob(install_path)) > 0 then
 	fn.system({ "git", "clone", "--depth", "1", "https://github.com/wbthomason/packer.nvim", install_path })
 	print("Installed packer!")
 end
-vim.cmd("packadd packer.nvim")
+
 local packer = require("packer")
 
 packer.startup({
 	function(use)
 		use({
 			"wbthomason/packer.nvim",
-			opt = true,
 		})
 
 		use("lewis6991/impatient.nvim")
@@ -297,6 +296,7 @@ packer.startup({
 
 		use({
 			"hrsh7th/nvim-cmp",
+            lock = true,
 			event = "InsertEnter",
 			config = function()
 				require("configs.cmp")

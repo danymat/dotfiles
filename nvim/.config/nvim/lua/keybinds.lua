@@ -56,6 +56,7 @@ vim.api.nvim_set_keymap(
 	":lua require('configs.telescope').search_zettelkasten()<CR>",
 	{ noremap = true, silent = true }
 )
+vim.api.nvim_set_keymap("n", "<Leader>?", ":lua require('telescope.builtin').help_tags()<CR>", { noremap = true, silent = true})
 
 vim.api.nvim_set_keymap("n", "<Esc>", ":noh<CR>", { noremap = true, silent = true })
 vim.api.nvim_set_keymap("t", "<Esc><Esc>", "<C-\\><C-n>", {})
@@ -161,8 +162,6 @@ vim.api.nvim_set_keymap("n", "<leader>v", ":lua toggle_venn()<cr>", { noremap = 
 -- Inverse of join-line
 vim.api.nvim_set_keymap("n", "<C-j>", "i<CR><Esc>J", { noremap = true })
 
--- Todo Comments
-vim.api.nvim_set_keymap("n", "<Leader>?", ":TodoQuickFix<CR>", { noremap = true })
 
 vim.api.nvim_set_keymap("n", "<Leader>ai", ":TSHighlightCapturesUnderCursor<CR>", { noremap = true, silent = true })
 -- LSP
