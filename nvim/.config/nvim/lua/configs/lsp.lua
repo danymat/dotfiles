@@ -51,7 +51,7 @@ local servers = {
 	"zettelkastenlsp",
 	"sumneko_lua",
 	"null-ls",
-    "pyright"
+	"pyright",
 }
 local config = { on_attach = on_attach, capabilities = capabilities }
 
@@ -126,3 +126,7 @@ for sign, icon in pairs(signs) do
 		{ text = icon, texthl = "Diagnostic" .. sign, linehl = false, numhl = "Diagnostic" .. sign }
 	)
 end
+
+vim.lsp.handlers["textDocument/hover"] = vim.lsp.with(vim.lsp.handlers.hover, {
+	border = "rounded",
+})

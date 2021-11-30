@@ -17,8 +17,10 @@ local lspkind = require("lspkind")
 local neogen = require("neogen")
 
 cmp.setup({
+	completion = { border = { "╭", "─", "╮", "│", "╯", "─", "╰", "│" }, scrollbar = "║" },
 	documentation = {
 		border = { "╭", "─", "╮", "│", "╯", "─", "╰", "│" },
+		scrollbar = "║",
 	},
 	formatting = {
 		format = lspkind.cmp_format({
@@ -90,7 +92,7 @@ cmp.setup({
 
 	-- You should specify your *installed* sources.
 	sources = {
-        { name = "cmp_git" },
+		{ name = "cmp_git" },
 		{ name = "path" },
 		{ name = "luasnip" },
 		{ name = "nvim_lsp" },
@@ -105,6 +107,6 @@ cmp.setup({
 
 require("cmp").setup.cmdline(":", {
 	sources = {
-		{ name = "cmdline", keyword_length = 3 },
+		{ name = "cmdline", keyword_length = 1 },
 	},
 })
