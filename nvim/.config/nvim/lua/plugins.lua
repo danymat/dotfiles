@@ -1,6 +1,6 @@
 -- Install packer if not found
 local fn = vim.fn
-local install_path = fn.stdpath("data") .. "/site/pack/packer/opt/packer.nvim"
+local install_path = fn.stdpath("data") .. "/site/pack/packer/start/packer.nvim"
 if fn.empty(fn.glob(install_path)) > 0 then
 	print("Installing packer...")
 	fn.system({ "git", "clone", "--depth", "1", "https://github.com/wbthomason/packer.nvim", install_path })
@@ -245,7 +245,7 @@ packer.startup({
 		-- })
 
 		use({
-			"~/Developer/neovim/",
+			"~/Developer/neovim",
 			as = "rose-pine",
 			config = function()
 				vim.g.rose_pine_variant = "moon"
@@ -362,6 +362,7 @@ packer.startup({
 				})
 			end,
 		})
+
 	end,
 	config = { compile_path = vim.fn.stdpath("config") .. "/lua/packer_compiled.lua" },
 })

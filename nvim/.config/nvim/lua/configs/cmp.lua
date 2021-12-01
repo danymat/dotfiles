@@ -1,4 +1,6 @@
 local cmp = require("cmp")
+local types = require("cmp.types")
+local str = require("cmp.utils.str")
 
 local t = function(str)
 	return vim.api.nvim_replace_termcodes(str, true, true, true)
@@ -23,16 +25,25 @@ cmp.setup({
 		scrollbar = "║",
 	},
 	formatting = {
+		fields = {
+			cmp.ItemField.Kind,
+			cmp.ItemField.Abbr,
+			cmp.ItemField.Menu,
+		},
 		format = lspkind.cmp_format({
-			with_text = true,
-			maxwidth = 50,
-			menu = {
-				buffer = "﬘ (buffer)",
-				nvim_lsp = " (lsp)",
-				luasnip = " (luaSnip)",
-				nvim_lua = " (lua)",
-				latex_symbols = " (latex)",
-			},
+			with_text = false,
+			before = function(entry, vim_item)
+				local word = entry:get_insert_text()
+				if entry.completion_item.insertTextFormat == types.lsp.InsertTextFormat.Snippet then
+					word = vim.lsp.util.parse_snippet(word)
+				end
+				word = str.oneline(word)
+				if entry.completion_item.insertTextFormat == types.lsp.InsertTextFormat.Snippet then
+					word = word .. "~"
+				end
+				vim_item.abbr = word
+				return vim_item
+			end,
 		}),
 	},
 	snippet = {
@@ -107,6 +118,6 @@ cmp.setup({
 
 require("cmp").setup.cmdline(":", {
 	sources = {
-		{ name = "cmdline", keyword_length = 1 },
+		{ name = "cmdline", keyword_length = 2 },
 	},
 })
