@@ -38,7 +38,7 @@ cmp.setup({
 					word = vim.lsp.util.parse_snippet(word)
 				end
 				word = str.oneline(word)
-				if entry.completion_item.insertTextFormat == types.lsp.InsertTextFormat.Snippet then
+				if entry.completion_item.insertTextFormat == types.lsp.InsertTextFormat.Snippet and string.sub(vim_item.abbr, -1, -1) == "~" then
 					word = word .. "~"
 				end
 				vim_item.abbr = word
