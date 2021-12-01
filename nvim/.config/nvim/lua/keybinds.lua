@@ -56,7 +56,12 @@ vim.api.nvim_set_keymap(
 	":lua require('configs.telescope').search_zettelkasten()<CR>",
 	{ noremap = true, silent = true }
 )
-vim.api.nvim_set_keymap("n", "<Leader>?", ":lua require('telescope.builtin').help_tags()<CR>", { noremap = true, silent = true})
+vim.api.nvim_set_keymap(
+	"n",
+	"<Leader>?",
+	":lua require('telescope.builtin').help_tags()<CR>",
+	{ noremap = true, silent = true }
+)
 
 vim.api.nvim_set_keymap("n", "<Esc>", ":noh<CR>", { noremap = true, silent = true })
 vim.api.nvim_set_keymap("t", "<Esc><Esc>", "<C-\\><C-n>", {})
@@ -98,6 +103,7 @@ vim.api.nvim_set_keymap("i", ".", ".<c-g>u", {})
 vim.api.nvim_set_keymap("i", "?", "?<c-g>u", {})
 vim.api.nvim_set_keymap("v", "<Leader>p", '"_P', {})
 
+-- Nerdtree
 vim.api.nvim_set_keymap("n", "<Leader>t", ":NERDTreeFocus<CR>", {})
 
 -- Neogen
@@ -116,13 +122,13 @@ vim.api.nvim_set_keymap(
 -- Keybinds for toggleterm.lua
 vim.api.nvim_set_keymap(
 	"n",
-	"<Leader>shf",
+	"<Leader>sf",
 	":lua require('toggleterm.terminal').Terminal:new { direction = 'float', count = 1 }:toggle()<CR>",
 	{ noremap = true, silent = true }
 )
 vim.api.nvim_set_keymap(
 	"n",
-	"<Leader>shr",
+	"<Leader>sr",
 	":lua require('toggleterm.terminal').Terminal:new { direction = 'vertical', count = 2 }:toggle()<CR>",
 	{ noremap = true, silent = true }
 )
@@ -161,7 +167,6 @@ vim.api.nvim_set_keymap("n", "<leader>v", ":lua toggle_venn()<cr>", { noremap = 
 
 -- Inverse of join-line
 vim.api.nvim_set_keymap("n", "<C-j>", "i<CR><Esc>J", { noremap = true })
-
 
 vim.api.nvim_set_keymap("n", "<Leader>ai", ":TSHighlightCapturesUnderCursor<CR>", { noremap = true, silent = true })
 -- LSP
