@@ -33,15 +33,28 @@ cmp.setup({
 		format = lspkind.cmp_format({
 			with_text = false,
 			before = function(entry, vim_item)
+				-- Get the full snippet (and only keep first line)
 				local word = entry:get_insert_text()
 				if entry.completion_item.insertTextFormat == types.lsp.InsertTextFormat.Snippet then
 					word = vim.lsp.util.parse_snippet(word)
 				end
 				word = str.oneline(word)
-				if entry.completion_item.insertTextFormat == types.lsp.InsertTextFormat.Snippet and string.sub(vim_item.abbr, -1, -1) == "~" then
+
+				-- concatenates the string
+				-- local max = 50
+				-- if string.len(word) >= max then
+				-- 	local before = string.sub(word, 1, math.floor((max - 3) / 2))
+				-- 	word = before .. "..."
+				-- end
+
+				if
+					entry.completion_item.insertTextFormat == types.lsp.InsertTextFormat.Snippet
+					and string.sub(vim_item.abbr, -1, -1) == "~"
+				then
 					word = word .. "~"
 				end
 				vim_item.abbr = word
+
 				return vim_item
 			end,
 		}),
@@ -112,7 +125,7 @@ cmp.setup({
 	},
 
 	experimental = {
-		ghost_text = true,
+		ghost_text = false,
 	},
 })
 
