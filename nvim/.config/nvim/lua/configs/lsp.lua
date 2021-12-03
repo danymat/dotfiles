@@ -28,7 +28,6 @@ end
 local capabilities = vim.lsp.protocol.make_client_capabilities()
 capabilities = require("cmp_nvim_lsp").update_capabilities(capabilities)
 
--- See https://github.com/neovim/nvim-lspconfig/blob/master/doc/server_configurations.md for more lsp servers
 local configs = require("lspconfig/configs")
 
 -- Personal lsp
@@ -46,6 +45,7 @@ if not configs.zettelkastenlsp then
 	nvim_lsp.zettelkastenlsp = configs.zettelkastenlsp
 end
 
+-- See https://github.com/neovim/nvim-lspconfig/blob/master/doc/server_configurations.md for more lsp servers
 -- Use these servers and default configs
 -- Add more servers here
 local servers = {
@@ -53,7 +53,11 @@ local servers = {
 	"sumneko_lua",
 	"null-ls",
 	"pyright",
+	"vuels",
+	"tsserver",
+	"tailwindcss",
 }
+
 local config = { on_attach = on_attach, capabilities = capabilities }
 
 --- Generates a config table for lspconfig
@@ -133,7 +137,7 @@ vim.lsp.handlers["textDocument/hover"] = vim.lsp.with(vim.lsp.handlers.hover, {
 })
 
 vim.lsp.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(vim.lsp.diagnostic.on_publish_diagnostics, {
-  virtual_text = {
-    prefix = '◉',
-  }
+	virtual_text = {
+		prefix = "◉",
+	},
 })
