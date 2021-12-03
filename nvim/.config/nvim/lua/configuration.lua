@@ -59,6 +59,7 @@ vim.o.undodir = "/Users/danielmathiot/.vim/undodir"  -- Undo directory (to creat
 --vim.o.shortmess = "filnxtToOF" .. "I" -- Do not show the intro message
 vim.o.lazyredraw = true -- Do not redraw screen while processing macros
 
+vim.o.inccommand = "nosplit" -- Update the buffer automagically as you substitute
 
 --
 vim.cmd [[

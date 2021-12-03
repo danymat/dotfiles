@@ -56,6 +56,7 @@ local servers = {
 	"vuels",
 	"tsserver",
 	"tailwindcss",
+    "phpactor"
 }
 
 local config = { on_attach = on_attach, capabilities = capabilities }
