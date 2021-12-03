@@ -28,9 +28,19 @@ packer.startup({
 		})
 
 		use({
-			"terrortylor/nvim-comment",
-			config = [[require('nvim_comment').setup({line_mapping = "<Leader>cc", operator_mapping = "<Leader>c" })]],
-			keys = { "<Leader>cc", "<Leader>c" },
+			"numToStr/Comment.nvim",
+			config = function()
+				require("Comment").setup {
+                    toggler = {
+                        line = "<Leader>cc",
+                        block = "<Leader>bc"
+                    },
+                    opleader = {
+                        line = "<Leader>c",
+                        block = "<Leader>b",
+                    },
+                }
+			end,
 		})
 
 		use({
@@ -296,7 +306,7 @@ packer.startup({
 
 		use({
 			"hrsh7th/nvim-cmp",
-            lock = true,
+			lock = true,
 			event = "InsertEnter",
 			config = function()
 				require("configs.cmp")
@@ -362,7 +372,6 @@ packer.startup({
 				})
 			end,
 		})
-
 	end,
 	config = { compile_path = vim.fn.stdpath("config") .. "/lua/packer_compiled.lua" },
 })
