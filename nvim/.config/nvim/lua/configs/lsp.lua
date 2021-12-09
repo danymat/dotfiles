@@ -45,18 +45,40 @@ if not configs.zettelkastenlsp then
 	nvim_lsp.zettelkastenlsp = configs.zettelkastenlsp
 end
 
+if not configs.zk then
+	configs.zk = {
+		default_config = {
+			cmd = { "zk", "lsp" },
+			filetypes = { "markdown" },
+			root_dir = function()
+				return vim.loop.cwd()
+			end,
+			settings = {},
+		},
+	}
+	configs.zk.index = function()
+		vim.lsp.buf.execute_command({
+			command = "zk.index",
+			arguments = { vim.api.nvim_buf_get_name(0) },
+		})
+		print("Re-indexed ZK")
+	end
+	nvim_lsp.zk = configs.zk
+end
+
 -- See https://github.com/neovim/nvim-lspconfig/blob/master/doc/server_configurations.md for more lsp servers
 -- Use these servers and default configs
 -- Add more servers here
 local servers = {
-	"zettelkastenlsp",
+	-- "zettelkastenlsp",
 	"sumneko_lua",
 	"null-ls",
 	"pyright",
 	"vuels",
 	"tsserver",
 	"tailwindcss",
-    "phpactor"
+	"phpactor",
+	"zk",
 }
 
 local config = { on_attach = on_attach, capabilities = capabilities }
@@ -119,6 +141,7 @@ for _, server in pairs(servers) do
 	if server == "sumneko_lua" then
 		local sumneko_config = generate_sumneko_config()
 		nvim_lsp[server].setup(sumneko_config)
+        local yamlls_config = generate_yaml_config
 	else
 		nvim_lsp[server].setup(config)
 	end
