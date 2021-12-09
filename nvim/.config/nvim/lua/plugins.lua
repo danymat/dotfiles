@@ -115,20 +115,28 @@ packer.startup({
 			run = ":TSUpdate",
 			config = function()
 				local parser_configs = require("nvim-treesitter.parsers").get_parser_configs()
+				parser_configs.norg_table = {
+					install_info = {
+						url = "https://github.com/nvim-neorg/tree-sitter-norg-table",
+						files = { "src/parser.c" },
+                        branch = "main"
+					},
+				}
 				parser_configs.norg_meta = {
 					install_info = {
 						url = "https://github.com/nvim-neorg/tree-sitter-norg-meta",
-						-- files = { "src/parser.c" },
+						files = { "src/parser.c" },
+                        branch = "main"
 					},
 				}
 
 				parser_configs.norg = {
 					install_info = {
-						url = "https://github.com/nvim-neorg/tree-sitter-norg",
-						-- url = "~/Developer/tree-sitter-norg/",
-						-- files = { "src/parser.c", "src/scanner.cc" },
-						branch = "main",
-						-- branch = "attached-modifier"
+						-- url = "https://github.com/nvim-neorg/tree-sitter-norg",
+						url = "~/Developer/tree-sitter-norg/",
+						files = { "src/parser.c", "src/scanner.cc" },
+						-- branch = "main",
+						branch = "attached-modifier"
 					},
 				}
 
@@ -248,11 +256,15 @@ packer.startup({
 			branch = "gtd_base",
 		})
 
-		-- use({
-		-- 	"catppuccin/nvim",
-		-- 	config = [[ require("configs.catpuccin")]],
-		-- 	branch = "dev-rc",
-		-- })
+		use({
+			"catppuccin/nvim",
+            as = "catppuccin",
+			config = function ()
+                require("configs.catpuccin")
+                -- vim.cmd[[colorscheme catppuccin]]
+            end,
+			branch = "dev-rc",
+		})
 
 		use({
 			"rose-pine/neovim",
@@ -373,6 +385,8 @@ packer.startup({
 				})
 			end,
 		})
+
+        use "beeender/Comrade"
 	end,
 	config = { compile_path = vim.fn.stdpath("config") .. "/lua/packer_compiled.lua" },
 })

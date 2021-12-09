@@ -37,12 +37,13 @@ require("neorg").setup({
 			},
 		},
 
-		["core.integrations.telescope"] = {},
+		-- ["core.integrations.telescope"] = {},
 		["core.norg.completion"] = {
 			config = {
 				engine = "nvim-cmp",
 			},
 		},
+        ["core.zettelkasten"] = {}
 	},
 	-- logger = {
 	-- 	level = "info", -- Show trace, info, warning, error and fatal messages

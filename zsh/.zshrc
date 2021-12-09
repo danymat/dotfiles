@@ -49,11 +49,13 @@ export JDTLS_HOME=/opt/jdt-language-server-latest/
 
 # Personal Aliases
 alias vim=nvim
+alias v=nvim
 alias gs=lazygit
 alias zz="z -I"
 alias j=z
 alias jj=zz
-alias cc=gcc
+alias gcc=gcc-11
+alias luamake=/opt/lua-language-server/3rd/luamake/luamake
 
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
@@ -76,6 +78,6 @@ if test -e "/private/var/folders/n1/4279cdyx6fbf50r3cwqdf0pr0000gn/T/AppTransloc
 export PATH="/opt/homebrew/opt/curl/bin:$PATH"
 export PATH="/opt/homebrew/opt/openssl@3/bin:$PATH"
 
-export CC=/opt/homebrew/Cellar/gcc/11.2.0_2/bin/gcc-11
 
-alias luamake=/opt/lua-language-server/3rd/luamake/luamake
+test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell_integration.zsh"
+
