@@ -30,16 +30,16 @@ packer.startup({
 		use({
 			"numToStr/Comment.nvim",
 			config = function()
-				require("Comment").setup {
-                    toggler = {
-                        line = "<Leader>cc",
-                        block = "<Leader>bc"
-                    },
-                    opleader = {
-                        line = "<Leader>c",
-                        block = "<Leader>b",
-                    },
-                }
+				require("Comment").setup({
+					toggler = {
+						line = "<Leader>cc",
+						block = "<Leader>bc",
+					},
+					opleader = {
+						line = "<Leader>c",
+						block = "<Leader>b",
+					},
+				})
 			end,
 		})
 
@@ -87,7 +87,10 @@ packer.startup({
 							},
 						},
 					}),
-					extensions = { file_browser = {} },
+					extensions = {
+						file_browser = {},
+						["ui-select"] = require("telescope.themes").get_cursor(),
+					},
 				})
 			end,
 			requires = {
@@ -107,6 +110,13 @@ packer.startup({
 						require("telescope").load_extension("file_browser")
 					end,
 				},
+				{
+					"nvim-telescope/telescope-ui-select.nvim",
+					after = "telescope.nvim",
+					config = function()
+						require("telescope").load_extension("ui-select")
+					end,
+				},
 			},
 		})
 
@@ -119,14 +129,14 @@ packer.startup({
 					install_info = {
 						url = "https://github.com/nvim-neorg/tree-sitter-norg-table",
 						files = { "src/parser.c" },
-                        branch = "main"
+						branch = "main",
 					},
 				}
 				parser_configs.norg_meta = {
 					install_info = {
 						url = "https://github.com/nvim-neorg/tree-sitter-norg-meta",
 						files = { "src/parser.c" },
-                        branch = "main"
+						branch = "main",
 					},
 				}
 
@@ -136,7 +146,7 @@ packer.startup({
 						url = "~/Developer/tree-sitter-norg/",
 						files = { "src/parser.c", "src/scanner.cc" },
 						-- branch = "main",
-						branch = "attached-modifier"
+						branch = "attached-modifier",
 					},
 				}
 
@@ -258,11 +268,11 @@ packer.startup({
 
 		use({
 			"catppuccin/nvim",
-            as = "catppuccin",
-			config = function ()
-                require("configs.catpuccin")
-                -- vim.cmd[[colorscheme catppuccin]]
-            end,
+			as = "catppuccin",
+			config = function()
+				require("configs.catpuccin")
+				-- vim.cmd[[colorscheme catppuccin]]
+			end,
 			branch = "dev-rc",
 		})
 
@@ -272,9 +282,9 @@ packer.startup({
 			config = function()
 				vim.g.rose_pine_variant = "moon"
 				vim.g.rose_pine_bold_vertical_split_line = true
-                vim.g.rose_pine_disable_italics = false
+				vim.g.rose_pine_disable_italics = false
 				vim.g.rose_pine_disable_background = false
-                vim.g.rose_pine_disable_float_background = true
+				vim.g.rose_pine_disable_float_background = true
 				vim.cmd([[ colorscheme rose-pine ]])
 			end,
 		})
@@ -386,7 +396,7 @@ packer.startup({
 			end,
 		})
 
-        use "beeender/Comrade"
+		use("beeender/Comrade")
 	end,
 	config = { compile_path = vim.fn.stdpath("config") .. "/lua/packer_compiled.lua" },
 })
