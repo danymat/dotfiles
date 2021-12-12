@@ -19,9 +19,6 @@ hyper - k : yabai -m window --display 2 && yabai -m display --focus 2
 # Move window to Mac
 hyper - j : yabai -m window --display 1 && yabai -m display --focus 1
 
-# Create a stack (the double float toggle allow to unstack)
-hyper - s : window=$(yabai -m query --windows --window | jq -r '.id') && yabai -m window east --stack $window || (yabai -m window $window --toggle float && yabai -m window $window --toggle float)
-
 # Focus to next/previous window in stack
 hyper - l :  yabai -m window --focus stack.next || yabai -m window --focus stack.first
 
@@ -45,6 +42,7 @@ hyper - f: SPACE=$(yabai -m query --spaces | jq -er 'map(select(."is-native-full
 # create desktop and follow focus - uses jq for parsing json (brew install jq)
 hyper - n : yabai -m space --create && \
                 index="$(yabai -m query --spaces --display | jq 'map(select(."is-native-fullscreen" == false))[-1].index')" && \
+                yabai -m window --space "${index}" && \
                 yabai -m space --focus "${index}"
 
 # Destroy desktop
@@ -53,3 +51,4 @@ hyper - w : yabai -m space --destroy
 # increase window size
 hyper - left : yabai -m window --resize left:-20:0 || yabai -m window --resize right:-20:0
 hyper - right : yabai -m window --resize left:20:0 || yabai -m window --resize right:20:0
+hyper - up : yabai -m window --resize up:20:0 || yabai -m window --resize bottom:20:0
