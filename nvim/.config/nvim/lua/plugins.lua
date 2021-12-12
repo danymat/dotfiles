@@ -39,6 +39,9 @@ packer.startup({
 						line = "<Leader>c",
 						block = "<Leader>b",
 					},
+                    extra = {
+                        eol = "<Leader>ca"
+                    }
 				})
 			end,
 		})
@@ -266,15 +269,15 @@ packer.startup({
 			branch = "gtd_base",
 		})
 
-		use({
-			"catppuccin/nvim",
-			as = "catppuccin",
-			config = function()
-				require("configs.catpuccin")
-				-- vim.cmd[[colorscheme catppuccin]]
-			end,
-			branch = "dev-rc",
-		})
+		-- use({
+		-- 	"catppuccin/nvim",
+		-- 	as = "catppuccin",
+		-- 	config = function()
+		-- 		require("configs.catpuccin")
+		-- 		-- vim.cmd[[colorscheme catppuccin]]
+		-- 	end,
+		-- 	branch = "dev-rc",
+		-- })
 
 		use({
 			"rose-pine/neovim",
