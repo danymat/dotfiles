@@ -1,40 +1,55 @@
-# HYPER A: Focus left or right windows
+# Focus left or right windows
 hyper - a : yabai -m window --focus next || yabai -m window --focus first
 
-# HYPER TAB: Focus between monitors
+# Focus between monitors
 hyper - tab : yabai -m display --focus next || yabai -m display --focus prev
 
-# HYPER Y: Restart yabai
+# Restart yabai
 hyper - y : launchctl kickstart -k "gui/${UID}/homebrew.mxcl.yabai" && skhd --reload
 
-# HYPER Z: Zoom window
-hyper - z : yabai -m window --toggle zoom-fullscreen
+# Toggle between stack and bsp mode
+hyper - z : yabai -m space --layout $(yabai -m query --spaces --space | jq -r 'if .type == "bsp" then "stack" else "bsp" end')
 
-# HYPER R: Rotate windows
+# Rotate windows
 hyper - r : yabai -m window --toggle split
 
-# HYPER k: Move window to second monitor
+# Move window to second monitor
 hyper - k : yabai -m window --display 2 && yabai -m display --focus 2
 
-# HYPER j: Move window to Mac
+# Move window to Mac
 hyper - j : yabai -m window --display 1 && yabai -m display --focus 1
 
-# HYPER S: Create a stack (the double float toggle allow to unstack)
+# Create a stack (the double float toggle allow to unstack)
 hyper - s : window=$(yabai -m query --windows --window | jq -r '.id') && yabai -m window east --stack $window || (yabai -m window $window --toggle float && yabai -m window $window --toggle float)
 
-# HYPER L: Focus to next/previous window in stack
+# Focus to next/previous window in stack
 hyper - l :  yabai -m window --focus stack.next || yabai -m window --focus stack.first
 
-# HYPER &/é/"/': Focus space 1/2/3/4 if it exists
+# Focus space 1/2/3/4 if it exists
 hyper - 0x12: yabai -m space --focus 1_code
 hyper - 0x13 : yabai -m space --focus 2_web
 hyper - 0x14 : yabai -m space --focus 3_work
 hyper - 0x15 : yabai -m space --focus 4_misc
 
-hyper + fn - 0x12 : yabai -m window --space 1_code
-hyper + fn - 0x13 : yabai -m window --space 2_web
-hyper + fn - 0x14 : yabai -m window --space 3_work
-hyper + fn - 0x15 : yabai -m window --space 4_misc
+hyper + fn - 0x12 : yabai -m window --space 1_code && yabai -m space --focus 1_code
+hyper + fn - 0x13 : yabai -m window --space 2_web && yabai -m space --focus 2_web
+hyper + fn - 0x14 : yabai -m window --space 3_work && yabai -m space --focus 3_work
+hyper + fn - 0x15 : yabai -m window --space 4_misc && yabai -m space --focus 4_misc
 
-# HYPER F: Focus the first fullscreen window
+# Toggle native-fullscreen
+hyper + fn - f : yabai -m window --toggle native-fullscreen
+
+# Focus the first fullscreen window
 hyper - f: SPACE=$(yabai -m query --spaces | jq -er 'map(select(."is-native-fullscreen" == true))[0].index') && yabai -m space --focus $SPACE
+
+# create desktop and follow focus - uses jq for parsing json (brew install jq)
+hyper - n : yabai -m space --create && \
+                index="$(yabai -m query --spaces --display | jq 'map(select(."is-native-fullscreen" == false))[-1].index')" && \
+                yabai -m space --focus "${index}"
+
+# Destroy desktop
+hyper - w : yabai -m space --destroy
+
+# increase window size
+hyper - left : yabai -m window --resize left:-20:0 || yabai -m window --resize right:-20:0
+hyper - right : yabai -m window --resize left:20:0 || yabai -m window --resize right:20:0
