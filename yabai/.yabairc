@@ -62,6 +62,8 @@ yabai -m rule --add app="^Spotify$" manage=off
 yabai -m rule --add app="^Finder$" manage=off
 yabai -m rule --add app="^Mail" manage=on space=4_misc
 yabai -m rule --add app=Safari space=2_web
+yabai -m rule --add app=Firefox space=4_misc
+yabai -m rule --add app="Burp" space=4_misc
 yabai -m rule --add app="^Slack" space=4_misc
 yabai -m rule --add app="Obsidian" space=3_work
 yabai -m rule --add app="VMware Fusion" space=1_code manage=off
