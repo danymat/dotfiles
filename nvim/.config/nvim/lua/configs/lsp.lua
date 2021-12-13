@@ -126,7 +126,7 @@ end
 
 -- Start null-ls if it's in servers table
 if vim.tbl_contains(servers, "null-ls") then
-	require("null-ls").config({
+	require("null-ls").setup({
 		debug = true,
 		sources = {
 			require("null-ls").builtins.formatting.stylua,
