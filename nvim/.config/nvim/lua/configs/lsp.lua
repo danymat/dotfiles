@@ -79,6 +79,8 @@ local servers = {
 	"tailwindcss",
 	"phpactor",
 	"zk",
+    "bashls",
+    "clangd"
 }
 
 local config = { on_attach = on_attach, capabilities = capabilities }
