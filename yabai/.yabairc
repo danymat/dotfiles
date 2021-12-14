@@ -70,6 +70,7 @@ yabai -m rule --add app="VMware Fusion" space=1_code manage=off
 yabai -m rule --add app="Discord" space=4_misc manage=on
 yabai -m rule --add app="Android" space=1_code manage=off
 yabai -m rule --add app="qemu" space=1_code manage=off
+yabai -m rule --add app="Stats" manage=off
 
 yabai -m config window_border off
 yabai -m config mouse_follows_focus on

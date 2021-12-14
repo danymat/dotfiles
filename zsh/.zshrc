@@ -57,6 +57,7 @@ alias jj=zz
 alias gcc=gcc-11
 alias luamake=/opt/lua-language-server/3rd/luamake/luamake
 alias ls=' exa --group-directories-first'
+alias la='ls -al'
 
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
