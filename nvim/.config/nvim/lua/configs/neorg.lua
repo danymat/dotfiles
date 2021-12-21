@@ -10,7 +10,6 @@ require("neorg").setup({
 		["core.norg.concealer"] = {
 			config = {
 				icon_preset = "diamond",
-                markup = { enable = false },
 			},
 		}, -- Allows for use of icons
 		["core.norg.dirman"] = { -- Manage your directories with Neorg
@@ -48,6 +47,7 @@ require("neorg").setup({
 		-- ["core.zettelkasten"] = {},
         ["core.norg.journal"] = {},
 		["core.norg.qol.toc"] = {},
+        ["core.norg.snippet"] = {}
 	},
 	-- logger = {
 	-- 	level = "info", -- Show trace, info, warning, error and fatal messages
