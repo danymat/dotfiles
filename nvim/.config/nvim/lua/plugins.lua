@@ -39,9 +39,9 @@ packer.startup({
 						line = "<Leader>c",
 						block = "<Leader>b",
 					},
-                    extra = {
-                        eol = "<Leader>ca"
-                    }
+					extra = {
+						eol = "<Leader>ca",
+					},
 				})
 			end,
 		})
@@ -330,9 +330,9 @@ packer.startup({
 		})
 
 		use({
-			"hrsh7th/nvim-cmp",
-			lock = true,
+			"Iron-E/nvim-cmp",
 			event = "InsertEnter",
+			branch = "feat/completion-menu-borders",
 			config = function()
 				require("configs.cmp")
 			end,
@@ -398,7 +398,11 @@ packer.startup({
 			end,
 		})
 
-		use("beeender/Comrade")
+		-- use("beeender/Comrade")
+
+		use({ "rcarriga/nvim-notify", config = function()
+            vim.notify = require("notify")
+        end })
 	end,
 	config = { compile_path = vim.fn.stdpath("config") .. "/lua/packer_compiled.lua" },
 })
