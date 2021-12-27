@@ -92,7 +92,7 @@ vim.api.nvim_set_keymap("n", "≠", "<C-d>", {})
 vim.api.nvim_set_keymap("v", "÷", "<C-u>", {})
 vim.api.nvim_set_keymap("v", "≠", "<C-d>", {})
 
--- thanks to theprimeagen for this
+-- thanks to theprimeagen for this (https://www.youtube.com/watch?v=Q5eDxR7bU2k)
 vim.api.nvim_set_keymap("n", "n", "nzzzv", {})
 vim.api.nvim_set_keymap("n", "N", "Nzzzv", {})
 vim.api.nvim_set_keymap("n", "J", "mzJ`z", { noremap = true })
@@ -100,7 +100,7 @@ vim.api.nvim_set_keymap("i", ",", ",<c-g>u", {})
 vim.api.nvim_set_keymap("i", "!", "!<c-g>u", {})
 vim.api.nvim_set_keymap("i", ".", ".<c-g>u", {})
 vim.api.nvim_set_keymap("i", "?", "?<c-g>u", {})
-vim.api.nvim_set_keymap("v", "<Leader>p", '"_P', {})
+vim.api.nvim_set_keymap("v", "<Leader>p", '"_dP', {})
 
 -- Nerdtree
 vim.api.nvim_set_keymap("n", "<Leader>t", ":NERDTreeFocus<CR>", {})
@@ -142,9 +142,10 @@ vim.api.nvim_set_keymap(
 vim.api.nvim_set_keymap("n", "<C-j>", "i<CR><Esc>J", { noremap = true })
 
 vim.api.nvim_set_keymap("n", "<Leader>ai", ":TSHighlightCapturesUnderCursor<CR>", { noremap = true, silent = true })
--- LSP
 vim.api.nvim_set_keymap("n", "<C-u>", "<C-u>zzzv", {})
 vim.api.nvim_set_keymap("n", "<C-d>", "<C-d>zzzv", {})
+
+-- LSP
 vim.api.nvim_set_keymap(
 	"n",
 	"<Leader>aa",
