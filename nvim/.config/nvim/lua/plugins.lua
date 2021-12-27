@@ -29,6 +29,7 @@ packer.startup({
 
 		use({
 			"numToStr/Comment.nvim",
+			event = "BufRead",
 			config = function()
 				require("Comment").setup({
 					toggler = {
@@ -255,6 +256,7 @@ packer.startup({
 
 		use({
 			"nacro90/numb.nvim",
+			event = "BufRead",
 			config = [[ require("numb").setup() ]],
 		})
 
@@ -267,16 +269,6 @@ packer.startup({
 			},
 			branch = "gtd_base",
 		})
-
-		-- use({
-		-- 	"catppuccin/nvim",
-		-- 	as = "catppuccin",
-		-- 	config = function()
-		-- 		require("configs.catpuccin")
-		-- 		-- vim.cmd[[colorscheme catppuccin]]
-		-- 	end,
-		-- 	branch = "dev-rc",
-		-- })
 
 		use({
 			"rose-pine/neovim",
@@ -325,6 +317,7 @@ packer.startup({
 
 		use({
 			"folke/todo-comments.nvim",
+			event = "BufRead",
 			requires = "nvim-lua/plenary.nvim",
 			config = [[ require("todo-comments").setup {} ]],
 		})
@@ -380,12 +373,11 @@ packer.startup({
 			"jose-elias-alvarez/null-ls.nvim",
 		})
 
-		use({ "jbyuki/venn.nvim" })
-
-		use({ "Pocco81/TrueZen.nvim" })
+		use({ "Pocco81/TrueZen.nvim", event = "BufRead" })
 
 		use({
 			"chipsenkbeil/distant.nvim",
+			event = "BufRead",
 			config = function()
 				require("distant").setup({
 					-- Applies Chip's personal settings to every machine you connect to
@@ -400,9 +392,12 @@ packer.startup({
 
 		-- use("beeender/Comrade")
 
-		use({ "rcarriga/nvim-notify", config = function()
-            vim.notify = require("notify")
-        end })
+		use({
+			"rcarriga/nvim-notify",
+			config = function()
+				vim.notify = require("notify")
+			end,
+		})
 	end,
 	config = { compile_path = vim.fn.stdpath("config") .. "/lua/packer_compiled.lua" },
 })

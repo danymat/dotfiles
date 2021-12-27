@@ -79,8 +79,8 @@ local servers = {
 	"tailwindcss",
 	"phpactor",
 	"zk",
-    "bashls",
-    "clangd"
+	"bashls",
+	"clangd",
 }
 
 local config = { on_attach = on_attach, capabilities = capabilities }
@@ -143,7 +143,7 @@ for _, server in pairs(servers) do
 	if server == "sumneko_lua" then
 		local sumneko_config = generate_sumneko_config()
 		nvim_lsp[server].setup(sumneko_config)
-        local yamlls_config = generate_yaml_config
+		local yamlls_config = generate_yaml_config
 	else
 		nvim_lsp[server].setup(config)
 	end

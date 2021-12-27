@@ -46,7 +46,7 @@ require("neorg").setup({
 		-- ["core.zettelkasten"] = {},
         ["core.norg.journal"] = {},
 		["core.norg.qol.toc"] = {},
-        ["core.norg.snippet"] = {}
+        -- ["core.norg.snippet"] = {}
 	},
 	-- logger = {
 	-- 	level = "info", -- Show trace, info, warning, error and fatal messages
