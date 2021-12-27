@@ -94,6 +94,9 @@ packer.startup({
 					extensions = {
 						file_browser = {},
 						["ui-select"] = require("telescope.themes").get_cursor(),
+                        project = {
+                            hidden_files = true
+                        }
 					},
 				})
 			end,
