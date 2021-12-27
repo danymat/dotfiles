@@ -15,11 +15,11 @@ yabai -m config layout bsp
 
 
 # Set all padding and gaps to 20pt (default: 0)
-yabai -m config top_padding    5
-yabai -m config bottom_padding 5
-yabai -m config left_padding   5
-yabai -m config right_padding  5
-yabai -m config window_gap     5
+yabai -m config top_padding    15
+yabai -m config bottom_padding 15
+yabai -m config left_padding   15
+yabai -m config right_padding  15
+yabai -m config window_gap     7
 
 # set mouse interaction modifier key (default: fn)
 yabai -m config mouse_modifier fn
