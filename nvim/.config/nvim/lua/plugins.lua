@@ -23,11 +23,6 @@ packer.startup({
 		})
 
 		use({
-			"tpope/vim-surround",
-			event = "BufRead",
-		})
-
-		use({
 			"numToStr/Comment.nvim",
 			event = "BufRead",
 			config = function()
@@ -94,9 +89,9 @@ packer.startup({
 					extensions = {
 						file_browser = {},
 						["ui-select"] = require("telescope.themes").get_cursor(),
-                        project = {
-                            hidden_files = true
-                        }
+						project = {
+							hidden_files = true,
+						},
 					},
 				})
 			end,
@@ -150,7 +145,6 @@ packer.startup({
 				parser_configs.norg = {
 					install_info = {
 						url = "https://github.com/nvim-neorg/tree-sitter-norg",
-						-- url = "~/Developer/tree-sitter-norg/",
 						files = { "src/parser.c", "src/scanner.cc" },
 						branch = "main",
 					},
@@ -297,15 +291,15 @@ packer.startup({
 			requires = { "kyazdani42/nvim-web-devicons", opt = true },
 		})
 
-		use({
-			"andweeb/presence.nvim",
-			event = "BufRead",
-			config = function()
-				require("presence"):setup({
-					main_image = "file",
-				})
-			end,
-		})
+		-- use({
+		-- 	"andweeb/presence.nvim",
+		-- 	event = "BufRead",
+		-- 	config = function()
+		-- 		require("presence"):setup({
+		-- 			main_image = "file",
+		-- 		})
+		-- 	end,
+		-- })
 
 		use({
 			"~/Developer/neogen",
@@ -327,7 +321,7 @@ packer.startup({
 
 		use({
 			"Iron-E/nvim-cmp",
-			event = "InsertEnter",
+			event = { "InsertEnter", "CmdlineEnter" },
 			branch = "feat/completion-menu-borders",
 			config = function()
 				require("configs.cmp")
@@ -401,6 +395,54 @@ packer.startup({
 				vim.notify = require("notify")
 			end,
 		})
+
+		use({
+			"catppuccin/nvim",
+			as = "catppuccin",
+			branch = "experiments",
+			config = function()
+				local catppuccin = require("catppuccin")
+
+				-- configure it
+				catppuccin.setup({
+					transparent_background = false,
+					term_colors = true,
+					styles = {
+						comments = "italic",
+						functions = "italic",
+						keywords = "italic",
+						strings = "NONE",
+						variables = "NONE",
+					},
+					integrations = {
+						treesitter = true,
+						native_lsp = {
+							enabled = true,
+							virtual_text = {
+								errors = "italic",
+								hints = "italic",
+								warnings = "italic",
+								information = "italic",
+							},
+							underlines = {
+								errors = "underline",
+								hints = "underline",
+								warnings = "underline",
+								information = "underline",
+							},
+						},
+						gitsigns = true,
+						telescope = true,
+						indent_blankline = {
+							enabled = true,
+							colored_indent_levels = false,
+						},
+						markdown = true,
+					},
+				})
+			end,
+		})
+
 	end,
 	config = { compile_path = vim.fn.stdpath("config") .. "/lua/packer_compiled.lua" },
 })

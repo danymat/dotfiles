@@ -186,3 +186,5 @@ vim.api.nvim_set_keymap("n", "è", "7", { noremap = true })
 vim.api.nvim_set_keymap("n", "!", "8", { noremap = true })
 vim.api.nvim_set_keymap("n", "ç", "9", { noremap = true })
 vim.api.nvim_set_keymap("n", "à", "0", { noremap = true })
+
+vim.api.nvim_set_keymap("v", "<Leader>y", "\"+y", {})

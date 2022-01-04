@@ -21,7 +21,8 @@ local on_attach = function(_, bufnr)
 		bind = true,
 		hint_prefix = "🧸 ",
 		handler_opts = { border = "rounded" },
-	})
+	}, bufnr)
+
 end
 
 -- Add completion capabilities (completion, snippets)
@@ -72,7 +73,6 @@ end
 local servers = {
 	-- "zettelkastenlsp",
 	"sumneko_lua",
-	"null-ls",
 	"pyright",
 	"vuels",
 	"tsserver",
@@ -127,16 +127,14 @@ local function generate_sumneko_config()
 end
 
 -- Start null-ls if it's in servers table
-if vim.tbl_contains(servers, "null-ls") then
-	require("null-ls").setup({
-		debug = true,
-		sources = {
-			require("null-ls").builtins.formatting.stylua,
-			require("null-ls").builtins.formatting.prettier,
-			require("null-ls").builtins.code_actions.gitsigns,
-		},
-	})
-end
+require("null-ls").setup({
+	debug = true,
+	sources = {
+		require("null-ls").builtins.formatting.stylua,
+		require("null-ls").builtins.formatting.prettier,
+		require("null-ls").builtins.code_actions.gitsigns,
+	},
+})
 
 -- Setup all servers from servers table
 for _, server in pairs(servers) do
