@@ -1,157 +1,103 @@
--- LOL STILL USING ARROWS?
-vim.api.nvim_set_keymap("n", "<Up>", "<Nop>", {})
-vim.api.nvim_set_keymap("n", "<Down>", "<Nop>", {})
-vim.api.nvim_set_keymap("n", "<Left>", "<Nop>", {})
-vim.api.nvim_set_keymap("n", "<Right>", "<Nop>", {})
+local wrap = function(function_pointer, ...)
+	local params = { ... }
 
-vim.api.nvim_set_keymap("i", "<Up>", "<Nop>", {})
-vim.api.nvim_set_keymap("i", "<Down>", "<Nop>", {})
-vim.api.nvim_set_keymap("i", "<Left>", "<Nop>", {})
-vim.api.nvim_set_keymap("i", "<Right>", "<Nop>", {})
+	return function()
+		return function_pointer(unpack(params))
+	end
+end
+
+-- LOL STILL USING ARROWS?
+vim.keymap.set({ "i", "n" }, "<Up>", "<Nop>")
+vim.keymap.set({ "i", "n" }, "<Down>", "<Nop>")
+vim.keymap.set({ "i", "n" }, "<Left>", "<Nop>")
+vim.keymap.set({ "i", "n" }, "<Right>", "<Nop>")
 
 -- Telescope Stuff
-vim.api.nvim_set_keymap(
+vim.keymap.set(
 	"n",
 	"<C-f>",
-	":lua require'telescope.builtin'.find_files({ hidden = true, file_ignore_patterns = { '^.git/' }})<cr>",
-	{}
+	wrap(require("telescope.builtin").find_files, { hidden = true, file_ignore_patterns = { "^.git/" } })
 )
-vim.api.nvim_set_keymap("n", "<Leader>ff", ":Telescope live_grep<CR>", {})
-vim.api.nvim_set_keymap("n", "<Leader>fz", ":Telescope current_buffer_fuzzy_find<CR>", {})
-vim.api.nvim_set_keymap(
-	"n",
-	"<Leader>b",
-	":lua require('telescope.builtin').buffers({ show_all_buffers = true })<CR>",
-	{}
-)
-vim.api.nvim_set_keymap("n", "<Leader>o", ":lua require('telescope.builtin').oldfiles()<CR>", {})
-vim.api.nvim_set_keymap("n", "<Leader>nn", ":lua require 'telescope'.extensions.file_browser.file_browser()<CR>", {})
-vim.api.nvim_set_keymap(
-	"n",
-	"<Leader>p",
-	":lua require'telescope'.extensions.project.project{ display_type = 'full' }<CR>",
-	{}
-)
-vim.api.nvim_set_keymap(
-	"n",
-	"<Leader>§§",
-	":lua require('configs.telescope').open_starting_files()<CR>",
-	{ noremap = true, silent = true }
-)
-vim.api.nvim_set_keymap(
-	"n",
-	"<Leader>zi",
-	":lua require('configs.telescope').search_zettelkasten_in_files()<CR>",
-	{ noremap = true, silent = true }
-)
-vim.api.nvim_set_keymap(
-	"n",
-	"<Leader>zl",
-	":lua require('configs.telescope').find_link()<CR>",
-	{ noremap = true, silent = true }
-)
-vim.api.nvim_set_keymap(
-	"n",
-	"<Leader>zk",
-	":lua require('configs.telescope').search_zettelkasten()<CR>",
-	{ noremap = true, silent = true }
-)
-vim.api.nvim_set_keymap(
-	"n",
-	"<Leader>?",
-	":lua require('telescope.builtin').help_tags()<CR>",
-	{ noremap = true, silent = true }
-)
+vim.keymap.set("n", "<Leader>ff", ":Telescope live_grep<CR>")
+vim.keymap.set("n", "<Leader>fz", ":Telescope current_buffer_fuzzy_find<CR>")
+vim.keymap.set("n", "<Leader>b", wrap(require("telescope.builtin").buffers, { show_all_buffers = true }))
+vim.keymap.set("n", "<Leader>o", wrap(require("telescope.builtin").oldfiles))
+vim.keymap.set("n", "<Leader>nn", wrap(require("telescope").extensions.file_browser.file_browser))
+vim.keymap.set("n", "<Leader>p", wrap(require("telescope").extensions.project.project, { display_type = "full" }))
+vim.keymap.set("n", "<Leader>?", wrap(require("telescope.builtin").help_tags))
 
-vim.api.nvim_set_keymap("n", "<Esc>", ":noh<CR>", { noremap = true, silent = true })
-vim.api.nvim_set_keymap("t", "<Esc><Esc>", "<C-\\><C-n>", {})
+-- Zettelkasten
+vim.keymap.set("n", "<Leader>§§", wrap(require("configs.telescope").open_starting_files))
+vim.keymap.set("n", "<Leader>zi", wrap(require("configs.telescope").search_zettelkasten_in_files))
+vim.keymap.set("n", "<Leader>zl", wrap(require("configs.telescope").find_link))
+vim.keymap.set("n", "<Leader>zk", wrap(require("configs.telescope").search_zettelkasten))
+
+-- Terminal
+vim.keymap.set("n", "<Esc>", ":noh<CR>")
+vim.keymap.set("t", "<Esc><Esc>", "<C-\\><C-n>")
 
 -- Dotfiles
-vim.api.nvim_set_keymap("n", "<Leader>ev", ":lua require('configs.telescope').search_dotfiles()<CR>", {
-	silent = true,
-})
-vim.api.nvim_set_keymap("n", "<Leader>sv", ":source ~/.config/nvim/init.lua<CR>", {})
-vim.api.nvim_set_keymap("n", "<Leader>so", ":source %<CR>", {})
+vim.keymap.set("n", "<Leader>ev", wrap(require("configs.telescope").search_dotfiles))
+vim.keymap.set("n", "<Leader>sv", ":source ~/.config/nvim/init.lua<CR>")
+vim.keymap.set("n", "<Leader>so", ":source %<CR>")
 
 -- Window management
-vim.api.nvim_set_keymap("n", "<Leader>j", ":wincmd j<CR>", { silent = true })
-vim.api.nvim_set_keymap("n", "<Leader>k", ":wincmd k<CR>", { silent = true })
-vim.api.nvim_set_keymap("n", "<Leader>l", ":wincmd l<CR>", { silent = true })
-vim.api.nvim_set_keymap("n", "<Leader>h", ":wincmd h<CR>", { silent = true })
-vim.api.nvim_set_keymap("n", "<Leader>r", "<C-w>r<CR>", { silent = true })
-vim.api.nvim_set_keymap("n", "<Leader>vs", "<C-w>v", { silent = true })
-vim.api.nvim_set_keymap("n", "<Leader>zz", "<cmd>MaximizerToggle<CR>", { silent = true })
+vim.keymap.set("n", "<Leader>j", ":wincmd j<CR>")
+vim.keymap.set("n", "<Leader>k", ":wincmd k<CR>")
+vim.keymap.set("n", "<Leader>l", ":wincmd l<CR>")
+vim.keymap.set("n", "<Leader>h", ":wincmd h<CR>")
+vim.keymap.set("n", "<Leader>r", "<C-w>r<CR>")
+vim.keymap.set("n", "<Leader>vs", "<C-w>v")
+vim.keymap.set("n", "<Leader>zz", "<cmd>MaximizerToggle<CR>")
 
 -- Moving speed
-vim.api.nvim_set_keymap("n", "÷", "<C-u>", {})
-vim.api.nvim_set_keymap("n", "≠", "<C-d>", {})
-vim.api.nvim_set_keymap("v", "÷", "<C-u>", {})
-vim.api.nvim_set_keymap("v", "≠", "<C-d>", {})
-vim.api.nvim_set_keymap("n", "÷", "<C-u>", {})
-vim.api.nvim_set_keymap("n", "≠", "<C-d>", {})
-vim.api.nvim_set_keymap("v", "÷", "<C-u>", {})
-vim.api.nvim_set_keymap("v", "≠", "<C-d>", {})
+vim.keymap.set("n", "÷", "<C-u>")
+vim.keymap.set("n", "≠", "<C-d>")
+vim.keymap.set("v", "÷", "<C-u>")
+vim.keymap.set("v", "≠", "<C-d>")
+vim.keymap.set("n", "÷", "<C-u>")
+vim.keymap.set("n", "≠", "<C-d>")
+vim.keymap.set("v", "÷", "<C-u>")
+vim.keymap.set("v", "≠", "<C-d>")
 
 -- thanks to theprimeagen for this (https://www.youtube.com/watch?v=Q5eDxR7bU2k)
-vim.api.nvim_set_keymap("n", "n", "nzzzv", {})
-vim.api.nvim_set_keymap("n", "N", "Nzzzv", {})
-vim.api.nvim_set_keymap("n", "J", "mzJ`z", { noremap = true })
-vim.api.nvim_set_keymap("i", ",", ",<c-g>u", {})
-vim.api.nvim_set_keymap("i", "!", "!<c-g>u", {})
-vim.api.nvim_set_keymap("i", ".", ".<c-g>u", {})
-vim.api.nvim_set_keymap("i", "?", "?<c-g>u", {})
-vim.api.nvim_set_keymap("v", "<Leader>p", '"_dP', {})
+vim.keymap.set("n", "n", "nzzzv")
+vim.keymap.set("n", "N", "Nzzzv")
+vim.keymap.set("n", "J", "mzJ`z")
+vim.keymap.set("i", ",", ",<c-g>u")
+vim.keymap.set("i", "!", "!<c-g>u")
+vim.keymap.set("i", ".", ".<c-g>u")
+vim.keymap.set("i", "?", "?<c-g>u")
+vim.keymap.set("n", "<C-u>", "<C-u>zzzv")
+vim.keymap.set("n", "<C-d>", "<C-d>zzzv")
+vim.keymap.set("v", "<Leader>p", '"_dP')
+vim.keymap.set("n", "<C-j>", "i<CR><Esc>J") -- Inverse of join-line
 
 -- Nerdtree
-vim.api.nvim_set_keymap("n", "<Leader>t", ":NERDTreeFocus<CR>", {})
+vim.keymap.set("n", "<Leader>t", ":NERDTreeFocus<CR>")
 
 -- Neogen
-vim.api.nvim_set_keymap("n", "<Leader>nf", ":lua require('neogen').generate()<CR>", { silent = true })
-vim.api.nvim_set_keymap("n", "<Leader>nc", ":lua require('neogen').generate({ type = 'class' })<CR>", {
-	silent = true,
-})
-vim.api.nvim_set_keymap("n", "<Leader>nt", ":lua require('neogen').generate({ type = 'type' })<CR>", { silent = true })
-vim.api.nvim_set_keymap(
-	"n",
-	"<Leader>ez",
-	":lua R('neogen', { setup = require('configs.neogen') })<CR>",
-	{ silent = true }
-)
+vim.keymap.set("n", "<Leader>nf", wrap(require("neogen").generate))
+vim.keymap.set("n", "<Leader>nc", wrap(require("neogen").generate, { type = "class" }))
+vim.keymap.set("n", "<Leader>nt", wrap(require("neogen").generate, { type = "type" }))
+vim.keymap.set("n", "<Leader>ez", wrap(R, "neogen", { setup = require("configs.neogen") }))
 
 -- Keybinds for toggleterm.lua
-vim.api.nvim_set_keymap(
-	"n",
-	"<Leader>sf",
-	":lua require('toggleterm.terminal').Terminal:new { direction = 'float', count = 1 }:toggle()<CR>",
-	{ noremap = true, silent = true }
-)
-vim.api.nvim_set_keymap(
-	"n",
-	"<Leader>sr",
-	":lua require('toggleterm.terminal').Terminal:new { direction = 'vertical', count = 2 }:toggle()<CR>",
-	{ noremap = true, silent = true }
-)
-vim.api.nvim_set_keymap(
-	"n",
-	"<Leader>gs",
-	":lua require('toggleterm.terminal').Terminal:new { cmd = 'lazygit', hidden = true }:toggle()<CR>",
-	{ noremap = true, silent = false }
-)
+vim.keymap.set("n", "<Leader>sf", function()
+	require("toggleterm.terminal").Terminal:new({ direction = "float", count = 1 }):toggle()
+end)
+vim.keymap.set("n", "<Leader>sr", function()
+	require("toggleterm.terminal").Terminal:new({ direction = "vertical", count = 2 }):toggle()
+end)
 
--- Inverse of join-line
-vim.api.nvim_set_keymap("n", "<C-j>", "i<CR><Esc>J", { noremap = true })
-
-vim.api.nvim_set_keymap("n", "<Leader>ai", ":TSHighlightCapturesUnderCursor<CR>", { noremap = true, silent = true })
-vim.api.nvim_set_keymap("n", "<C-u>", "<C-u>zzzv", {})
-vim.api.nvim_set_keymap("n", "<C-d>", "<C-d>zzzv", {})
+vim.keymap.set("n", "<Leader>gs", function()
+	require("toggleterm.terminal").Terminal:new({ cmd = "lazygit", hidden = true }):toggle()
+end)
 
 -- LSP
-vim.api.nvim_set_keymap(
-	"n",
-	"<Leader>aa",
-	":lua require'telescope.builtin'.lsp_code_actions(require('telescope.themes').get_cursor({}))<cr>",
-	{ noremap = true, silent = true }
-)
+vim.keymap.set("n", "<Leader>aa", function()
+	require("telescope.builtin").lsp_code_actions(require("telescope.themes").get_cursor({}))
+end)
 
 -- Zettelkasten
 vim.cmd([[
@@ -159,32 +105,33 @@ vim.cmd([[
 command! -nargs=1 NewZettel :execute ":e" zettelkasten . strftime("%Y%m%d%H%M") . " <args>.md"
 ]])
 
-vim.api.nvim_set_keymap("n", "<Leader>zn", ":NewZettel ", { noremap = true, silent = false })
-vim.api.nvim_set_keymap("n", "<Leader>@", ":lua require('configs.telescope').paste_file_name()<CR>", {})
-vim.api.nvim_set_keymap("n", "<Leader>z&", ":lua require('lspconfig').zk.index()<CR>", { noremap = true })
+vim.keymap.set("n", "<Leader>zn", ":NewZettel ")
+vim.keymap.set("n", "<Leader>@", wrap(require("configs.telescope").paste_file_name))
+vim.keymap.set("n", "<Leader>z&", wrap(require("lspconfig").zk.index))
 
 -- This is the greatest thing ever for azerty keyboards
 -- https://superuser.com/questions/1044018/how-to-swap-the-numbers-row-on-azerty-keyboards-in-vim-only-while-being-in-norma
-vim.api.nvim_set_keymap("n", "1", "&", { noremap = true })
-vim.api.nvim_set_keymap("n", "2", "é", { noremap = true })
-vim.api.nvim_set_keymap("n", "3", '"', { noremap = true })
-vim.api.nvim_set_keymap("n", "4", "'", { noremap = true })
-vim.api.nvim_set_keymap("n", "5", "(", { noremap = true })
-vim.api.nvim_set_keymap("n", "6", "§", { noremap = true })
-vim.api.nvim_set_keymap("n", "7", "è", { noremap = true })
-vim.api.nvim_set_keymap("n", "8", "!", { noremap = true })
-vim.api.nvim_set_keymap("n", "9", "ç", { noremap = true })
-vim.api.nvim_set_keymap("n", "0", "à", { noremap = true })
+vim.keymap.set("n", "1", "&")
+vim.keymap.set("n", "2", "é")
+vim.keymap.set("n", "3", '"')
+vim.keymap.set("n", "4", "'")
+vim.keymap.set("n", "5", "(")
+vim.keymap.set("n", "6", "§")
+vim.keymap.set("n", "7", "è")
+vim.keymap.set("n", "8", "!")
+vim.keymap.set("n", "9", "ç")
+vim.keymap.set("n", "0", "à")
 
-vim.api.nvim_set_keymap("n", "&", "1", { noremap = true })
-vim.api.nvim_set_keymap("n", "é", "2", { noremap = true })
-vim.api.nvim_set_keymap("n", '"', "3", { noremap = true })
-vim.api.nvim_set_keymap("n", "'", "4", { noremap = true })
-vim.api.nvim_set_keymap("n", "(", "5", { noremap = true })
-vim.api.nvim_set_keymap("n", "§", "6", { noremap = true })
-vim.api.nvim_set_keymap("n", "è", "7", { noremap = true })
-vim.api.nvim_set_keymap("n", "!", "8", { noremap = true })
-vim.api.nvim_set_keymap("n", "ç", "9", { noremap = true })
-vim.api.nvim_set_keymap("n", "à", "0", { noremap = true })
+vim.keymap.set("n", "&", "1")
+vim.keymap.set("n", "é", "2")
+vim.keymap.set("n", '"', "3")
+vim.keymap.set("n", "'", "4")
+vim.keymap.set("n", "(", "5")
+vim.keymap.set("n", "§", "6")
+vim.keymap.set("n", "è", "7")
+vim.keymap.set("n", "!", "8")
+vim.keymap.set("n", "ç", "9")
+vim.keymap.set("n", "à", "0")
 
-vim.api.nvim_set_keymap("v", "<Leader>y", "\"+y", {})
+-- Quick copy to clipboard
+vim.keymap.set("v", "<Leader>y", '"+y')
