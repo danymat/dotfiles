@@ -7,6 +7,7 @@ if fn.empty(fn.glob(install_path)) > 0 then
 	print("Installed packer!")
 end
 
+
 local packer = require("packer")
 
 packer.startup({
@@ -263,8 +264,8 @@ packer.startup({
 			requires = {
 				"nvim-lua/plenary.nvim",
 				"nvim-neorg/neorg-telescope",
+				"~/Developer/neorg-gtd-things",
 			},
-			branch = "gtd_base",
 		})
 
 		use({
@@ -370,6 +371,14 @@ packer.startup({
 			"jose-elias-alvarez/null-ls.nvim",
 		})
 
+		use({
+			"themaxmarchuk/tailwindcss-colors.nvim",
+			config = function()
+				-- pass config options here (or nothing to use defaults)
+				require("tailwindcss-colors").setup()
+			end,
+		})
+
 		use({ "Pocco81/TrueZen.nvim", event = "BufRead" })
 
 		use({
@@ -440,6 +449,13 @@ packer.startup({
 						markdown = true,
 					},
 				})
+			end,
+		})
+
+		use({
+			"blackCauldron7/surround.nvim",
+			config = function()
+				require("surround").setup({ mappings_style = "surround" })
 			end,
 		})
 

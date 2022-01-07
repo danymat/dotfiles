@@ -20,9 +20,15 @@ local neogen = require("neogen")
 
 cmp.setup({
 	completion = { border = { "╭", "─", "╮", "│", "╯", "─", "╰", "│" }, scrollbar = "║" },
-	documentation = {
-		border = { "╭", "─", "╮", "│", "╯", "─", "╰", "│" },
-		scrollbar = "║",
+	window = {
+		documentation = {
+			border = "rounded",
+			scrollbar = "║",
+		},
+		completion = {
+			border = "rounded",
+			scrollbar = "║",
+		},
 	},
 	formatting = {
 		fields = {

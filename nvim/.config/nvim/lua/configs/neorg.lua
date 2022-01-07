@@ -10,9 +10,6 @@ require("neorg").setup({
 		["core.norg.concealer"] = {
 			config = {
 				icon_preset = "diamond",
-                markup = {
-                    enabled = false
-                }
 			},
 		}, -- Allows for use of icons
 		["core.norg.dirman"] = { -- Manage your directories with Neorg
@@ -22,7 +19,7 @@ require("neorg").setup({
 					work = "~/Documents/000 Meta/00.04 work/",
 					insa = "~/Documents/101 Personnel/40-49 Insa/46 5A/101.46.00 Notes",
 					hack = "~/Documents/000 Meta/00.05 hack",
-                    neorg = "~/Developer/dev-notes"
+					neorg = "~/Developer/dev-notes",
 				},
 			},
 		},
@@ -31,8 +28,14 @@ require("neorg").setup({
 			config = {
 				workspace = "gtd",
 				-- workspace = "test",
-				exclude = { "gtd.norg", "neogen.norg", "kenaos.norg", "neorg.norg", "Praline&Pandas.norg"},
+				exclude = { "gtd.norg", "neogen.norg", "kenaos.norg", "neorg.norg", "Praline&Pandas.norg" },
 				-- custom_tag_completion = true,
+			},
+		},
+		["external.integrations.gtd-things"] = {
+			config = {
+				things_db_path = "/Users/danielmathiot/Library/Group Containers/JLMPQHK86H.com.culturedcode.ThingsMac.beta/Things Database.thingsdatabase/main.sqlite",
+				waiting_for_tag = "En attente",
 			},
 		},
 		["core.presenter"] = {
@@ -48,9 +51,8 @@ require("neorg").setup({
 			},
 		},
 		-- ["core.zettelkasten"] = {},
-        ["core.norg.journal"] = {},
+		["core.norg.journal"] = {},
 		["core.norg.qol.toc"] = {},
-        ["core.norg.snippet"] = {}
 	},
 	-- logger = {
 	-- 	level = "info", -- Show trace, info, warning, error and fatal messages

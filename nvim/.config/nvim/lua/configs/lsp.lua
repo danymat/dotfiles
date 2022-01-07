@@ -23,6 +23,7 @@ local on_attach = function(_, bufnr)
 		handler_opts = { border = "rounded" },
 	}, bufnr)
 
+    require("tailwindcss-colors").buf_attach(bufnr)
 end
 
 -- Add completion capabilities (completion, snippets)
@@ -141,7 +142,6 @@ for _, server in pairs(servers) do
 	if server == "sumneko_lua" then
 		local sumneko_config = generate_sumneko_config()
 		nvim_lsp[server].setup(sumneko_config)
-		local yamlls_config = generate_yaml_config
 	else
 		nvim_lsp[server].setup(config)
 	end
