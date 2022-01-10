@@ -141,6 +141,7 @@ packer.startup({
 			"ray-x/lsp_signature.nvim",
 			"jose-elias-alvarez/null-ls.nvim",
 		})
+
 		use({
 			"themaxmarchuk/tailwindcss-colors.nvim",
 			config = function()

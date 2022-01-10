@@ -33,7 +33,7 @@ vim.keymap.set("n", "<Leader>zl", wrap(require("configs.telescope").find_link))
 vim.keymap.set("n", "<Leader>zk", wrap(require("configs.telescope").search_zettelkasten))
 
 -- Terminal
-vim.keymap.set("n", "<Esc>", ":noh<CR>")
+-- vim.keymap.set("n", "<Esc>", ":noh<CR>", { silent = true })
 vim.keymap.set("t", "<Esc><Esc>", "<C-\\><C-n>")
 
 -- Dotfiles
@@ -80,6 +80,7 @@ vim.keymap.set("n", "<Leader>t", ":NERDTreeFocus<CR>")
 vim.keymap.set("n", "<Leader>nf", wrap(require("neogen").generate))
 vim.keymap.set("n", "<Leader>nc", wrap(require("neogen").generate, { type = "class" }))
 vim.keymap.set("n", "<Leader>nt", wrap(require("neogen").generate, { type = "type" }))
+vim.keymap.set("n", "<Leader>nn", wrap(require("neogen").generate, { type = "file" }))
 vim.keymap.set("n", "<Leader>ez", wrap(R, "neogen", { setup = require("configs.neogen") }))
 
 -- Keybinds for toggleterm.lua
