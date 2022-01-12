@@ -8,6 +8,7 @@ fi
 export PATH="/usr/local/sbin:$PATH"
 export PATH="/usr/local/bin:$PATH"
 export PATH="/opt/yabai/bin/:$PATH"
+export PATH=$PATH:$(go env GOPATH)/bin
 
 # ZPLUG
 export ZPLUG_HOME=/opt/homebrew/opt/zplug
