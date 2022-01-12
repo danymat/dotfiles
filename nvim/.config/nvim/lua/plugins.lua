@@ -70,7 +70,7 @@ packer.startup({
 						-- see :h nvim_win_open for details on borders however
 						-- the 'curved' border is a custom border type
 						-- not natively supported but implemented in this plugin.
-						border = "double",
+						border = "rounded",
 						winblend = 3,
 						highlights = {
 							border = "Normal",
@@ -186,6 +186,27 @@ packer.startup({
 					after = "telescope.nvim",
 					config = function()
 						require("telescope").load_extension("ui-select")
+					end,
+				},
+				{
+					"dhruvmanila/telescope-bookmarks.nvim",
+					after = "telescope.nvim",
+					config = function()
+						require("telescope").setup({
+							extensions = {
+								bookmarks = {
+									selected_browser = "safari",
+
+									-- Or provide the plugin name which is already installed
+									-- Available: 'vim_external', 'open_browser'
+									url_open_plugin = nil,
+
+									-- Show the full path to the bookmark instead of just the bookmark name
+									full_path = true,
+								},
+							},
+						})
+						require("telescope").load_extension("bookmarks")
 					end,
 				},
 			},
