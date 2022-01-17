@@ -105,18 +105,15 @@ packer.startup({
 			end,
 			requires = "nvim-treesitter/nvim-treesitter",
 		})
-		use({
-			"blackCauldron7/surround.nvim",
-			config = function()
-				require("surround").setup({ mappings_style = "surround" })
-			end,
-		})
+		use("tpope/vim-surround")
+		use("tpope/vim-repeat")
 
 		-- Completion
 		use({
-			"Iron-E/nvim-cmp",
+			-- "Iron-E/nvim-cmp",
+			"hrsh7th/nvim-cmp",
 			event = { "InsertEnter", "CmdlineEnter" },
-			branch = "feat/completion-menu-borders",
+			-- branch = "feat/completion-menu-borders",
 			config = function()
 				require("configs.cmp")
 			end,
@@ -278,9 +275,25 @@ packer.startup({
 			end,
 		})
 
+		use({ "davidgranstrom/nvim-markdown-preview", ft = "markdown" })
+
+		use({
+			"abecodes/tabout.nvim",
+			config = function()
+				require("tabout").setup({
+					tabkey = "<C-l>", -- key to trigger tabout, set to an empty string to disable
+					backwards_tabkey = "<C-h>", -- key to trigger backwards tabout, set to an empty string to disable
+					act_as_tab = false,
+				})
+			end,
+			wants = { "nvim-treesitter" }, -- or require if not used so far
+			after = { "nvim-cmp" }, -- if a completion plugin is using tabs load it before
+		})
+
 		if packer_bootstrap then
 			require("packer").sync()
 		end
 	end,
+
 	config = { compile_path = vim.fn.stdpath("config") .. "/lua/packer_compiled.lua" },
 })
