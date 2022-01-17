@@ -33,7 +33,7 @@ vim.keymap.set("n", "<Leader>zl", wrap(require("configs.telescope").find_link))
 vim.keymap.set("n", "<Leader>zk", wrap(require("configs.telescope").search_zettelkasten))
 
 -- Terminal
--- vim.keymap.set("n", "<Esc>", ":noh<CR>", { silent = true })
+vim.keymap.set("n", "<Esc>", ":noh<CR>", { silent = true })
 vim.keymap.set("t", "<Esc><Esc>", "<C-\\><C-n>")
 
 -- Dotfiles
