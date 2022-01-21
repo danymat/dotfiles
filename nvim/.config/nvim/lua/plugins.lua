@@ -38,7 +38,7 @@ packer.startup({
 			config = [[ require("numb").setup() ]],
 		})
 		use({
-			"rose-pine/neovim",
+			"~/Developer/neovim",
 			as = "rose-pine",
 			config = [[ require('configs.rose-pine') ]],
 		})
@@ -281,13 +281,44 @@ packer.startup({
 			"abecodes/tabout.nvim",
 			config = function()
 				require("tabout").setup({
-					tabkey = "<C-l>", -- key to trigger tabout, set to an empty string to disable
-					backwards_tabkey = "<C-h>", -- key to trigger backwards tabout, set to an empty string to disable
+					tabkey = "",
+					backwards_tabkey = "",
 					act_as_tab = false,
 				})
 			end,
 			wants = { "nvim-treesitter" }, -- or require if not used so far
 			after = { "nvim-cmp" }, -- if a completion plugin is using tabs load it before
+		})
+
+		use({
+			"akinsho/bufferline.nvim",
+			config = function()
+				local p = require("rose-pine.palette")
+				require("bufferline").setup({
+					options = {
+						diagnostics = "nvim_lsp",
+						numbers = function(opts)
+							return string.format("%s.", opts.ordinal)
+						end,
+						show_buffer_close_icons = false,
+						show_close_icon = false,
+						offsets = {
+							{
+								filetype = "nerdtree",
+								text = function()
+									return vim.fn.getcwd()
+								end,
+								highlight = "Directory",
+								text_align = "left",
+							},
+						},
+					},
+					highlights = {
+						fill = { guibg = p.base },
+						background = { guibg = p.base, guifg = p.inactive},
+					},
+				})
+			end,
 		})
 
 		if packer_bootstrap then

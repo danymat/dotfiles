@@ -20,9 +20,7 @@ vim.keymap.set(
 )
 vim.keymap.set("n", "<Leader>ff", ":Telescope live_grep<CR>")
 vim.keymap.set("n", "<Leader>fz", ":Telescope current_buffer_fuzzy_find<CR>")
-vim.keymap.set("n", "<Leader>b", wrap(require("telescope.builtin").buffers, { show_all_buffers = true }))
 vim.keymap.set("n", "<Leader>o", wrap(require("telescope.builtin").oldfiles))
-vim.keymap.set("n", "<Leader>nn", wrap(require("telescope").extensions.file_browser.file_browser))
 vim.keymap.set("n", "<Leader>p", wrap(require("telescope").extensions.project.project, { display_type = "full" }))
 vim.keymap.set("n", "<Leader>?", wrap(require("telescope.builtin").help_tags))
 
@@ -135,3 +133,23 @@ vim.keymap.set("n", "à", "0")
 
 -- Quick copy to clipboard
 vim.keymap.set("v", "<Leader>y", '"+y')
+vim.keymap.set("n", "<Leader>y", '"+y')
+
+-- BufferLine
+vim.keymap.set("n", "<Leader>bn", ":BufferLineCycleNext<CR>")
+vim.keymap.set("n", "<Leader>bb", ":BufferLineCyclePrev<CR>")
+vim.keymap.set("n", "<Leader>bd", ":bd<CR>")
+vim.keymap.set("n", "<Leader>b&", ":BufferLineGoToBuffer 1<CR>")
+vim.keymap.set("n", "<Leader>bé", ":BufferLineGoToBuffer 2<CR>")
+vim.keymap.set("n", '<Leader>b"', ":BufferLineGoToBuffer 3<CR>")
+vim.keymap.set("n", "<Leader>b'", ":BufferLineGoToBuffer 4<CR>")
+vim.keymap.set("n", "<Leader>b(", ":BufferLineGoToBuffer 5<CR>")
+vim.keymap.set("n", "<Leader>b§", ":BufferLineGoToBuffer 6<CR>")
+vim.keymap.set("n", "<Leader>bè", ":BufferLineGoToBuffer 7<CR>")
+vim.keymap.set("n", "<Leader>b!", ":BufferLineGoToBuffer 8<CR>")
+vim.keymap.set("n", "<Leader>bç", ":BufferLineGoToBuffer 9<CR>")
+--[[ vim.keymap.set("n", "<Leader>bé", ":blast<CR>") ]]
+
+-- A multiline tabout setup could look like this
+vim.keymap.set('i', '<C-l>', "<Plug>(TaboutMulti)", {silent = true})
+vim.keymap.set('i', '<C-h>', "<Plug>(TaboutBackMulti)", {silent = true})
