@@ -142,3 +142,6 @@ require("cmp").setup.cmdline(":", {
 		{ name = "cmdline", keyword_length = 2 },
 	},
 })
+
+require("cmp_git").setup()
+
