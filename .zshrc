@@ -49,7 +49,7 @@ alias j=z
 #  ╚══════════════════════════════════════════════════════════╝
 
 # Set path to default notebook directory for ZK
-export ZK_NOTEBOOK_DIR="$HOME/Documents/000 Meta/00.01 Brain"
+export ZK_NOTEBOOK_DIR="$HOME/Developer/Brain"
 
 #  ╔══════════════════════════════════════════════════════════╗
 #  ║                           Nvim                           ║
@@ -66,7 +66,7 @@ export MANPAGER='nvim +Man!'
 #  ╚══════════════════════════════════════════════════════════╝
 
 # Set Path to your Z.lua installation
-Z_LUA_PATH="/opt/z.lua"
+Z_LUA_PATH="$HOME/src/z.lua"
 
 # Uncomment below to use z.lua
 eval "$(lua $Z_LUA_PATH/z.lua --init zsh)"
