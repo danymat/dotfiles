@@ -18,8 +18,8 @@ ZSH_THEME="robbyrussell"
 plugins=(
     git
     zsh-interactive-cd
-    zsh-autosuggestions
-    zsh-history-substring-search
+    # zsh-autosuggestions
+    # zsh-history-substring-search
 )
 
 fpath+=${ZSH_CUSTOM:-${ZSH:-~/.oh-my-zsh}/custom}/plugins/zsh-completions/src
@@ -66,7 +66,15 @@ export MANPAGER='nvim +Man!'
 #  ╚══════════════════════════════════════════════════════════╝
 
 # Set Path to your Z.lua installation
-Z_LUA_PATH="$HOME/src/z.lua"
+Z_LUA_PATH="$HOME/Developer/z.lua"
 
 # Uncomment below to use z.lua
 eval "$(lua $Z_LUA_PATH/z.lua --init zsh)"
+
+source /opt/homebrew/share/zsh-autosuggestions/zsh-autosuggestions.zsh
+source /opt/homebrew/share/zsh-history-substring-search/zsh-history-substring-search.zsh
+
+export CC=gcc-12
+
+gpg-connect-agent /bye
+export GPG_TTY=$(tty)
