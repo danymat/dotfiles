@@ -13,7 +13,6 @@ yabai -m signal --add event=dock_did_restart action="sudo yabai --load-sa"
 # bsp or float (default: bsp)
 yabai -m config layout bsp
 
-
 # Set all padding and gaps to 20pt (default: 0)
 yabai -m config top_padding    15
 yabai -m config bottom_padding 15
@@ -39,7 +38,7 @@ yabai -m config window_topmost on
 # window opacity (default: off)
 # example: render all unfocused windows with 90% opacity
 yabai -m config window_opacity off
-yabai -m config active_window_opacity 1
+yabai -m config active_window_opacity 0.95
 yabai -m config normal_window_opacity 0.95
 
 # Desktop labels
@@ -54,25 +53,35 @@ yabai -m space 1_code --display 2
 yabai -m space 4_misc --display 1
 yabai -m space 3_work --display 2
 
-# Window rules 
-yabai -m rule --add app="^iTerm" manage=on space=1_code
+# Window rules: manage off
+yabai -m rule --add app=Finder manage=off
 yabai -m rule --add app="^Préférences Système$" manage=off
-yabai -m rule --add app="^League" manage=off
-yabai -m rule --add app="^Spotify$" manage=off
-yabai -m rule --add app="^Finder$" manage=off
-yabai -m rule --add app="^Mail" manage=on space=4_misc
-yabai -m rule --add app=Safari space=2_web
-yabai -m rule --add app=Firefox space=4_misc
-yabai -m rule --add app="Burp" space=4_misc
-yabai -m rule --add app="^Slack" space=4_misc
-yabai -m rule --add app="Obsidian" space=3_work
-yabai -m rule --add app="VMware Fusion" space=1_code manage=off
-yabai -m rule --add app="Discord" space=4_misc manage=on
-yabai -m rule --add app="Android" space=1_code manage=off
-yabai -m rule --add app="qemu" space=1_code manage=off
 yabai -m rule --add app="Stats" manage=off
 yabai -m rule --add app="Steam" manage=off
 
+# Window rules: in display 1 and dont manage
+yabai -m rule --add app="VMware Fusion" space=1_code manage=off
+yabai -m rule --add app="Android" space=1_code manage=off
+yabai -m rule --add app="qemu" space=1_code manage=off
+
+# Window rules: in display 1
+yabai -m rule --add app="^iTerm" manage=on space=1_code
+
+# Window rules: in display 2
+yabai -m rule --add app=Safari space=2_web
+
+# Window rules: in display 3
+yabai -m rule --add app="Obsidian" space=3_work
+
+# Window rules: in display 4
+yabai -m rule --add app=Discord space=4_misc manage=on
+yabai -m rule --add app=Spotify manage=on space=4_misc
+yabai -m rule --add app=Mail manage=on space=4_misc
+yabai -m rule --add app=Firefox space=4_misc
+yabai -m rule --add app=Burp space=4_misc
+yabai -m rule --add app=Slack space=4_misc
+
+# Window rule: general rules
 yabai -m config window_border off
 yabai -m config mouse_follows_focus on
 yabai -m config normal_window_border_color 0x00FFFFFF

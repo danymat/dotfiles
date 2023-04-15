@@ -49,7 +49,7 @@ alias j=z
 #  ╚══════════════════════════════════════════════════════════╝
 
 # Set path to default notebook directory for ZK
-export ZK_NOTEBOOK_DIR="$HOME/Developer/Brain"
+export ZK_NOTEBOOK_DIR="$HOME/Brain"
 
 #  ╔══════════════════════════════════════════════════════════╗
 #  ║                           Nvim                           ║
@@ -70,11 +70,17 @@ Z_LUA_PATH="$HOME/Developer/z.lua"
 
 # Uncomment below to use z.lua
 eval "$(lua $Z_LUA_PATH/z.lua --init zsh)"
+#
+#  ╔══════════════════════════════════════════════════════════╗
+#  ║                          Misc                            ║
+#  ╚══════════════════════════════════════════════════════════╝
 
 source /opt/homebrew/share/zsh-autosuggestions/zsh-autosuggestions.zsh
 source /opt/homebrew/share/zsh-history-substring-search/zsh-history-substring-search.zsh
 
 export CC=gcc-12
-
 gpg-connect-agent /bye
 export GPG_TTY=$(tty)
+
+export VM="$HOME/Virtual Machines.localized/kali.vmwarevm/kali.vmx"
+export PATH="$HOME/go/bin:$PATH"
