@@ -1,0 +1,13 @@
+---
+name: Update blog
+command: scp -i ~/.ssh/blog_key {{files}} prose.sh:/
+description: Updates blog with scp
+tags:
+- prose
+- blog
+arguments:
+  - name: files
+    description: Files to add to the blog
+    default_value: "~/blog/*"
+    author: danymat
+author_url: "https://danymat.dev"
