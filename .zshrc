@@ -84,3 +84,4 @@ export GPG_TTY=$(tty)
 
 export VM="$HOME/Virtual Machines.localized/kali.vmwarevm/kali.vmx"
 export PATH="$HOME/go/bin:$PATH"
+source $HOME/.gpt_key
