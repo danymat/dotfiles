@@ -5,7 +5,7 @@ hyper - a : yabai -m window --focus next || yabai -m window --focus first
 hyper - tab : yabai -m display --focus next || yabai -m display --focus prev
 
 # Restart yabai
-hyper - y : launchctl kickstart -k "gui/${UID}/homebrew.mxcl.yabai" && skhd --reload
+hyper - y : yabai --restart-service && skhd --reload
 
 # Toggle between stack and bsp mode
 hyper - z : yabai -m space --layout $(yabai -m query --spaces --space | jq -r 'if .type == "bsp" then "stack" else "bsp" end')
