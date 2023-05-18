@@ -1,0 +1,13 @@
+---
+name: HTB nmap
+command: nmap -sC -sV {{ip}} -vvv
+description: Runs nmap default script and versions
+tags:
+- nmap
+- htb
+- hack
+arguments:
+  - name: ip
+    description: ip to test
+author: danymat
+author_url: "https://danymat.dev"
