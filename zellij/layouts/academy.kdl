@@ -10,7 +10,9 @@ layout {
         }
     }
     tab name="Academy VPN" {
-        pane command="openvpn ../academy-regular.ovpn"
+        pane command="openvpn" { 
+            args=../academy-regular.ovpn"
+        }
     }
     tab focus=true {
         pane command="ls"
