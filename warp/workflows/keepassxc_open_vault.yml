@@ -1,0 +1,11 @@
+---
+name: Open Keepass vault
+command: keepassxc-cli open {{vault}}
+tags:
+- keepassxc
+arguments:
+  - name: vault
+    description: Path to the .kdbx vault
+    default_value: "~/Documents/vault.kdbx"
+    author: danymat
+author_url: "https://danymat.dev"
