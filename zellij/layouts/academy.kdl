@@ -1,0 +1,8 @@
+layout {
+    tab name="Academy VPN" {
+        pane command="openvpn ../academy-regular.ovpn"
+    }
+    tab focus=true {
+        pane command="ls"
+    }
+}
