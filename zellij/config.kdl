@@ -198,14 +198,14 @@ plugins {
 // Choose the path to the default shell that zellij will use for opening new panes
 // Default: $SHELL
 //
-// default_shell "fish"
+//default_shell "nu"
 
 // Toggle between having pane frames around the panes
 // Options:
 //   - true (default)
 //   - false
 //
-// pane_frames true
+pane_frames false
 
 // Toggle between having Zellij lay out panes according to a predefined set of layouts whenever possible
 // Options:
@@ -229,7 +229,7 @@ themes {
         magenta "#c4a7e7"
         orange "#fe640b"
         cyan "#ea9a97"
-        black "#393552"
+        black "#232136" // to be used for the status bar
         white "#e0def4"
     }
 }
