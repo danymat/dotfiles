@@ -85,3 +85,7 @@ export GPG_TTY=$(tty)
 export VM="$HOME/Virtual Machines.localized/kali.vmwarevm/kali.vmx"
 export PATH="$HOME/go/bin:$PATH"
 source $HOME/.gpt_key
+
+hh() {
+  print -z $( ([ -n "$ZSH_NAME" ] && fc -l 1 || history) | fzf +s --tac --query="$1" | sed -E 's/ *[0-9]*\*? *//' | sed -E 's/\\/\\\\/g')
+}
