@@ -1,4 +1,6 @@
 # If you come from bash you might have to change your $PATH.
+export PATH="/opt/homebrew/bin:$PATH"
+export PATH="/opt/homebrew/sbin:$PATH"
 # export PATH=$HOME/bin:/usr/local/bin:$PATH
 
 # Path to your oh-my-zsh installation.
@@ -36,7 +38,7 @@ bindkey '^v' edit-command-line
 #  ║                      Custom Aliases                      ║
 #  ╚══════════════════════════════════════════════════════════╝
 
-alias ls=exa
+alias ls=eza
 alias l="ls -alh"
 alias ll="ls -lh"
 alias v=nvim
@@ -79,9 +81,6 @@ source /opt/homebrew/share/zsh-autosuggestions/zsh-autosuggestions.zsh
 source /opt/homebrew/share/zsh-history-substring-search/zsh-history-substring-search.zsh
 
 export CC=gcc-12
-gpg-connect-agent /bye
-export GPG_TTY=$(tty)
-
 export VM="$HOME/Virtual Machines.localized/kali.vmwarevm/kali.vmx"
 export PATH="$HOME/go/bin:$PATH"
 source $HOME/.gpt_key
@@ -89,3 +88,12 @@ source $HOME/.gpt_key
 hh() {
   print -z $( ([ -n "$ZSH_NAME" ] && fc -l 1 || history) | fzf +s --tac --query="$1" | sed -E 's/ *[0-9]*\*? *//' | sed -E 's/\\/\\\\/g')
 }
+export PATH="/opt/homebrew/opt/node@18/bin:$PATH"
+export PATH="$HOME/.deno/bin:$PATH"
+
+source ~/.openai_key
+
+# Created by `pipx` on 2023-08-28 15:25:38
+export PATH="$PATH:$HOME/.local/bin"
+
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
