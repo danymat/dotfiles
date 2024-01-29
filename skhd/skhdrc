@@ -5,7 +5,7 @@ hyper - a : yabai -m window --focus next || yabai -m window --focus first
 hyper - tab : yabai -m display --focus next || yabai -m display --focus prev
 
 # Restart yabai
-# hyper - y : yabai --restart-service
+hyper - y : yabai --restart-service
 
 # Toggle between stack and bsp mode
 hyper - z : yabai -m space --layout $(yabai -m query --spaces --space | jq -r 'if .type == "bsp" then "stack" else "bsp" end')
@@ -35,6 +35,8 @@ cmd + alt + ctrl - 0x15 : yabai -m window --space 4_misc && yabai -m space --foc
 
 # Toggle native-fullscreen
 hyper + fn - f : yabai -m window --toggle native-fullscreen
+#hyper + fn - z: yabai -m window --toggle zoom-parent
+
 
 # Focus the first fullscreen window
 hyper - f: SPACE=$(yabai -m query --spaces | jq -er 'map(select(."is-native-fullscreen" == true))[0].index') && yabai -m space --focus $SPACE
