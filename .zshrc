@@ -1,8 +1,8 @@
 # If you come from bash you might have to change your $PATH.
+export PATH="/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/bin"
 export PATH="/opt/homebrew/bin:$PATH"
 export PATH="/opt/homebrew/sbin:$PATH"
-# export PATH=$HOME/bin:/usr/local/bin:$PATH
-
+export PATH="/Applications/VMware Fusion.app/Contents/Library:$PATH"
 # Path to your oh-my-zsh installation.
 export ZSH="$HOME/.oh-my-zsh"
 
@@ -51,7 +51,7 @@ alias j=z
 #  ╚══════════════════════════════════════════════════════════╝
 
 # Set path to default notebook directory for ZK
-export ZK_NOTEBOOK_DIR="$HOME/Brain"
+export ZK_NOTEBOOK_DIR="$HOME/Developer/Brain"
 
 #  ╔══════════════════════════════════════════════════════════╗
 #  ║                           Nvim                           ║
