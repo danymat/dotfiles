@@ -97,3 +97,10 @@ source ~/.openai_key
 export PATH="$PATH:$HOME/.local/bin"
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+
+source ~/.obsidian_key
+
+
+# Generated for pdtm. Do not edit.
+export PATH=$PATH:/Users/danielmathiot/.pdtm/go/bin
+
