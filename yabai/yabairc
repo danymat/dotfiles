@@ -67,23 +67,22 @@ yabai -m rule --add app="qemu" space=1_code manage=off
 
 # Window rules: in display 1
 yabai -m rule --add app="^iTerm" manage=on space=1_code
-yabai -m rule --add app="^Warp" manage=on space=1_code
+yabai -m rule --add app="Obsidian" space=1_code
 
 # Window rules: in display 2
 yabai -m rule --add app=Safari space=2_web
 yabai -m rule --add app="Brave Browser" space=2_web
-yabai -m rule --add app="^KeePass" manage=on space=2_web
 
 # Window rules: in display 3
-yabai -m rule --add app="Obsidian" space=3_work
+yabai -m rule --add app="^KeePass" manage=on space=3_work
+yabai -m rule --add app=Mail manage=on space=3_work
+yabai -m rule --add app=Slack space=3_work
+yabai -m rule --add app=Burp space=3_work
 
 # Window rules: in display 4
 yabai -m rule --add app=Discord space=4_misc manage=on
 yabai -m rule --add app=Spotify manage=on space=4_misc
-yabai -m rule --add app=Mail manage=on space=4_misc
 yabai -m rule --add app=Firefox space=4_misc
-yabai -m rule --add app=Burp space=4_misc
-yabai -m rule --add app=Slack space=4_misc
 
 # App specific rules
 # I put them at the end so they canluajit override the window rules
