@@ -1,0 +1,15 @@
+set $base 232136ff
+set $surface 2a273fff
+set $overlay 393552ff
+set $muted 6e6a86ff
+set $subtle 908caaff
+set $text e0def4ff
+set $love eb6f92ff
+set $gold f6c177ff
+set $rose ea9a97ff
+set $pine 3e8fb0ff
+set $foam 9ccfd8ff
+set $iris c4a7e7ff
+set $highlight-low 2a283eff
+set $highlight-med 44415aff
+set $highlight-high 56526eff
