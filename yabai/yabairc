@@ -37,21 +37,46 @@ yabai -m config window_topmost on
 
 # window opacity (default: off)
 # example: render all unfocused windows with 90% opacity
-yabai -m config window_opacity off
+yabai -m config window_opacity on
 yabai -m config active_window_opacity 0.95
 yabai -m config normal_window_opacity 0.95
 
+# Space Mapper
+setup_space() {
+  local idx="$1"
+  local name="$2"
+  local space=
+  echo "setup space $idx : $name"
+
+  space=$(yabai -m query --spaces --space "$idx")
+  if [ -z "$space" ]; then
+    yabai -m space --create
+  fi
+
+  yabai -m space "$idx" --label "$name"
+  if [ "$idx" -lt "4" ]; then
+    yabai -m space "$idx" --display 2
+  else
+    yabai -m space "$idx" --display 1
+  fi
+}
+
+# Setup or destroy spaces as needed to match 9
+for _ in $(yabai -m query --spaces | jq '.[].index | select(. > 4)'); do
+  yabai -m space --destroy 5
+done
+
 # Desktop labels
-yabai -m space 1 --label 1_code
-yabai -m space 2 --label 2_web
-yabai -m space 3 --label 3_work
-yabai -m space 4 --label 4_misc
+setup_space 1 1_code
+setup_space 2 2_web
+setup_space 3 3_work
+setup_space 4 4_misc
 
 # Move spaces to correct displays
-yabai -m space 2_web --display 1
 yabai -m space 1_code --display 2
-yabai -m space 4_misc --display 1
+yabai -m space 2_web --display 2
 yabai -m space 3_work --display 2
+yabai -m space 4_misc --display 1
 
 # Window rules: manage off
 yabai -m rule --add app=Finder manage=off
@@ -59,27 +84,31 @@ yabai -m rule --add app="^Préférences Système$" manage=off
 yabai -m rule --add app="Stats" manage=off
 yabai -m rule --add app="Steam" manage=off
 yabai -m rule --add app="luajit" manage=off
+yabai -m rule --add app="ChatGPT" manage=off
 
-# Window rules: in display 1 and dont manage
+# Window rules: in space 1 and dont manage
 yabai -m rule --add app="VMware Fusion" space=1_code manage=off
 yabai -m rule --add app="Android" space=1_code manage=off
 yabai -m rule --add app="qemu" space=1_code manage=off
 
-# Window rules: in display 1
+# Window rules: in space 1
 yabai -m rule --add app="^iTerm" manage=on space=1_code
-yabai -m rule --add app="Obsidian" space=1_code
 
-# Window rules: in display 2
+# Window rules: in space 2
 yabai -m rule --add app=Safari space=2_web
 yabai -m rule --add app="Brave Browser" space=2_web
 
-# Window rules: in display 3
+# Window rules: in space 3
 yabai -m rule --add app="^KeePass" manage=on space=3_work
 yabai -m rule --add app=Mail manage=on space=3_work
+yabai -m rule --add app="Proton Mail" manage=on space=3_work
+yabai -m rule --add app="Signal" manage=on space=3_work
+yabai -m rule --add app="ProtonVPN" manage=on space=3_work
 yabai -m rule --add app=Slack space=3_work
 yabai -m rule --add app=Burp space=3_work
+yabai -m rule --add app="Obsidian" space=3_work
 
-# Window rules: in display 4
+# Window rules: in space 4
 yabai -m rule --add app=Discord space=4_misc manage=on
 yabai -m rule --add app=Spotify manage=on space=4_misc
 yabai -m rule --add app=Firefox space=4_misc
@@ -90,6 +119,8 @@ yabai -m rule --add app=Firefox space=4_misc
 # I dot not manage the opacity for obsidian because i want to set my own transparency for the app
 # Recommended is dark "Border" theme with Apparence -> Transparancy off
 yabai -m rule --add app="Obsidian" opacity=off
+
+yabai -m rule --apply
 
 # Window rule: general rules
 yabai -m config window_border off
