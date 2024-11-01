@@ -39,8 +39,8 @@ cmd + alt + ctrl - 0x14 : yabai -m window --space 3_work && yabai -m space --foc
 cmd + alt + ctrl - 0x15 : yabai -m window --space 4_misc && yabai -m space --focus 4_misc
 
 # Toggle native-fullscreen
-#cmd + alt + ctrl - f : yabai -m window --toggle native-fullscreen
-#hyper + fn - z: yabai -m window --toggle zoom-parent
+cmd + alt + ctrl - f : yabai -m window --toggle native-fullscreen
+hyper + fn - z: yabai -m window --toggle zoom-parent
 
 
 # Focus the first fullscreen window
