@@ -93,6 +93,7 @@ yabai -m rule --add app="qemu" space=1_code manage=off
 
 # Window rules: in space 1
 yabai -m rule --add app="^iTerm" manage=on space=1_code
+yabai -m rule --add app="^WezTerm" manage=on space=1_code
 
 # Window rules: in space 2
 yabai -m rule --add app=Safari space=2_web
