@@ -128,9 +128,7 @@ yabai -m config mouse_follows_focus on
 yabai -m config normal_window_border_color 0x00FFFFFF
 yabai -m config active_window_border_color 0x50ff8a65
 
-yabai -m space --focus 2_web
 yabai -m space --focus 1_code
-
 
 echo "yabai configuration loaded.."
 
