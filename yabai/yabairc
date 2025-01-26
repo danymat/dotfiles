@@ -29,7 +29,7 @@ yabai -m config mouse_action1 move
 # set modifier + right-click drag to resize window (default: resize)
 yabai -m config mouse_action2 resize
 
-# set focus follows mouse mode (default: off, options: off, autoraise, autofocus)
+# se_workt focus follows mouse mode (default: off, options: off, autoraise, autofocus)
 yabai -m config focus_follows_mouse autofocus
 
 # floating windows are always on top (default: off)
@@ -67,16 +67,16 @@ for _ in $(yabai -m query --spaces | jq '.[].index | select(. > 4)'); do
 done
 
 # Desktop labels
-setup_space 1 1_code
-setup_space 2 2_web
-setup_space 3 3_work
-setup_space 4 4_misc
+# setup_space 1 1_code
+# setup_space 2 2_web
+# setup_space 3 3_work
+# setup_space 4 4_misc
 
 # Move spaces to correct displays
-yabai -m space 1_code --display 2
-yabai -m space 2_web --display 2
-yabai -m space 3_work --display 2
-yabai -m space 4_misc --display 1
+yabai -m space 1 --display 2
+yabai -m space 2 --display 2
+yabai -m space 3 --display 2
+yabai -m space 4 --display 1
 
 # Window rules: manage off
 yabai -m rule --add app=Finder manage=off
@@ -87,32 +87,32 @@ yabai -m rule --add app="luajit" manage=off
 yabai -m rule --add app="ChatGPT" manage=off
 
 # Window rules: in space 1 and dont manage
-yabai -m rule --add app="VMware Fusion" space=1_code manage=off
-yabai -m rule --add app="Android" space=1_code manage=off
-yabai -m rule --add app="qemu" space=1_code manage=off
+yabai -m rule --add app="VMware Fusion" space=1 manage=off
+yabai -m rule --add app="Android" space=1 manage=off
+yabai -m rule --add app="qemu" space=1 manage=off
 
 # Window rules: in space 1
-yabai -m rule --add app="^iTerm" manage=on space=1_code
-yabai -m rule --add app="^WezTerm" manage=on space=1_code
-yabai -m rule --add app=Burp space=1_code
+yabai -m rule --add app="^iTerm" manage=on space=1
+yabai -m rule --add app="^WezTerm" manage=on space=1
+yabai -m rule --add app=Burp space=1
 
 # Window rules: in space 2
-yabai -m rule --add app=Safari space=2_web
-yabai -m rule --add app="Brave Browser" space=2_web
+yabai -m rule --add app=Safari space=2
+yabai -m rule --add app="Brave Browser" space=2
 
 # Window rules: in space 3
-yabai -m rule --add app="^KeePass" manage=on space=3_work
-yabai -m rule --add app=Mail manage=on space=3_work
-yabai -m rule --add app="Proton Mail" manage=on space=3_work
-yabai -m rule --add app="Signal" manage=on space=3_work
-yabai -m rule --add app="ProtonVPN" manage=on space=3_work
-yabai -m rule --add app=Slack space=3_work
-yabai -m rule --add app="Obsidian" space=3_work
+yabai -m rule --add app="^KeePass" manage=on space=3
+yabai -m rule --add app=Mail manage=on space=3
+yabai -m rule --add app="Proton Mail" manage=on space=3
+yabai -m rule --add app="Signal" manage=on space=3
+yabai -m rule --add app="ProtonVPN" manage=on space=3
+yabai -m rule --add app=Slack space=3
+yabai -m rule --add app="Obsidian" space=3
 
 # Window rules: in space 4
-yabai -m rule --add app=Discord space=4_misc manage=on
-yabai -m rule --add app=Spotify manage=on space=4_misc
-yabai -m rule --add app=Firefox space=4_misc
+yabai -m rule --add app=Discord space=4 manage=on
+yabai -m rule --add app=Spotify manage=on space=4
+yabai -m rule --add app=Firefox space=4
 
 # App specific rules
 # I put them at the end so they canluajit override the window rules
@@ -129,7 +129,7 @@ yabai -m config mouse_follows_focus on
 yabai -m config normal_window_border_color 0x00FFFFFF
 yabai -m config active_window_border_color 0x50ff8a65
 
-yabai -m space --focus 1_code
+yabai -m space --focus 1
 
 echo "yabai configuration loaded.."
 
