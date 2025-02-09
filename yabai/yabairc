@@ -44,30 +44,33 @@ yabai -m config normal_window_opacity 0.95
 # Space Mapper
 setup_space() {
   local idx="$1"
+  local name="$2"
   local space=
+  echo "setup space $idx : $name"
 
   space=$(yabai -m query --spaces --space "$idx")
   if [ -z "$space" ]; then
     yabai -m space --create
   fi
+
+  yabai -m space "$idx" --label "$name"
 }
 
-# Setup or destroy spaces as needed to match 4
-for _ in $(yabai -m query --spaces | jq '.[].index | select(. > 4)'); do
-  yabai -m space --destroy 5
-done
+# for _ in $(yabai -m query --spaces | jq '.[].index | select(. > 2)'); do
+#   yabai -m space --destroy 3
+# done
+
 
 # Desktop labels
-setup_space 1
-setup_space 2
-setup_space 3
-setup_space 4
+setup_space 1 1_code
+setup_space 2 2_web
+setup_space 3 3_work
+setup_space 4 4_misc
 
-# Move spaces to correct displays
-yabai -m space 1 --display 2
-yabai -m space 2 --display 2
-yabai -m space 3 --display 2
-yabai -m space 4 --display 1
+yabai -m space 4_misc --display 1
+yabai -m space 1_code --display 2
+yabai -m space 2_web --display 2
+yabai -m space 3_work --display 2
 
 # Window rules: manage off
 yabai -m rule --add app=Finder manage=off
@@ -83,28 +86,28 @@ yabai -m rule --add app="Android" space=1 manage=off
 yabai -m rule --add app="qemu" space=1 manage=off
 
 # Window rules: in space 1
-yabai -m rule --add app="^Ghostty" manage=on space=1
-yabai -m rule --add app="^iTerm" manage=on space=1
-yabai -m rule --add app="^WezTerm" manage=on space=1
-yabai -m rule --add app=Burp space=1
+yabai -m rule --add app="^Ghostty" manage=on space=1_code
+yabai -m rule --add app="^iTerm" manage=on space=1_code
+yabai -m rule --add app="^WezTerm" manage=on space=1_code
+yabai -m rule --add app=Burp space=1_code
 
 # Window rules: in space 2
-yabai -m rule --add app=Safari space=2
-yabai -m rule --add app="Brave Browser" space=2
+yabai -m rule --add app=Safari space=2_web
+yabai -m rule --add app="Brave Browser" space=2_web
 
 # Window rules: in space 3
-yabai -m rule --add app="^KeePass" manage=on space=3
-yabai -m rule --add app=Mail manage=on space=3
-yabai -m rule --add app="Proton Mail" manage=on space=3
-yabai -m rule --add app="Signal" manage=on space=3
-yabai -m rule --add app="ProtonVPN" manage=on space=3
-yabai -m rule --add app=Slack space=3
-yabai -m rule --add app="Obsidian" space=3
+yabai -m rule --add app="^KeePass" manage=on space=3_work
+yabai -m rule --add app=Mail manage=on space=3_work
+yabai -m rule --add app="Proton Mail" manage=on space=3_work
+yabai -m rule --add app="Signal" manage=on space=3_work
+yabai -m rule --add app="ProtonVPN" manage=on space=3_work
+yabai -m rule --add app=Slack space=3_work
+yabai -m rule --add app="Obsidian" space=3_work
 
 # Window rules: in space 4
-yabai -m rule --add app=Discord space=4 manage=on
-yabai -m rule --add app=Spotify manage=on space=4
-yabai -m rule --add app=Firefox space=4
+yabai -m rule --add app=Discord space=4_misc manage=on
+yabai -m rule --add app=Spotify manage=on space=4_misc
+yabai -m rule --add app=Firefox space=4_misc
 
 # App specific rules
 # I put them at the end so they canluajit override the window rules
@@ -121,7 +124,7 @@ yabai -m config mouse_follows_focus on
 yabai -m config normal_window_border_color 0x00FFFFFF
 yabai -m config active_window_border_color 0x50ff8a65
 
-yabai -m space --focus 1
+yabai -m space --focus 1_code
 
 echo "yabai configuration loaded.."
 
