@@ -28,15 +28,15 @@ hyper - j : yabai -m window --display 1 && yabai -m display --focus 1
 hyper - l :  yabai -m window --focus stack.next || yabai -m window --focus stack.first
 
 # Focus space 1/2/3/4 if it exists
-hyper - 0x12 : yabai -m space --focus 1
-hyper - 0x13 : yabai -m space --focus 2
-hyper - 0x14 : yabai -m space --focus 3
-hyper - 0x15 : yabai -m space --focus 4
+hyper - 0x12 : yabai -m space --focus 1_code
+hyper - 0x13 : yabai -m space --focus 2_web
+hyper - 0x14 : yabai -m space --focus 3_work
+hyper - 0x15 : yabai -m space --focus 4_misc
 
-cmd + alt + ctrl - 0x12 : yabai -m window --space 1 && yabai -m space --focus 1
-cmd + alt + ctrl - 0x13 : yabai -m window --space 2 && yabai -m space --focus 2
-cmd + alt + ctrl - 0x14 : yabai -m window --space 3 && yabai -m space --focus 3
-cmd + alt + ctrl - 0x15 : yabai -m window --space 4 && yabai -m space --focus 4
+cmd + alt + ctrl - 0x12 : yabai -m window --space 1_code && yabai -m space --focus 1_code
+cmd + alt + ctrl - 0x13 : yabai -m window --space 2_web && yabai -m space --focus 2_web
+cmd + alt + ctrl - 0x14 : yabai -m window --space 3_work && yabai -m space --focus 3_work
+cmd + alt + ctrl - 0x15 : yabai -m window --space 4_misc && yabai -m space --focus 4_misc
 
 # Toggle native-fullscreen
 cmd + alt + ctrl - f : yabai -m window --toggle native-fullscreen
