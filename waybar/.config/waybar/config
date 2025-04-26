@@ -11,6 +11,7 @@
     ],
     "modules-right": [
         "pulseaudio",
+	"backlight",
 	"network",
         "tray",
 	//"disk",
@@ -136,7 +137,8 @@
         "bat": "BAT2"
     },
     "network": {
-        "format-wifi": "{ipaddr}",
+        "family": "ipv4",
+        "format-wifi": "{essid}",
         "format-ethernet": "{ipaddr}/{cidr} ",
         "tooltip-format": "{ifname} via {gwaddr} ",
         "format-linked": "{ifname} (No IP) ",

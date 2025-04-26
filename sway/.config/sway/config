@@ -14,12 +14,13 @@ set $down j
 set $up k
 set $right l
 # Your preferred terminal emulator
-set $term kitty
+set $term foot
 # Your preferred application launcher
 # Note: pass the final command to swaymsg so that the resulting window can be opened
 # on the original workspace that the command was run on.
 #set $menu dmenu_path | dmenu | xargs swaymsg exec --
-set $menu wofi --show run | xargs swaymsg exec
+#set $menu wofi --show run | xargs swaymsg exec
+set $menu rofi -show run | xargs swaymsg exec
 
 focus_follows_mouse always
 focus_on_window_activation urgent
@@ -42,7 +43,7 @@ gaps outer 5
 ### Output configuration
 #
 # Default wallpaper (more resolutions are available in /usr/share/backgrounds/sway/)
-output * bg $HOME/Documents/kevin-laminto-7PqRZK6rbaE-unsplash.jpg fill
+output * bg /usr/share/backgrounds/diane-picchiottino-GwCbqqjwoLU-unsplash.jpg fill
 
 output eDP-1 scale 2
 output eDP-1 scale_filter smart
@@ -68,7 +69,7 @@ output eDP-1 scale_filter smart
 
 ### Input configuration
 
-    input "1452:641:Apple_Internal_Keyboard_/_Trackpad" {
+    input "type:keyboard" {
         xkb_layout fr(mac) 
 	xkb_capslock disabled 
 	xkb_numlock disabled
@@ -196,9 +197,9 @@ bindsym XF86AudioLowerVolume exec \
 	pactl set-sink-volume @DEFAULT_SINK@ -5%
 
 bindsym XF86MonBrightnessUp exec \
-	brightnessctl s +5% 
+	light -A 5
 bindsym XF86MonBrightnessDown exec \
-	brightnessctl s 5%-
+	light -U 5
 
 bindsym XF86AudioPlay exec playerctl play-pause
 bindsym XF86AudioNext exec playerctl next
@@ -213,8 +214,9 @@ bar {
     swaybar_command waybar
 }
 
-exec mako
+#exec mako
+exec_always dunst --startup_indicator
 exec_always nm-applet --indicator
-exec kitty
+exec foot
 
 include /etc/sway/config.d/*
