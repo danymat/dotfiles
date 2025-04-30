@@ -7,8 +7,8 @@ hyper - tab : aerospace focus-monitor next || aerospace focus-monitor prev
 # Restart yabai
 hyper - y : aerospace reload-config && skhd --restart-service && sketchybar --reload
 
-# Toggle between stack and bsp mode
-# hyper - z : yabai -m space --layout $(yabai -m query --spaces --space | jq -r 'if .type == "bsp" then "stack" else "bsp" end')
+# Toggle between stack and accordion mode
+hyper - z : aerospace layout h_accordion || aerospace layout tiles
 
 # Rotate windows
 # hyper - r : yabai -m window --toggle split
@@ -18,16 +18,17 @@ hyper - y : aerospace reload-config && skhd --restart-service && sketchybar --re
 #                 if [[ $(yabai -m config --space $current_space right_padding) -eq 15 ]]; \
 #                 then; yabai -m space --padding abs:15:15:450:450; else; yabai -m space --padding abs:15:15:15:15; fi
 
+# Focus to next/previous window in stack
+hyper - h :  aerospace focus left
+hyper - l :  aerospace focus right
+
+hyper - space: aerospace mode change
+
 # Move window to second monitor
 hyper - k : aerospace move-node-to-monitor up && aerospace focus-monitor up
 
 # Move window to Mac
 hyper - j : aerospace move-node-to-monitor down && aerospace focus-monitor down
-
-# Focus to next/previous window in stack
-# hyper - l :  yabai -m window --focus stack.next || yabai -m window --focus stack.first
-
-hyper - space: aerospace mode change
 
 # Focus space 1/2/3/4 if it exists
 # hyper - 0x12 : aerospace workspace 1
