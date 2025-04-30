@@ -56,11 +56,6 @@ setup_space() {
   yabai -m space "$idx" --label "$name"
 }
 
-# for _ in $(yabai -m query --spaces | jq '.[].index | select(. > 2)'); do
-#   yabai -m space --destroy 3
-# done
-
-
 # Desktop labels
 setup_space 1 1_code
 setup_space 2 2_web
@@ -81,15 +76,16 @@ yabai -m rule --add app="luajit" manage=off
 yabai -m rule --add app="ChatGPT" manage=off
 
 # Window rules: in space 1 and dont manage
-yabai -m rule --add app="VMware Fusion" space=1 manage=off
-yabai -m rule --add app="Android" space=1 manage=off
-yabai -m rule --add app="qemu" space=1 manage=off
+yabai -m rule --add app="VMware Fusion" space=1_code manage=off
+yabai -m rule --add app="Android" space=1_code manage=off
+yabai -m rule --add app="qemu" space=1_code manage=off
 
 # Window rules: in space 1
 yabai -m rule --add app="^Ghostty" manage=on space=1_code
 yabai -m rule --add app="^iTerm" manage=on space=1_code
 yabai -m rule --add app="^WezTerm" manage=on space=1_code
-yabai -m rule --add app=Burp space=1_code
+yabai -m rule --add app=Burp space=1_code manage=on
+yabai -m rule --add app="The Archive" manage=on space=1_code
 
 # Window rules: in space 2
 yabai -m rule --add app=Safari space=2_web
