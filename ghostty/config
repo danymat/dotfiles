@@ -8,3 +8,8 @@ palette = 4=#9ccfd8
 palette = 12=#9ccfd8
 
 selection-background = #44415a
+
+macos-option-as-alt = left
+
+keybind = alt+left=unbind
+keybind = alt+right=unbind
