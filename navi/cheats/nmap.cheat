@@ -1,0 +1,10 @@
+% nmap, server
+
+# Perform noisy nmap scan on host
+nmap -sC -sV <host> -vvv
+
+# Perform simple syn scan on host
+nmap -sS <host> -vvv
+
+# Scan all ports on host
+nmap -p- <host> -vvv
