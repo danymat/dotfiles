@@ -64,6 +64,10 @@ PATH = '/opt/homebrew/bin:/opt/homebrew/sbin:${PATH}'
     if.app-id = 'com.apple.finder'
     run = 'layout floating'
 
+# [[on-window-detected]]
+#     if.app-id = 'com.apple.reminders'
+#     run = 'layout floating'
+
 [[on-window-detected]]
     if.app-id = 'com.mitchellh.ghostty'
     run = [
@@ -76,8 +80,13 @@ PATH = '/opt/homebrew/bin:/opt/homebrew/sbin:${PATH}'
     run = 'move-node-to-workspace 1'
 
 [[on-window-detected]]
-    if.app-id = 'com.apple.Safari'
+    if.app-id = 'com.apple.safari'
     run = 'move-node-to-workspace 2'
+
+[[on-window-detected]]
+    if.app-id = 'com.kagi.kagimacOS'
+    run = 'move-node-to-workspace 2'
+
 
 [[on-window-detected]]
     if.app-id = 'de.zettelkasten.TheArchive'
