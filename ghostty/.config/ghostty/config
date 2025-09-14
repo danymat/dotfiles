@@ -9,7 +9,8 @@ palette = 12=#9ccfd8
 
 selection-background = #44415a
 
-macos-option-as-alt = left
+macos-option-as-alt = false
 
 keybind = alt+left=unbind
 keybind = alt+right=unbind
+keybind = shift+enter=text:\x1b\r

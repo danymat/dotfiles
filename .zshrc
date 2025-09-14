@@ -104,3 +104,8 @@ source ~/.obsidian_key
 # Generated for pdtm. Do not edit.
 export PATH=$PATH:/Users/danielmathiot/.pdtm/go/bin
 
+
+# Added by LM Studio CLI (lms)
+export PATH="$PATH:/Users/danielmathiot/.lmstudio/bin"
+# End of LM Studio CLI section
+

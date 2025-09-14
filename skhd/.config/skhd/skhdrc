@@ -32,10 +32,10 @@ hyper - j : aerospace move-node-to-monitor down && aerospace focus-monitor down
 
 # Focus space 1/2/3/4 if it exists
 # hyper - 0x12 : aerospace workspace 1
-hyper - 0x12 : mode=$(aerospace list-modes --current) && [[ "$mode" == "main" ]] && aerospace workspace 1 || { [[ "$mode" == "change" ]] && aerospace move-node-to-workspace 1 && aerospace mode main }
-hyper - 0x13 : mode=$(aerospace list-modes --current) && [[ "$mode" == "main" ]] && aerospace workspace 2 || { [[ "$mode" == "change" ]] && aerospace move-node-to-workspace 2 && aerospace mode main }
-hyper - 0x14 : mode=$(aerospace list-modes --current) && [[ "$mode" == "main" ]] && aerospace workspace 3 || { [[ "$mode" == "change" ]] && aerospace move-node-to-workspace 3 && aerospace mode main }
-hyper - 0x15 : mode=$(aerospace list-modes --current) && [[ "$mode" == "main" ]] && aerospace workspace 4 || { [[ "$mode" == "change" ]] && aerospace move-node-to-workspace 4 && aerospace mode main }
+hyper - 0x12 : mode=$(aerospace list-modes --current) && [[ "$mode" == "main" ]] && aerospace workspace 1 || { [[ "$mode" == "change" ]] && aerospace move-node-to-workspace 1 --focus-follows-window && aerospace mode main }
+hyper - 0x13 : mode=$(aerospace list-modes --current) && [[ "$mode" == "main" ]] && aerospace workspace 2 || { [[ "$mode" == "change" ]] && aerospace move-node-to-workspace 2 --focus-follows-window && aerospace mode main }
+hyper - 0x14 : mode=$(aerospace list-modes --current) && [[ "$mode" == "main" ]] && aerospace workspace 3 || { [[ "$mode" == "change" ]] && aerospace move-node-to-workspace 3 --focus-follows-window && aerospace mode main }
+hyper - 0x15 : mode=$(aerospace list-modes --current) && [[ "$mode" == "main" ]] && aerospace workspace 4 || { [[ "$mode" == "change" ]] && aerospace move-node-to-workspace 4 --focus-follows-window && aerospace mode main }
 
 # Toggle native-fullscreen
 cmd + alt + ctrl - f : aerospace macos-native-fullscreen

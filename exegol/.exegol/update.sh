@@ -8,11 +8,16 @@ set -e
 # Exegol also features a set of supported customization a user can make.
 # The /opt/supported_setups.md file lists the supported configurations that can be made easily.
 
-"Download navi"
+echo "Download navi"
 curl -L https://github.com/denisidoro/navi/releases/download/v2.24.0/navi-v2.24.0-aarch64-unknown-linux-gnu.tar.gz -o navi.tar.gz
 tar xvzf navi.tar.gz
 mv ./navi ./my-resources/bin
 rm navi.tar.gz
+
+echo "Download copyparty"
+curl -L https://github.com/9001/copyparty/releases/latest/download/copyparty-sfx.py -o copyparty.py
+chmod +x ./copyparty.py
+mv ./copyparty.py ./my-resources/bin
 
 echo "copy local navi config"
 cp -R ~/.config/navi ./my-resources/setup/navi
