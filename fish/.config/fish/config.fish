@@ -9,6 +9,7 @@ fish_vi_key_bindings
 
 alias v="nvim"
 alias vim="nvim"
+alias n="navi"
 
 # Added by OrbStack: command-line tools and integration
 # This won't be added again if you remove it.
@@ -22,4 +23,6 @@ set -gx PATH $PATH ~/.lmstudio/bin
 # End of LM Studio CLI section
 
 set -gx ZK_NOTEBOOK_DIR ~/Developer/Brain
+
+zoxide init fish | source
 

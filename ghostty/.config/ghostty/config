@@ -1,16 +1,8 @@
-theme = rose-pine-moon
-
-# green
-palette = 2=#3e8fb0
-palette = 10=#3e8fb0
-# blue
-palette = 4=#9ccfd8
-palette = 12=#9ccfd8
-
-selection-background = #44415a
+theme = Rose Pine Moon
 
 macos-option-as-alt = false
 
 keybind = alt+left=unbind
 keybind = alt+right=unbind
 keybind = shift+enter=text:\x1b\r
+
