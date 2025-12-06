@@ -1,6 +1,8 @@
 # Place a copy of this config to ~/.aerospace.toml
 # After that, you can edit ~/.aerospace.toml to your liking
 
+config-version = 2
+
 # It's not neceesary to copy all keys to your config.
 # If the key is missing in your config, "default-config.toml" will serve as a fallback
 
@@ -41,6 +43,8 @@ on-focused-monitor-changed = ['move-mouse monitor-lazy-center'] # Mouse lazily f
 on-focus-changed = ['move-mouse window-lazy-center'] # Mouse lazily follows any focus (window or workspace)
 
 accordion-padding = 0
+
+persistent-workspaces = ["1", "2", "3", "4"]
 
 [workspace-to-monitor-force-assignment]
 1 = 'secondary'
