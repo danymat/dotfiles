@@ -42,7 +42,7 @@ default-root-container-orientation = 'auto'
 on-focused-monitor-changed = ['move-mouse monitor-lazy-center'] # Mouse lazily follows focused monitor (default in i3)
 on-focus-changed = ['move-mouse window-lazy-center'] # Mouse lazily follows any focus (window or workspace)
 
-accordion-padding = 0
+accordion-padding = 15
 
 persistent-workspaces = ["1", "2", "3", "4"]
 
