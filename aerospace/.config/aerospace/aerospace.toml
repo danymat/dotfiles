@@ -106,3 +106,98 @@ PATH = '/opt/homebrew/bin:/opt/homebrew/sbin:${PATH}'
     if.app-id = 'org.whispersystems.signal-desktop'
     run = 'move-node-to-workspace 4'
 
+[key-mapping.key-notation-to-key-code]
+    '&' = '1'
+    'é' = '2'
+    '"' = '3'
+    "'" = '4'
+    '(' = '5'
+    '§' = '6'
+    'è' = '7'
+    '!' = '8'
+    'ç' = '9'
+    'à' = '0'
+    ')' = 'minus'
+    minus = 'equal'
+
+    a = 'q'
+    z = 'w'
+    e = 'e'
+    r = 'r'
+    t = 't'
+    y = 'y'
+    u = 'u'
+    i = 'i'
+    o = 'o'
+    p = 'p'
+    '^' = 'leftSquareBracket'
+    '$' = 'rightSquareBracket'
+
+    q = 'a'
+    s = 's'
+    d = 'd'
+    f = 'f'
+    g = 'g'
+    h = 'h'
+    j = 'j'
+    k = 'k'
+    l = 'l'
+    m = 'semicolon'
+    'ù' = 'quote'
+
+    w = 'z'
+    x = 'x'
+    c = 'c'
+    v = 'v'
+    b = 'b'
+    n = 'n'
+    comma = 'm'
+    semicolon = 'comma'
+    colon = 'period'
+	equal = 'slash'
+
+[mode.main.binding]
+cmd-alt-ctrl-shift-space="mode move-workspace"
+cmd-alt-ctrl-shift-s="mode swap"
+
+cmd-alt-ctrl-shift-o="mode service"
+
+cmd-alt-ctrl-shift-h="focus left"
+cmd-alt-ctrl-shift-l="focus right"
+cmd-alt-ctrl-shift-k="focus up"
+cmd-alt-ctrl-shift-j="focus down"
+
+cmd-alt-ctrl-shift-y="reload-config"
+cmd-alt-ctrl-shift-f="fullscreen"
+cmd-alt-ctrl-shift-z="layout accordion tiles"
+
+cmd-alt-ctrl-shift-1="workspace 1"
+cmd-alt-ctrl-shift-2="workspace 2"
+cmd-alt-ctrl-shift-3="workspace 3"
+cmd-alt-ctrl-shift-4="workspace 4"
+
+cmd-alt-ctrl-shift-minus = 'resize smart -64'
+cmd-alt-ctrl-shift-equal = 'resize smart +64'
+
+[mode.move-workspace.binding]
+cmd-alt-ctrl-shift-space="mode main"
+cmd-alt-ctrl-shift-1=["move-node-to-workspace 1 --focus-follows-window", "mode main"]
+cmd-alt-ctrl-shift-2=["move-node-to-workspace 2 --focus-follows-window", "mode main"]
+cmd-alt-ctrl-shift-3=["move-node-to-workspace 3 --focus-follows-window", "mode main"]
+cmd-alt-ctrl-shift-4=["move-node-to-workspace 4 --focus-follows-window", "mode main"]
+
+[mode.swap.binding]
+cmd-alt-ctrl-shift-s="mode main"
+
+cmd-alt-ctrl-shift-h=["swap left", "mode main"]
+cmd-alt-ctrl-shift-l=["swap right", "mode main"]
+cmd-alt-ctrl-shift-j=["swap down", "mode main"]
+cmd-alt-ctrl-shift-k=["swap up", "mode main"]
+
+[mode.service.binding]
+    r = ['flatten-workspace-tree', 'mode main'] # reset layout
+
+    cmd-alt-ctrl-shift-h = ['join-with left', 'mode main']
+    cmd-alt-ctrl-shift-j = ['join-with down', 'mode main']
+    cmd-alt-ctrl-shift-k = ['join-with up', 'mode main']
+    cmd-alt-ctrl-shift-l = ['join-with right', 'mode main']

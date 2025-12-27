@@ -20,9 +20,9 @@ hyper - z : aerospace layout h_accordion || aerospace layout tiles
 
 # Focus to next/previous window in stack
 hyper - h :  aerospace focus left
-cmd + alt + ctrl - h :  aerospace resize smart +20
+cmd + alt + ctrl - h :  aerospace resize width +20
 hyper - l :  aerospace focus right
-cmd + alt + ctrl - l :  aerospace resize smart -20
+cmd + alt + ctrl - l :  aerospace resize width -20
 
 hyper - space: aerospace mode change
 
@@ -61,3 +61,6 @@ hyper - left : aerospace move left
 hyper - right : aerospace move right
 hyper - up : aerospace move up
 hyper - down : aerospace move down
+
+cmd + alt - h : aerospace swap dfs-prev && aerospace move-mouse window-lazy-center
+cmd + alt - l : aerospace swap dfs-next && aerospace move-mouse window-lazy-center
