@@ -159,8 +159,7 @@ PATH = '/opt/homebrew/bin:/opt/homebrew/sbin:${PATH}'
 [mode.main.binding]
 cmd-alt-ctrl-shift-space="mode move-workspace"
 cmd-alt-ctrl-shift-s="mode swap"
-
-cmd-alt-ctrl-shift-o="mode service"
+cmd-alt-ctrl-shift-r="mode service"
 
 cmd-alt-ctrl-shift-h="focus left"
 cmd-alt-ctrl-shift-l="focus right"
@@ -170,6 +169,11 @@ cmd-alt-ctrl-shift-j="focus down"
 cmd-alt-ctrl-shift-y="reload-config"
 cmd-alt-ctrl-shift-f="fullscreen"
 cmd-alt-ctrl-shift-z="layout accordion tiles"
+#alt-slash = 'layout tiles horizontal vertical'
+#alt-comma = 'layout accordion horizontal vertical'
+
+cmd-alt-ctrl-shift-c="close"
+
 
 cmd-alt-ctrl-shift-1="workspace 1"
 cmd-alt-ctrl-shift-2="workspace 2"
