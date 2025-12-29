@@ -173,7 +173,7 @@ cmd-alt-ctrl-shift-z="layout accordion tiles"
 #alt-comma = 'layout accordion horizontal vertical'
 
 cmd-alt-ctrl-shift-c="close"
-
+cmd-alt-ctrl-shift-n="exec-and-forget open -na /Applications/Ghostty.app --args -e fish -C nvim"
 
 cmd-alt-ctrl-shift-1="workspace 1"
 cmd-alt-ctrl-shift-2="workspace 2"
@@ -199,9 +199,9 @@ cmd-alt-ctrl-shift-j=["swap down", "mode main"]
 cmd-alt-ctrl-shift-k=["swap up", "mode main"]
 
 [mode.service.binding]
-    r = ['flatten-workspace-tree', 'mode main'] # reset layout
+r = ['flatten-workspace-tree', 'mode main'] # reset layout
 
-    cmd-alt-ctrl-shift-h = ['join-with left', 'mode main']
-    cmd-alt-ctrl-shift-j = ['join-with down', 'mode main']
-    cmd-alt-ctrl-shift-k = ['join-with up', 'mode main']
-    cmd-alt-ctrl-shift-l = ['join-with right', 'mode main']
+cmd-alt-ctrl-shift-h = ['join-with left', 'mode main']
+cmd-alt-ctrl-shift-j = ['join-with down', 'mode main']
+cmd-alt-ctrl-shift-k = ['join-with up', 'mode main']
+cmd-alt-ctrl-shift-l = ['join-with right', 'mode main']
