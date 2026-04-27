@@ -5,4 +5,12 @@ macos-option-as-alt = false
 keybind = alt+left=unbind
 keybind = alt+right=unbind
 keybind = shift+enter=text:\x1b\r
+keybind = global:option+shift+enter=toggle_quick_terminal
 
+confirm-close-surface = false
+macos-window-buttons = hidden
+
+
+shell-integration-features = ssh-terminfo,ssh-env
+
+background-opacity = 0.80

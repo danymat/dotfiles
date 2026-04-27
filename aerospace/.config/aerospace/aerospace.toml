@@ -86,6 +86,10 @@ PATH = '/opt/homebrew/bin:/opt/homebrew/sbin:${PATH}'
     run = 'move-node-to-workspace 1'
 
 [[on-window-detected]]
+    if.app-id = 'com.utmapp.UTM'
+    run = 'move-node-to-workspace 3'
+
+[[on-window-detected]]
     if.app-id = 'com.apple.safari'
     run = 'move-node-to-workspace 2'
 
